@@ -3,41 +3,112 @@ body{
     padding: 0;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #797878;
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    background-color: #111;
-  }
+nav {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  border: 2px solid #EBECF1;
+  border-radius: 30px;
+  animation: slide-in 1s ease-out;
+}
 
-.container {
+ul {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0 30px;
+  list-style-type: none;
+  li:not(:last-child) {
+    margin-right: 40px;
+  }
+  li {
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    transition: background 0.2s;
+    a {
+      color: #4C392D;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    ul {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      display: block;
+      margin: 12px -12px;
+      padding: 0;
+      background: #FFA91B;
+      border: 2px solid #F7C833;
+      border-right: 2px solid #F89329;
+      border-bottom: 2px solid #F89329;
+      border-radius: 5px;
+      transition: opacity 0.2s, visibility 0.2s;
+      li {
+        margin: -2px 0 0 -2px;
+        width: calc(100% - 20px);
+        line-height: 1.7;
+        a {
+          color: #2375D8;
+        }
+      }
+    }
+    &:hover {
+      background: #DDDAD3;
+      border: 2px solid #e6e4e2;
+      border-right: 2px solid #DDDAD3;
+      border-bottom: 2px solid #adaca9;
+      a {
+        color: #9E8472;
+      }
+      ul {
+        visibility: visible;
+        opacity: 1;
+        box-shadow: 0px 3px 5px 2px #4C392D;
+        li {
+          a {
+            color: #4C392D;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(https://th.bing.com/th/id/R.73cec86bbb78cf3fcc6304c0ba0cc590?rik=Pj2O4Z%2fBQRRfdw&pid=ImgRaw&r=0);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    object-fit: cover;
     width: 1920px;
     height: 400px;
+    overflow: hidden;
+}
+
+.container::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 400px;
+  background-image: url(https://th.bing.com/th/id/R.73cec86bbb78cf3fcc6304c0ba0cc590?rik=Pj2O4Z%2fBQRRfdw&pid=ImgRaw&r=0);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  filter: blur(3px);
+  z-index: -1;
+}
+
+.container form {
+  z-index: 9;
+  position: relative;
+  color: white;
 }
 
 .searchbar {
