@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>showproblem</title>
+    <style>
+        main {
+            padding-top: 5%;
+            text-align: center;
+            background-color: #CABA9C;
+            height: 100vh;
+        }
+        button {
+            cursor: pointer;
+        }
+        .card-holder {
+            display: grid;
+            place-items: center;
+            text-align: center;
+            justify-items: center;
+            gap: 1%;
+        }
+        .card {
+            background-color: #8A6240;
+            position: relative;
+            display: flex;
+            padding: 1%;
+            align-items: center;
+            border-radius: 25px;
+            width: 1000px;
+        }
+        .card-head {
+            color: white;
+            margin-left: 2%;
+        }
+        .card-head > p {
+            margin-bottom: 0%;
+        }
+        .card-head > h1, h5 {
+            margin-top: 0%;
+        }
+        .card-describe {
+            color: white;
+            margin-left: 10%;
+            justify-items: left;
+        }
+        .donebutton {
+            color: white;
+            border: 0px;
+            background-color: #bb8454;
+            position: absolute;
+            right: 2%;
+            border-radius: 25px;
+            transition: all 200ms;
+            padding: 1%;
+        }
+        .donebutton:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>ปัญหาที่ถูกแจ้ง</h1>
+        <div class="card-holder">
+
+            <div class="card">
+                <div class="card-head">
+                    <p>ห้อง</p>
+                    <h1>301</h1>
+                    <p>เบอร๋โทรศัพท์</p>
+                    <h5>000000000</h5>
+                </div>
+                <div class="card-describe">
+                    <h1>รายละเอียดปัญหา</h1>
+                    <p>กุจมน้ำช่วยกุด้วย</p>
+                </div>
+                <button type="button" class="donebutton"><h2>เสร็จสิ้น</h2></button>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
