@@ -18,7 +18,10 @@ app.use('/', require('./routes/main'));
 
 app.use('/login', require('./routes/login'));
 
+app.use('/owneddorm', require('./routes/owneddorm'));
+app.use('/adddorm', require('./routes/adddorm'));
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
+    console.log(`http://localhost:${PORT}`)
 })
