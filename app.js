@@ -17,6 +17,7 @@ app.set('view engine', 'ejs');
 app.use('/', require('./routes/main'));
 
 app.use('/login', require('./routes/login'));
+app.use('/register', require('./routes/register'));
 
 app.use('/owneddorm', require('./routes/owneddorm'));
 app.use('/adddorm', require('./routes/adddorm'));
