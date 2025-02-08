@@ -11,6 +11,9 @@
             background-color: #CABA9C;
             height: 100vh;
         }
+        h1 {
+            font-size: 50px;
+        }
         button {
             cursor: pointer;
         }
@@ -37,7 +40,7 @@
         .card-head > p {
             margin-bottom: 0%;
         }
-        .card-head > h1, h5 {
+        .card-head > h2, h5 {
             margin-top: 0%;
         }
         .card-describe {
@@ -53,9 +56,23 @@
             right: 2%;
             border-radius: 25px;
             transition: all 200ms;
-            padding: 1%;
+            padding-inline: 1%;
         }
         .donebutton:hover {
+            transform: scale(1.05);
+        }
+        .gobackbutton {
+            position: fixed;
+            right: 5%;
+            bottom: 10%;
+            border: 0px;
+            color: white;
+            border-radius: 25px;
+            transition: all 200ms;
+            padding-inline: 1%;
+            background-color: #8A6240;
+        }
+        .gobackbutton:hover {
             transform: scale(1.05);
         }
     </style>
@@ -68,18 +85,19 @@
             <div class="card">
                 <div class="card-head">
                     <p>ห้อง</p>
-                    <h1>301</h1>
+                    <h2>301</h2>
                     <p>เบอร๋โทรศัพท์</p>
                     <h5>000000000</h5>
                 </div>
                 <div class="card-describe">
-                    <h1>รายละเอียดปัญหา</h1>
+                    <h2>รายละเอียดปัญหา</h2>
                     <p>กุจมน้ำช่วยกุด้วย</p>
                 </div>
                 <button type="button" class="donebutton"><h2>เสร็จสิ้น</h2></button>
             </div>
 
         </div>
+        <button type="button" class="gobackbutton"><h2>ย้อนกลับ</h2></button>
     </main>
 </body>
 </html>
