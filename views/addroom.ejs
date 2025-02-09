@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addroom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #CABA9C;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            height: 90vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .text-information {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 16px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .text-information label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .text-information input,
+        .text-information select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .text-information input:focus,
+        .text-information select:focus {
+            border-color: #8A6240;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-group label {
+            font-weight: bold;
+        }
+
+        .checkbox-group input {
+            margin-right: 10px;
+            width:auto;
+        }
+        .bt-save {
+            background-color: #8A6240;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: underline;
+            margin-top: 15px;
+        }
+
+        .bt-save:hover {
+            background-color: #6d4f34;
+            transform: scale(1.05);
+        }
+
+        .image-information {
+            background: #f9f9f9;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100%;
+            border: 2px dashed #8A6240;
+        }
+
+        .image-information img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btfromdevice {
+            margin-top: 15px;
+            background-color: #8A6240;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            text-decoration: underline;
+        }
+
+        .btfromdevice:hover {
+            background-color: #6d4f34;
+            transform: scale(1.05);
+        }
+
+        .btback {
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            background-color: #8A6240;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            text-decoration: underline;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="text-information">
+            <label for="">เลขที่ห้อง : </label>
+            <input type="text" placeholder="กรอกเลขที่ห้อง">
+            <label for="">ชั้น : </label>
+            <input type="text" placeholder="กรอกชั้น">
+            <label for="">ขนาดห้อง (ตร.ม.) : </label>
+            <input type="number" placeholder="กรอกขนาดห้อง">
+            
+            <label for="">ในห้องมีอะไรบ้าง : </label>
+            <div class="checkbox-group">
+                <label><input type="checkbox"> เตียง</label>
+                <label><input type="checkbox"> โต๊ะเขียนหนังสือ</label>
+                <label><input type="checkbox"> ตู้เสื้อผ้า</label>
+                <label><input type="checkbox"> แอร์</label>
+                <label><input type="checkbox"> ตู้เย็น</label>
+                <label><input type="checkbox"> ไมโครเวฟ</label>
+                <label><input type="checkbox"> โทรทัศน์</label>
+                <label><input type="checkbox"> อินเทอร์เน็ต</label>
+                <label><input type="checkbox"> ห้องน้ำในตัว</label>
+            </div>
+
+            <label for="">ราคา : </label>
+            <input type="number" placeholder="กรอกราคา">
+            <label for="">ค่าไฟ : </label>
+            <input type="number" placeholder="กรอกค่าไฟ (บาท)">
+            <label for="">ค่าน้ำ : </label>
+            <input type="number" placeholder="กรอกค่าน้ำ (บาท)">
+            
+            <button class="bt-save">บันทึกข้อมูล</button>
+        </div>
+
+        <div class="image-information">
+            <label for="room-images">อัพโหลดรูปห้อง :</label>
+            <input type="file" id="room-images" name="room-images" accept="image/*" multiple>
+            <div id="image-preview" style="margin-top: 15px; display: flex; gap: 10px;"></div>
+        </div>
+    </div>
+
+    <button class="btback">ย้อนกลับ</button>
+
+</body>
+
+</html>

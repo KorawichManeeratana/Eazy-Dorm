@@ -21,6 +21,7 @@ app.use('/register', require('./routes/register'));
 
 app.use('/owneddorm', require('./routes/owneddorm'));
 app.use('/adddorm', require('./routes/adddorm'));
+app.use('/addroom', require('./routes/addroom'));
 
 app.use('/showproblem', require('./routes/showproblem'))
 
