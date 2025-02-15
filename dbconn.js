@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './db.env' });
+require('dotenv').config();
 const mysql = require('mysql2');
 
 const connection = mysql.createPool({
@@ -10,7 +10,8 @@ const connection = mysql.createPool({
   multipleStatements: true,
   connectionLimit: 10,
   enableKeepAlive: true,
-  connectTimeout: 10000
+  connectTimeout: 10000,
+  connectTimeout: 100000000
 });
 
 
