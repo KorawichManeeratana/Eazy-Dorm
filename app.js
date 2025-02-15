@@ -23,6 +23,10 @@ app.use('/owneddorm', require('./routes/owneddorm'));
 app.use('/adddorm', require('./routes/adddorm'));
 app.use('/addroom', require('./routes/addroom'));
 
+app.get('/selectroom', function (req, res) {
+        res.render('selectroom')
+});
+
 app.use('/showproblem', require('./routes/showproblem'))
 
 app.listen(PORT, () => {

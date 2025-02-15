@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            padding-top: 5%;
+            padding: 5%;
+            background-color: #CABA9C;
+            display: flex;
+        }
+        .filter {
+            background-color: #8A6240;
+            color: white;
+            border-radius: 25px;
+            width: 200px;
+            padding: 1%;
+            height: fit-content;
+        }
+        .filter > input {
+            border: 0px;
+            border-radius: 5px;
+        }
+        .filter > h3 {
+            margin-bottom: 1px;
+        }
+        .itemscontainer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+        .item {
+            background-color: #CABA9C;
+            color: black;
+            border-radius: 5px;
+            margin: 1px;
+            padding: 1px;
+        }
+        .item > button {
+            border: 0px;
+            background-color: #CABA9C;
+            cursor: pointer;
+        }
+        .floorselect {
+            display: flex;
+            flex-direction: column;
+        }
+        .pricerange > input {
+            width: 50px;
+            border: 0px;
+            border-radius: 5px;
+        }
+        .roomcontainer {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1230px;
+            gap: 10px;
+            margin-left: 5%;
+            color: white;
+        }
+        .room {
+            border-radius: 5px;
+            height: 350px;
+            width: 400px;
+            background-color: #8A6240;
+        }
+        .room > img {
+            border-radius: 5px;
+            height: 75%;
+            width: 100%;
+        }
+        .describe {
+            margin: 0px;
+            height: 25%;
+            position: relative;
+            display: flex;
+        }
+        .describe > h2 {
+            margin-top: 1px;
+            margin-left: 10px;
+        }
+        .price {
+            margin-top: 1px;
+            position: absolute;
+            right: 2%;
+        }
+        .describe > a {
+            color: white;
+            position: absolute;
+            bottom: 10%;
+            left: 2%;
+        }
+        .describe > button {
+            position: absolute;
+            background-color: #bb8454;
+            bottom: 10%;
+            left: 25%;
+            color: white;
+            padding-block: 1%;
+            padding-inline: 5%;
+            border: 0px;
+            cursor: pointer;
+            transition: all 200ms;
+        }
+        .describe > button:hover {
+            transform: scale(1.05);
+        }
+        
+    </style>
+</head>
+<body>
+        <div class="filter">
+            <h3>Filters</h3>
+            <div class="itemscontainer">
+                <div class="item">แอร์ <button>x</button></div>
+                <div class="item">เตียงคู่ <button>x</button></div>
+                <div class="item">eiei <button>x</button></div>
+                <div class="item">eiei <button>x</button></div>
+                <div class="item">eiei <button>x</button></div>
+                <div class="item">eiei <button>x</button></div>
+                <div class="item">eiei <button>x</button></div>
+            </div>
+            <h3>ชั้น</h3>
+            <div class="floorselect">
+                <div><input type="checkbox" name="floor1"> <label for="floor1">ชั้น 1</label></div>
+                <div><input type="checkbox" name="floor2"> <label for="floor1">ชั้น 2</label></div>
+                <div><input type="checkbox" name="floor3"> <label for="floor1">ชั้น 3</label></div>
+            </div>
+            <h3>ราคา</h3>
+            <div class="pricerange">
+                <input type="number"> - <input type="number"> บาท
+            </div>
+        </div>
+
+        <div class="roomcontainer">
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+            <div class="room">
+                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
+                <div class="describe">
+                    <h2>ห้อง 305</h2>
+                    <div class="price">ราคา 1ล้าน บาท</div>
+                    <a href="">รายละเอียด</a>
+                    <button>โทร</button>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
