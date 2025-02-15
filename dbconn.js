@@ -10,8 +10,7 @@ const connection = mysql.createPool({
   multipleStatements: true,
   connectionLimit: 10,
   enableKeepAlive: true,
-  connectTimeout: 10000,
-  connectTimeout: 100000000
+  connectTimeout: 10000
 });
 
 
