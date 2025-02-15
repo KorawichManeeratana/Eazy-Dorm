@@ -28,6 +28,9 @@ app.use('/addroom', require('./routes/addroom'));
 app.get('/selectroom', function (req, res) {
         res.render('selectroom')
 });
+app.get('/roominfo', function (req, res) {
+    res.render('roominfo')
+});
 
 app.use('/showproblem', require('./routes/showproblem'))
 

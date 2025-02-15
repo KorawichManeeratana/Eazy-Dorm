@@ -17,7 +17,7 @@
             height: fit-content;
         }
         .filter > input {
-            border: 0px;
+            border: none;
             border-radius: 5px;
         }
         .filter > h3 {
@@ -36,7 +36,7 @@
             padding: 1px;
         }
         .item > button {
-            border: 0px;
+            border: none;
             background-color: #CABA9C;
             cursor: pointer;
         }
@@ -45,15 +45,21 @@
             flex-direction: column;
         }
         .pricerange > input {
-            width: 50px;
-            border: 0px;
+            width: 60px;
+            height: 20px;
+            border: none;
             border-radius: 5px;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            margin: 0;
         }
         .roomcontainer {
             display: flex;
             flex-wrap: wrap;
             max-width: 1230px;
-            gap: 10px;
+            gap: 15px;
             margin-left: 5%;
             color: white;
         }
@@ -97,14 +103,14 @@
             color: white;
             padding-block: 1%;
             padding-inline: 5%;
-            border: 0px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 200ms;
         }
         .describe > button:hover {
             transform: scale(1.05);
         }
-        
     </style>
 </head>
 <body>
@@ -127,7 +133,7 @@
             </div>
             <h3>ราคา</h3>
             <div class="pricerange">
-                <input type="number"> - <input type="number"> บาท
+                <input type="number" placeholder="ขั้นต่ำ"> - <input type="number" placeholder="สูงสุด"> บาท
             </div>
         </div>
 
