@@ -6,8 +6,10 @@ const expressLayout = require('express-ejs-layouts');
 const app = express();
 const PORT = 3000
 
+const connection= require('./dbconn.js');
 
 app.use(express.static('public'));
+
 
 // Template
 app.use(expressLayout);
