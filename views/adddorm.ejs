@@ -13,24 +13,24 @@
             font-family: Arial, sans-serif;
         }
 
-        body {
+        .contain {
             background-color: #CABA9C;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 120vh;
         }
 
         .main {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 0fr;
             gap: 20px;
             padding: 40px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 80%;
-            max-width: 1200px;
+            max-width: 900px;
         }
 
         .text-information {
@@ -124,50 +124,67 @@
             background-color: #6d4f34;
             transform: scale(1.05);
         }
-        .part2{
-            justify-items: center;
-        }
 
-        .btback{
-            position: absolute;
-            bottom: 10%;
-            right: 10%;
-
+        .btback {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
             background-color: #8A6240;
             color: white;
             padding: 12px 20px;
-            font-size: 16px;
+            font-size: 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             text-decoration: underline;
         }
+
+        .upload {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #d4a073;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload:hover {
+            background-color: #f0d6bf;
+        }
     </style>
 </head>
 
 <body>
-    <div class="main">
-        <div class="text-information">
-            <label for="">ชื่อหอพัก : </label>
-            <input type="text">
-            <label for="">รายละเอียด : </label>
-            <input type="text">
-            <label for="">ที่อยู่ : </label>
-            <input type="text">
-            <label for="">เบอร์ติดต่อ : </label>
-            <input type="text">
-            <label for="">จำนวนห้อง : </label>
-            <input type="text">
-            <label for="">ช่องทางติดต่ออื่น : </label>
-            <input type="text">
-            <button class="bt-save">บันทึก</button>
-        </div>
-        <div class="part2">
-            <div class="image-information">
-                <img src="https://thehillside-design.com/wp-content/uploads/2010/12/DK-Arpt-3237_1250Light.jpg" alt="">
-            </div>
-            <button class="btfromdevice">เลือกจากอุปกรณ์</button>
+    <div class="contain">
+        <div class="main">
+            <form action="/process_adddorm" method="GET">
+                <div class="text-information">
+                    <label for="">ชื่อหอพัก : </label>
+                    <input type="text" name="name">
+                    <label for="">รายละเอียด : </label>
+                    <input type="text" name="detail">
+                    <label for="">ที่อยู่ : </label>
+                    <input type="text" name="address">
+                    <label for="">จำนวนห้อง : </label>
+                    <input type="text" name="room">
+                    <label for="">ช่วงราคาห้องพัก : </label>
+                    <input type="text" name="rent" placeholder="เช่น 4,000-5,000">
+                    <label for="">เบอร์ติดต่อ : </label>
+                    <input type="text" name="contact">
+                    <label for="">ช่องทางติดต่ออื่น : </label>
+                    <input type="text" name="other_contact">
+                    <label for="">ค่าไฟ : </label>
+                    <input type="text" name="electric_pay">
+                    <label for="">ค่าน้ำ : </label>
+                    <input type="text" name="water_pay">
+                    <input type="file" name="image" required style="display: none;" id="fileInput">
+                    <input type="button" value="อัพโหลดรูปภาพ" class="upload" onclick="document.getElementById('fileInput').click();">
+                    <button class="bt-save">บันทึก</button>
+                </div>
+            </form>
         </div>
     </div>
     <button class="btback">ย้อนกลับ</button>

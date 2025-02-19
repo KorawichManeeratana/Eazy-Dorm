@@ -24,6 +24,9 @@ app.use('/register', require('./routes/register'));
 app.use('/owneddorm', require('./routes/owneddorm'));
 app.use('/adddorm', require('./routes/adddorm'));
 app.use('/addroom', require('./routes/addroom'));
+app.use('/notification', require('./routes/notification'));
+
+
 
 app.get('/selectroom', function (req, res) {
         res.render('selectroom')
