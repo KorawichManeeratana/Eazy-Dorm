@@ -20,14 +20,6 @@ connection.getConnection((err, connectionInstance) => {
     return;
   }
   console.log('Connected to database.');
-  //connectionInstance.query('SELECT * FROM Users LIMIT 5', (err, results) => {
-    //if (err) {
-      //console.error('Query error:', err);
-    //} else {
-      //console.log('Query results:', results);
-    //}
-    //connectionInstance.release();
-  //});
 });
 
 module.exports = connection;

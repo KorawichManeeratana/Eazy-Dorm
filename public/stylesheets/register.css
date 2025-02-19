@@ -5,12 +5,17 @@
 }
 
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background: #CABA9C;
 }
+
+.all-con{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
 .fullname-sec{
     display: flex;
     gap: 20px;
