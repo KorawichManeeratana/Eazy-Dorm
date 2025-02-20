@@ -15,6 +15,8 @@ app.use(express.static('public'));
 app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use('/', require('./routes/main'));
 
@@ -36,6 +38,11 @@ app.get('/roominfo', function (req, res) {
 });
 
 app.use('/showproblem', require('./routes/showproblem'))
+
+
+//routing
+app.use('/api', require('./routes/api/registerroutes.js'));
+
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)

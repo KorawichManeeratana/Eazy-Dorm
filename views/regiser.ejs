@@ -12,39 +12,74 @@
             <div class="Regis-header">
                 <header>ลงทะเบียน</header>
             </div>
+            <div class="role-con">
+                <label>บทบาทของคุณ</label>
+                <span>*</span>
+                <div style="margin-top: 10px;">
+                    <div class="role-box">
+                        <div class="owner">
+                            <input type="radio" id="owner" name="role" value="owner">
+                            <label for="owner">
+                                <img src="/images/role/estate-owner.png" alt="owner">
+                                <span>เจ้าของหอพัก</span>
+                            </label>
+                        </div>
+                        <div class="vl"></div>
+                        <div class="client">
+                            <input type="radio" id="client" name="role" value="client">
+                            <label for="client">
+                                <img src="/images/role/client.png" alt="client">
+                                <span>ผู้เช่า</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="fullname-sec">
                 <div class="input-box">
                     <label>ชื่อจริง:</label>
-                    <input type="text" class="input-f" placeholder="ชื่อจริง" autocomplete="off" required>
+                    <input id="Firstnameinput" type="text" class="input-f" placeholder="ชื่อจริง" autocomplete="off" required>
                 </div>
                 <div class="input-box">
                     <label>นามสกุล:</label>
-                    <input type="text" class="input-f" placeholder="นามสกุล" autocomplete="off" required>
+                    <input id="Lastnameinput" type="text" class="input-f" placeholder="นามสกุล" autocomplete="off" required>
                 </div>
             </div>
             <div class="username-dob">
                 <div class="input-box">
                     <label>วันเกิด:</label>
-                    <input type="date" class="input-f" placeholder="วันเกิด" autocomplete="off" required>
+                    <input id="Dob" type="date" class="input-f" placeholder="วันเกิด" autocomplete="off" required>
                 </div>
                 <div class="input-box">
                     <label>ชื่อผู้ใช้งาน:</label>
-                    <input type="text" class="input-f" placeholder="ชื่อผู้ใช้งาน" autocomplete="off" required>
+                    <input id="username" type="text" class="input-f" placeholder="ชื่อผู้ใช้งาน" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="tel-email">
+                <div class="input-box">
+                    <label>เบอร์โทร:</label>
+                    <input id="tel" type="text" class="input-f" placeholder="กรอกข้อมูล" autocomplete="off" required>
+                </div>
+                <div class="input-box">
+                    <label>อีเมล:</label>
+                    <input id="email" type="text" class="input-f" placeholder="กรอกข้อมูล" autocomplete="off" required>
                 </div>
             </div>
             <div class="input-box">
                 <label>รหัสผ่าน:</label>
-                <input type="password" class="input-f" placeholder="รหัสผ่าน" autocomplete="off" required>
+                <input id="password" type="password" class="input-f" placeholder="รหัสผ่าน" autocomplete="off" required>
             </div>
             <div class="input-box">
                 <label>ยินยันรหัสผ่าน:</label>
-                <input type="password" class="input-f" placeholder="ยืนยันรหัสผ่าน" autocomplete="off" required>
+                <input id="confirmpassword" type="password" class="input-f" placeholder="ยืนยันรหัสผ่าน" autocomplete="off" required>
             </div>
+            <div class="error-message" id="passwordError"></div>
             <div class="register-submit">
-                <button class="regis-btn" id="regis"></button>
+                <button type="button" onclick="registerUser()" class="regis-btn" id="regis"></button>
                 <label for="regis">ลงทะเบียน</label>
             </div>
         </div>
     </div>
+    <script src="/javascripts/register.js"></script>
 </body>
 </html>

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/KorawichManeeratana/Eazy-Dorm#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
