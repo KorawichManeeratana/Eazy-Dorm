@@ -8,6 +8,7 @@ const PORT = 3000
 
 const connection= require('./dbconn.js');
 
+app.use('/uploads', express.static('uploads'));
 app.use(express.static('public'));
 
 
