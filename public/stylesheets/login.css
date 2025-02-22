@@ -61,7 +61,6 @@ body{
 .forgot{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
 }
 
 section{
@@ -147,4 +146,18 @@ section a{
 .regis-btn:hover{
     background: #4D2D18;
     transform: scale(1.05, 1);
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.error-message.show {
+    display: block; 
 }

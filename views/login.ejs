@@ -13,10 +13,10 @@
                 <header>ล็อคอิน</header>
             </div>
             <div class="input-box">
-                <input type="text" class="input-f" placeholder="อีเมล" autocomplete="off" required>
+                <input id="uore" type="text" class="input-f" placeholder="อีเมล/ชื่อผู้ใช้งาน" autocomplete="off" required>
             </div>
             <div class="input-box">
-                <input type="password" class="input-f" placeholder="รหัสผ่าน" autocomplete="off" required>
+                <input id="password" type="password" class="input-f" placeholder="รหัสผ่าน" autocomplete="off" required>
             </div>
             <div class="forgot">
                 <section>
@@ -27,15 +27,69 @@
                     <a href="#">ลืมรหัสผ่าน</a>
                 </section>
             </div>
-            <div class="input-submit">
+            <div class="error-message" id="passwordError"></div>
+            <div class="input-submit" onclick="loginUser()">
                 <button class="submit-btn" id="submit"></button>
-                <label for="submit">เข้าสู่ระบบ</label>
+                <label for="submit" >เข้าสู่ระบบ</label>
             </div>
-            <div class="register-submit">
+            <a href="/register" >
+              <div class="register-submit">
                 <button class="regis-btn" id="regis"></button>
                 <label for="regis">ลงทะเบียน</label>
             </div>
+            </a>
+            
         </div>
     </div>
+    <script>
+    async function loginUser() {
+      const validatemessage = document.getElementById("passwordError");
+        const uore = document.getElementById("uore");
+        const password = document.getElementById("password");
+        
+
+      if (!uore.value || !password.value) {
+        validatemessage.innerHTML = "กรุณากรอกข้อมูลให้ครบถ้วน";
+        validatemessage.classList.add("show");
+        return;
+      }
+
+
+  const loginData = {
+    uore: uore.value,
+    password: password.value,
+  };
+
+  console.log("loginData: ", loginData);
+
+  try {
+    const response = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+    });
+    
+    console.log(response)
+    const data = await response.json();
+    
+
+    if (response.ok) {
+        console.log("ลงชื่อเข้าใช้สำเร็จ!");
+
+      window.location.href = "/";
+
+    } else {
+        validatemessage.innerHTML = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
+        validatemessage.classList.add("show");
+        return;
+        console.log("ลงชื่อเข้าใช้ไม่สำเร็จ: " + (data.message || response.statusText));
+    }
+  } catch (error) {
+    console.log("เกิดข้อผิดพลาดในการลงชื่อเข้าใช้: " + error);
+  }
+}
+    </script>
 </body>
 </html>

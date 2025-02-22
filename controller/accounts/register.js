@@ -22,8 +22,6 @@ async function registerAccount(userData) {
             `INSERT INTO Users (username, password, first_name, last_name, dob, phone, email, user_pic, role) VALUES ('${username}', '${hashedPassword}', '${firstname}', '${lastname}', '${dob}', '${phone}', '${email}', '${userpic}', '${role}')`
         );
 
-        console.log("noobinsi");
-
         if (result && result.affectedRows > 0) {
             return { status: 201, message: 'Account registered successfully' };
         } else {

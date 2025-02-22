@@ -41,8 +41,10 @@ app.get('/roominfo', function (req, res) {
 app.use('/showproblem', require('./routes/showproblem'))
 
 
-//routing
-app.use('/api', require('./routes/api/registerroutes.js'));
+//routing api
+app.use('/api', require('./routes/api/account_relate/registerroutes.js'));
+
+app.use('/api', require('./routes/api/account_relate/loginroutes.js'));
 
 
 app.listen(PORT, () => {
