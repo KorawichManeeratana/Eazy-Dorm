@@ -29,7 +29,7 @@ app.use('/adddorm', require('./routes/adddorm'));
 app.use('/addroom', require('./routes/addroom'));
 app.use('/notification', require('./routes/notification'));
 
-app.use('/selectroom', require('/.routes/selectroom'));
+app.use('/selectroom', require('./routes/selectroom'));
 app.use('/roominfo', require('./routes/roominfo'));
 
 app.use('/showproblem', require('./routes/showproblem'));
