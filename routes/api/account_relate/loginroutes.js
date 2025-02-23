@@ -1,6 +1,7 @@
 const express = require('express');
 const LoginController = require('../../../controller/accounts/login');
 
+
 const router = express.Router();
 
 router.post('/login', async (req, res) => {
@@ -12,6 +13,7 @@ router.post('/login', async (req, res) => {
         const token = result.token;
        
         res.cookie('access_token', token, { httpOnly: false, secure: true , path: '/', sameSite: 'Strict', domain: 'localhost'});
+
         res.status(result.status).send({ message: result, token: token });
 
       } else {

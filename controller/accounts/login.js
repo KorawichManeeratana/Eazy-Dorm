@@ -25,7 +25,7 @@ async function loginUser(loginData) {
             if (match) {
                 
                 const token = jwt.sign(
-                    { username: user.username, email: user.email , role: user.role },
+                    { userID: user.user_id ,username: user.username, email: user.email , role: user.role, userpfp: user.user_pic},
                     process.env.ACCESSKEYID,
                     { expiresIn: '1d' }
                 );

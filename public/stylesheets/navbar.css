@@ -25,7 +25,8 @@ body{
   }
   
   .user-pfp{
-    width: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     cursor: pointer;
     margin-right: 5vh;
@@ -63,8 +64,9 @@ body{
     font-weight: 500;
   }
   
-  .user-info img{
+  .user-info img {
     width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin-right: 15px;
     object-fit: cover;
@@ -110,6 +112,10 @@ body{
   
   .dowhat:hover{
     font-weight: 600;
+  }
+
+  .sub-menu-link.ownedDorm.hidden{
+    display: none;
   }
   
   nav ul{

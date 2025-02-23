@@ -39,6 +39,8 @@ app.use('/api', require('./routes/api/account_relate/registerroutes.js'));
 
 app.use('/api', require('./routes/api/account_relate/loginroutes.js'));
 
+app.use('/api', require('./routes/api/cookies/decodeCookieroutes.js'));
+
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
