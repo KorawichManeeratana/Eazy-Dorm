@@ -112,11 +112,13 @@
         .upload:hover {
             background-color: #f0d6bf;
         }
+
         .btback {
             position: absolute;
             bottom: 10%;
             right: 10%;
         }
+
         .btback {
             position: fixed;
             bottom: 30px;
@@ -131,6 +133,17 @@
             transition: all 0.3s ease-in-out;
             text-decoration: underline;
         }
+        .pricerange{
+            display: grid;
+            grid-template-columns: auto auto;
+            label{
+                width: 120px;
+            }
+            input{
+                margin-top: 2%;
+            }
+        }
+        
     </style>
 </head>
 
@@ -139,30 +152,43 @@
         <div class="main">
             <form action="/adddorm/process_addorm" method="POST" enctype="multipart/form-data">
                 <div class="text-information">
-                    <label for="">ชื่อหอพัก :</label>
-                    <input type="text" name="name" required>
-                    <label for="">รายละเอียด :</label>
-                    <input type="text" name="detail" required>
-                    <label for="">ที่อยู่ :</label>
-                    <input type="text" name="address" required>
-                    <label for="">จำนวนห้อง :</label>
-                    <input type="text" name="room" required>
-                    <label for="">ช่วงราคาห้องพัก :</label>
-                    <input type="text" name="rent" placeholder="เช่น x,xxx - x,xxx" required>
-                    <label for="">เบอร์ติดต่อ :</label>
-                    <input type="text" name="contact" required>
-                    <label for="">ช่องทางติดต่ออื่น :</label>
-                    <input type="text" name="other_contact">
-                    <label for="">ค่าไฟ :</label>
-                    <input type="text" name="electric_pay" required>
-                    <label for="">ค่าน้ำ :</label>
-                    <input type="text" name="water_pay" required>
+                    <label for="name">ชื่อหอพัก :</label>
+                    <input type="text" name="name" id="name" required>
+                    <label for="detail">รายละเอียด :</label>
+                    <input type="text" name="detail" id="detail" required>
+                    <label for="address">ที่อยู่ :</label>
+                    <input type="text" name="address" id="address" required>
+                    <label for="room">จำนวนห้อง :</label>
+                    <input type="text" name="room" id="room" required>
+
+                        <label for="rent1">ราคาต่ำสุด :</label>
+                        <input type="text" name="rent1"   id="rent1" required>
+                        <label for="rent2">ราคาสูงสุด :</label>
+                        <input type="text" name="rent2"  id="rent2" required>
+    
+                    <label for="contact">เบอร์ติดต่อ :</label>
+                    <input type="text" name="contact" id="contact" required>
+                    <label for="other_contact">ช่องทางติดต่ออื่น :</label>
+                    <input type="text" name="other_contact" id="other_contact">
+                    <label for="electric_pay">ค่าไฟ :</label>
+                    <input type="text" name="electric_pay" id="electric_pay" required >
+                    <label for="water_pay">ค่าน้ำ :</label>
+                    <input type="text" name="water_pay" id="water_pay" required>
+<!-- 
+                    <label for="status">สถานะ :</label>
+                    <select name="status" id="select" >
+                        <option value="none" selected>เลือกสถานะห้องว่าง</option>
+                        <option value="Full">เต็ม</option>
+                        <option value="Available">ว่าง</option>
+                      </select> -->
+
                     <div class="image-information">
                         <div class="upload-icon" id="uploadIcon"></div>
                         <img src="" alt="Image Here" id="imagePreview" for="finp">
                     </div>
-                    <input type="file" name="image" required style="display: none;" id="fileInput" class="finp">
-                    <input type="button" value="อัพโหลดรูปภาพ" class="upload" onclick="document.getElementById('fileInput').click();">
+                    <input type="file" name="image" style="display: none;" id="fileInput" class="finp">
+                    <input type="button" value="อัพโหลดรูปภาพ" class="upload"
+                        onclick="document.getElementById('fileInput').click();">
                     <button class="bt-save" type="submit">บันทึก</button>
                 </div>
             </form>
@@ -184,6 +210,69 @@
                 reader.readAsDataURL(file);
             }
         });
+        // function validate() {
+        //     let name = document.getElementById("name").value;
+        //     if (personid.length != 13) {
+        //         alert("เขียนให้ครบ 13 ตัวดิ้")
+        //     }
+        //     let noun = document.getElementById("noun").value;
+        //     if (noun == "---เลือกคำนำหน้าชื่อ---") {
+        //         console.log("ee");
+        //     }
+        //     let fname = document.getElementById("fname").value;
+        //     if (fname.length == 0) {
+        //         alert("เขียนชื่อที");
+        //         return false;
+        //     }
+        //     else if (fname.length <= 2) {
+        //         alert("ชื่อต้องเป็นตัวอักษร ความยาวระหว่าง 2-20 ตัวอักษร");
+        //         return false;
+        //     } else if (fname.length >= 20) {
+        //         alert("ชื่อต้องเป็นตัวอักษร ความยาวระหว่าง 2-20 ตัวอักษร");
+        //         return false;
+        //     }
+        //     let lname = document.getElementById("lname").value;
+        //     if (lname.length == 0) {
+        //         alert("เขียนนามสกุลที");
+        //         return false;
+        //     }
+        //     else if (lname.length <= 2) {
+        //         alert("นามสกุลต้องเป็นตัวอักษร ความยาวระหว่าง 2-30 ตัวอักษร");
+        //         return false;
+        //     } else if (lname.length >= 30) {
+        //         alert("นามสกุลต้องเป็นตัวอักษร ความยาวระหว่าง 2-30 ตัวอักษร");
+        //         return false;
+        //     }
+        //     let home = document.getElementById("home").value;
+        //     if (home.length < 15) {
+        //         alert("ความยาวไม่ต่ำกว่า 15 ตัวอักษร")
+        //         return false;
+        //     }
+        //     let state1 = document.getElementById("state1").value;
+        //     if (state1.length < 2) {
+        //         alert("ความยาวตำบล,แขวงไม่ต่ำกว่า 2 ตัวอักษร")
+        //         return false;
+        //     }
+        //     let state2 = document.getElementById("state2").value;
+        //     if (state2.length < 2) {
+        //         alert("ความยาวอำเภอ,เขตไม่ต่ำกว่า 2 ตัวอักษร")
+        //         return false;
+        //     }
+        //     ตรวจสอบจังหวัด
+        //     let state3 = document.getElementById("state3").value;
+        //     if(state2.length > 2){
+        //         alert("ความยาวไม่ต่ำกว่า 2 ตัวอักษร")
+        //         return false;
+        //     }
+        //     ตรวจสอบรหัสไปรษณี
+        //     let postalcode = document.getElementById("postalcode").value;
+        //     if (postalcode.length != 5) {
+        //         alert("รหัสไปรษณีต้องเป็นตัวเลข 5 ตัวเลข")
+        //         return false;
+        //     }
+        //     console.log(noun);
+        // }
+
     </script>
 </body>
 

@@ -24,6 +24,7 @@
         }
 
         .mydorm {
+            cursor: pointer;
             color: #ffffff;
             border-radius: 20px;
             margin-top: 2%;
@@ -137,7 +138,7 @@
             <button class="bt-adddorm del"></button>
         </div>
         <% data.forEach((i)=> { %>
-            <div class="mydorm" id="mydorm">
+            <div class="mydorm" id="mydorm" onclick="window.location.href='/addroom/<%= i.owner_id %>'">
                 <img src="../uploads/<%= i.dorm_pic %>" alt="">
                 <div class="dorm-information">
                     <p><strong>

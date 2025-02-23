@@ -19,30 +19,43 @@ router.get('', (req, res) => {
     res.render('adddorm');
 })
 
-
-router.post('/process_addorm', upload.single('image'), (req, res) => {
+router.post('/process_addorm', upload.single('image'), async (req, res) => {
     let formdata = {
         name: req.body.name,
         detail: req.body.detail,
         address: req.body.address,
         room: req.body.room,
-        rent: req.body.rent,
+        rent1: req.body.rent1,
+        rent2: req.body.rent2,
         contact: req.body.contact,
         other_contact: req.body.other_contact,
         electric_pay: req.body.electric_pay,
         water_pay: req.body.water_pay,
         image: req.file ? req.file.filename : null
     };
-    console.log(formdata);
+    let rent = formdata.rent1 + '-' + formdata.rent2;
     let sql = `INSERT INTO Dormitory(owner_id, name, detail, address, room, status, rent, rating, phone_contact, other_contact, electric_pay, water_pay, dorm_pic) 
-               VALUES (1, '${formdata.name}', '${formdata.detail}', '${formdata.address}', ${formdata.room}, 'Available', '${formdata.rent}', 0.0, '${formdata.contact}', 
-               '${formdata.other_contact}', ${formdata.electric_pay}, ${formdata.water_pay}, '${formdata.image}');`;
-    console.log(sql);
-    conn.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("เพิ่มข้อมูลสำเร็จ");
-        res.send(`<script>alert("เพิ่มข้อมูลสำเร็จ"); window.location.href = '/adddorm';</script>`);
-    });
+               VALUES (1, ?, ?, ?, ?, 'Available', ?, 0.0, ?, ?, ?, ?, ?);`;
+
+    try {
+        await conn.query(sql, [
+            formdata.name,
+            formdata.detail,
+            formdata.address,
+            formdata.room,
+            rent,
+            formdata.contact,
+            formdata.other_contact,
+            formdata.electric_pay,
+            formdata.water_pay,
+            formdata.image
+        ]);
+
+        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/adddorm';</script>`);
+    } catch (err) {
+        console.error("Error :", err);
+    }
 });
+
 
 module.exports = router;
