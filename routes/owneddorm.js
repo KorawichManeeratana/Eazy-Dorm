@@ -23,7 +23,7 @@ router.get('/adddorm/:id', async (req, res) => {
     const sql = `SELECT * FROM Dormitory WHERE owner_id = ?;`
     try {
         const [rows] = await conn.query(sql);
-        res.render('addroom', { data: rows });
+        res.render('adddorm', { data: rows });
     } catch (error) {
         console.error("Database Error:", error);
     }
