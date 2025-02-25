@@ -36,23 +36,22 @@ body{
   }
   
   .sub-menu-wrap{
+    display: none;
     position: absolute;
     top: 100%;
     right: 2%;
     width: 320px;
-    max-height: 0px;
+    max-height: 600px;
     overflow: hidden;
-    transition: max-height 0.5s;
   }
   
   .sub-menu-wrap.open-menu{
-    max-height: 600px;
+    display: block;
   }
   
   .sub-menu{
     background-color: white;
     padding: 20px;
-    margin: 10px;
   }
   
   .user-info{
@@ -83,6 +82,7 @@ body{
   
   .sub-menu-link{
     display: flex;
+    justify-items: center;
     align-items: center;
     text-decoration: none;
     color: #525252;
@@ -94,11 +94,16 @@ body{
   }
   
   .icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
+    height: 30px;
     background: #e5e5e5;
     border-radius: 50%;
     padding: 8px;
     margin-right: 15px;
+    justify-items: center;
   }
   
   .sub-menu-link span{
@@ -188,4 +193,63 @@ body{
 
   .user.hidden {
       display: none;
+  }
+
+  .noti-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+    background-size: cover;
+  }
+
+  .noti-menu{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    padding: 8px 20px;
+  }
+
+  .noti-menu-wrap{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 8%;
+    width: 320px;
+    max-height: 600px;
+    overflow: hidden;
+  }
+
+  .noti-menu-wrap.open-menu{
+    display: block;
+  }
+  
+  .date-content{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+  }
+
+  .noti-date{
+    font-size: 12px;
+    color: #102820;
+    font-weight: 600;
+  }
+
+  .big-noti{
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .viewallNoti{
+    margin-bottom: 5px;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  #viewallNotifi{
+    text-decoration: none;
+    color: #4D2D18;
   }

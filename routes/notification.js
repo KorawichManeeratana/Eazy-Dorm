@@ -3,8 +3,8 @@ const router = express.Router();
 
 
 //Routes
-router.get('', (req, res) => {
-    res.render('notification');
+router.get('/:id', (req, res) => {
+    res.render('notification', {id: req.params.id});
 })
 
 module.exports = router;

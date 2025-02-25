@@ -1,8 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-// Important: Replace 'YOUR_SECRET_KEY' with a strong, secure secret key
-const SECRET_KEY = process.env.ACCESSKEYID; // Ideally, load this from an environment variable
+const SECRET_KEY = process.env.ACCESSKEYID;
 
 async function CookiesDecode(token) {
     console.log("Token received:", token);
@@ -19,7 +18,7 @@ async function CookiesDecode(token) {
     } catch (error) {
         console.error("Verification Error:", error);
 
-        // Handle specific verification errors for better debugging
+
         if (error.name === 'JsonWebTokenError') {
             return { status: 401, message: 'Invalid token signature', error: error.message };
         } else if (error.name === 'TokenExpiredError') {

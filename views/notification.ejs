@@ -1,130 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notification Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #8A6240;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+      body {
+        background-color: #8a6240;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+      }
 
-        .main {
-            width: 80%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+      .allcontain {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
 
-        .noti-box {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background-color: #5A3C2C;
-            border: 2px solid #D9B18E;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+      .main {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 10px;
+        gap: 15px;
+        width: 100%;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
 
-        .noti-img {
-            max-width: 80px;
-            max-height: 80px;
-            margin-right: 15px;
-            border-radius: 50%;
-        }
+      .date-content {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3px;
+      }
 
-        .noti-content h1 {
-            margin: 0;
-            font-size: 1.5em;
-            color: #FFD700;
-        }
+      .noti-date {
+        font-size: 12px;
+        color: #102820;
+        font-weight: 600;
+      }
 
-        .noti-content p {
-            margin: 5px 0 0;
-            font-size: 1em;
-        }
+      .noti-menu {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #525252;
+        padding: 8px 20px;
+      }
     </style>
-</head>
-<body>
-    <div class="main">
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
-
-        <div class="noti-box">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/042/292/small_2x/warning-sign-icon-transparent-background-free-png.png" alt="Notification Icon" class="noti-img">
-            <div class="noti-content">
-                <h1>Notification Title</h1>
-                <p>This is a notification detail message.</p>
-            </div>
-        </div>
+  </head>
+  <body>
+    <div class="allcontain">
+      <div class="main" data-notification-id="<%= id %>" id="Menu">
+        <h1 class="id" style="display: none" id="userid"><%= id %></h1>
+      </div>
     </div>
-</body>
+    <script>
+      const userIdElement = document.getElementById("userid");
+      const Menu = document.getElementById("Menu");
+      const userId = userIdElement.textContent || userIdElement.innerText;
+
+      async function getNoti(id) {
+        console.log("id:", id);
+        try {
+          const response = await fetch("http://localhost:3000/api/getNoti", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ user_id: id, limit: false }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch user info");
+          }
+          const data = await response.json();
+          const allNotiData = data.allNoti[0];
+          console.log("Allnoti:", allNotiData);
+          allNotiData.forEach((noti) => {
+            console.log(noti);
+            Menu.insertAdjacentHTML(
+              "beforeend",
+              `<div class="noti-menu">
+            <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+            <div class="date-content">
+              <span class="noti-content">${noti.content}</span>
+              <span class="noti-date">14 ชั่วโมง</span>
+            </div>
+          </div>`
+            );
+            console.log("noti");
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      getNoti(userId);
+    </script>
+  </body>
 </html>

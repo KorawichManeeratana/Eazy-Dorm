@@ -41,6 +41,7 @@ app.use('/api', require('./routes/api/account_relate/loginroutes.js'));
 
 app.use('/api', require('./routes/api/cookies/decodeCookieroutes.js'));
 
+app.use('/api', require('./routes/api/notfications/noriroutes.js'));
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
