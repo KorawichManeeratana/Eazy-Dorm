@@ -1,0 +1,108 @@
+main {
+    padding: 5%;
+    background-color: #CABA9C;
+    display: flex;
+}
+.filter {
+    background-color: #8A6240;
+    color: white;
+    border-radius: 25px;
+    width: 200px;
+    padding: 1%;
+    height: fit-content;
+}
+.filter > input {
+    border: none;
+    border-radius: 5px;
+}
+.filter > h3 {
+    margin-bottom: 1px;
+}
+.itemscontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+.item {
+    background-color: #CABA9C;
+    color: black;
+    border-radius: 5px;
+    margin: 1px;
+    padding: 1px;
+}
+.item > button {
+    border: none;
+    background-color: #CABA9C;
+    cursor: pointer;
+}
+.floorselect {
+    display: flex;
+    flex-direction: column;
+}
+.pricerange > input {
+    width: 60px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
+}
+.roomcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1230px;
+    gap: 15px;
+    margin-left: 5%;
+    color: white;
+}
+.room {
+    border-radius: 5px;
+    height: 350px;
+    width: 400px;
+    background-color: #8A6240;
+}
+.room > img {
+    border-radius: 5px;
+    height: 75%;
+    width: 100%;
+}
+.describe {
+    margin: 0px;
+    height: 25%;
+    position: relative;
+    display: flex;
+}
+.describe > h2 {
+    margin-top: 1px;
+    margin-left: 10px;
+}
+.price {
+    margin-top: 1px;
+    position: absolute;
+    right: 2%;
+}
+.describe > a {
+    color: white;
+    position: absolute;
+    bottom: 10%;
+    left: 2%;
+}
+.describe > button {
+    position: absolute;
+    background-color: #bb8454;
+    bottom: 10%;
+    left: 25%;
+    color: white;
+    padding-block: 1%;
+    padding-inline: 5%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 200ms;
+}
+.describe > button:hover {
+    transform: scale(1.05);
+}
