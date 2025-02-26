@@ -80,7 +80,7 @@ router.post('/process_addorm', upload.single('image'), async (req, res) => {
             formdata.water_pay,
             formdata.image
         ]);
-        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/adddorm';</script>`);
+        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owneddorm/${decodedata.userID}';</script>`);
     } catch (err) {
         console.error("Error :", err);
     }

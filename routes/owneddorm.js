@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const conn = require('../dbconn');
 
-router.post('/process_del/:id', async (req, res) => {
+router.post('/process_del/:id/:uid', async (req, res) => {
     console.log("POST /process_del/:id ถูกเรียกใช้"); 
     const dormId = req.params.id;
     console.log("กำลังลบหอพัก ID:", dormId);
@@ -12,7 +12,7 @@ router.post('/process_del/:id', async (req, res) => {
     try {
         const [result] = await conn.query(sql, [dormId]); 
         console.log("ลบสำเร็จ");
-        res.send(`<script>alert("ลบข้อมูลหอพักสำเร็จ"); window.location.href = '/';</script>`);
+        res.send(`<script>alert("ลบข้อมูลหอพักสำเร็จ"); window.location.href = '/owneddorm/${req.params.uid}';</script>`);
     } catch (err) {
         console.error("เกิดข้อผิดพลาด:", err);
     }
