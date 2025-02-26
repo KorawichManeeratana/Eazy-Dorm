@@ -26,7 +26,7 @@ app.use('/', require('./routes/main'));
 
 app.use('/login', require('./routes/login'));
 app.use('/register', require('./routes/register'));
-
+app.use('/addpayment', require('./routes/addpayment'));
 app.use('/owneddorm', require('./routes/owneddorm'));
 app.use('/adddorm', require('./routes/adddorm'));
 app.use('/addroom', require('./routes/addroom'));
