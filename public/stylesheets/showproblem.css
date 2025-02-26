@@ -1,8 +1,10 @@
-body {
+main {
     text-align: center;
     background-color: #CABA9C;
+    height: 100vh;
 }
 h1 {
+    margin-top: 0px;
     font-size: 50px;
 }
 button {

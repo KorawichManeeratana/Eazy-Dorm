@@ -32,6 +32,7 @@ app.use('/adddorm', require('./routes/adddorm'));
 app.use('/addroom', require('./routes/addroom'));
 app.use('/notification', require('./routes/notification'));
 
+app.use('/selectdorm', require('./routes/selectdorm'));
 app.use('/selectroom', require('./routes/selectroom'));
 app.use('/roominfo', require('./routes/roominfo'));
 
@@ -48,6 +49,8 @@ app.use('/api', require('./routes/api/account_relate/loginroutes.js'));
 app.use('/api', require('./routes/api/cookies/decodeCookieroutes.js'));
 
 app.use('/api', require('./routes/api/notfications/noriroutes.js'));
+
+app.use('/api', require('./routes/api/dorm/dormRoute.js'));
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)

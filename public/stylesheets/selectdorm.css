@@ -2,7 +2,7 @@ main {
     padding: 5%;
     background-color: #CABA9C;
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 .filter {
     background-color: #8A6240;
@@ -51,7 +51,7 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-.roomcontainer {
+.dormcontainer {
     display: flex;
     flex-wrap: wrap;
     max-width: 1230px;
@@ -59,13 +59,13 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: 5%;
     color: white;
 }
-.room {
+.dorm {
     border-radius: 5px;
     height: 350px;
     width: 400px;
     background-color: #8A6240;
 }
-.room > img {
+.dorm > img {
     border-radius: 5px;
     height: 75%;
     width: 100%;
