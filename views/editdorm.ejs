@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มกรอกข้อมูลที่พัก</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c8b090;
+            margin: 0;
+        }
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            margin-top: 2%;
+            margin-bottom: 5%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 1400px;
+            gap: 2%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3%;
+            row-gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+        .image-upload {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #ccc;
+            height: 200px;
+            margin: 15px 0;
+            text-align: center;
+            color: #888;
+            cursor: pointer;
+            grid-column: span 2;
+            width: 400px;
+            justify-self: center;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            grid-column: span 2;
+        }
+        .upload-btn, .submit-btn {
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+        }
+        .upload-btn {
+            background-color: #c79a6b;
+            color: white;
+        }
+        .upload-btn:hover {
+            background-color: #b0835a;
+        }
+        .submit-btn {
+            background-color: #5a3d2b;
+            color: white;
+        }
+        .submit-btn:hover {
+            background-color: #3d2a1e;
+        }
+        img{
+            width: 350px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <h2>แบบฟอร์มข้อมูลที่พัก</h2>
+            <form action="/editdorm/process_edit/<%= data.dorm_id %>/<%= data.owner_id %>" method="post" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">ชื่อที่พัก: </label>
+                        <input type="text" id="name" name="name" value="<%= data.name %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="detail">รายละเอียด:</label>
+                        <textarea id="detail" name="detail"><%= data.detail %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="room">จำนวนห้อง:</label>
+                        <input type="text" id="room" name="room" value="<%= data.room %>"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">ที่อยู่:</label>
+                        <textarea id="address" name="address" required><%= data.address %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_contact">เบอร์ติดต่อ:</label>
+                        <input type="text" id="phone_contact" name="phone_contact" value="<%= data.phone_contact %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rent_min">ราคาเริ่มต้น:</label>
+                        <input type="text" id="rent_min" name="rent_min" value="<%= data.rent.split('-')[0] %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="other_contact">ช่องทางติดต่ออื่น ๆ:</label>
+                        <input type="text" id="other_contact" name="other_contact" value="<%= data.other_contact %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="rent_max">ราคาสูงสุด:</label>
+                        <input type="text" id="rent_max" name="rent_max" value="<%= data.rent.split('-')[1] %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="electric_pay">ค่าไฟ (บาท/หน่วย):</label>
+                        <input type="text" id="electric_pay" name="electric_pay" value="<%= data.electric_pay %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="water_pay">ค่าน้ำ (บาท/หน่วย):</label>
+                        <input type="text" id="water_pay" name="water_pay" value="<%= data.water_pay %>">
+                    </div>
+                    
+                    <!-- 📌 ช่องอัปโหลดรูปภาพ -->
+                </div>
+                <div>
+                    <div class="image-upload">
+                        <img src="" alt="Image Here" id="imagePreview">
+                    </div>
+                    <input type="file" name="image" style="display: none;" id="fileInput">
+                </div>
+
+                <!-- ✅ ปุ่มถูกย้ายมาข้างล่าง -->
+                <div class="buttons">
+                    <input type="button" value="อัพโหลดรูปภาพ" class="upload-btn"
+                        onclick="document.getElementById('fileInput').click();">
+                    <button type="submit" class="submit-btn">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const imagePreview = document.getElementById('imagePreview');
+
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

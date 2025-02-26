@@ -24,13 +24,15 @@
         }
 
         .mydorm {
+            width: 900px;
+            /* กำหนดขนาดคงที่ */
+            height: 300px;
+            /* กำหนดความสูงคงที่ */
             cursor: pointer;
             color: #ffffff;
             border-radius: 20px;
             margin-top: 2%;
             font-size: 25px;
-            margin-left: 20%;
-            margin-right: 20%;
             padding: 2%;
             display: flex;
             gap: 2%;
@@ -40,6 +42,7 @@
             transition: transform 0.3s ease-in-out, background 3s cubic-bezier(0, 1, 1, 0);
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
+
 
         .mydorm:hover {
             transform: translateY(-10px);
@@ -100,6 +103,22 @@
             visibility: hidden;
             transition: opacity 0.2s ease-in-out, visibility 0.2s;
         }
+        .bt-adddorm.edit::before {
+            content: "✎";
+            font-size: 20px;
+            position: absolute;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .bt-adddorm.edit::after {
+            content: "แก้ไขหอพัก";
+            font-size: 16px;
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease-in-out, visibility 0.2s;
+        }
+
 
 
         .bt-adddorm:hover {
@@ -127,6 +146,41 @@
         .main {
             margin-bottom: 1%;
         }
+
+        .all {
+            display: flex;
+            gap: 1%;
+            justify-content: center;
+        }
+
+
+        .deleteDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .deleteDiv button {
+            background-color: red;
+            color: white;
+            font-size: 14px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition-duration: 3s;
+            transition: transform 0.3s ease-in-out, background 3s cubic-bezier(0, 1, 1, 0);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin-top: 60px;
+            height: 80%;
+        }
+
+        .deleteDiv button:hover {
+            background-color: darkred;
+            transform: translateY(-10px);
+
+        }
+
     </style>
 </head>
 
@@ -135,24 +189,56 @@
         <h1>ห อ พั ก ข อ ง ฉั น</h1>
         <div class="header">
             <button class="bt-adddorm add" onclick="window.location.href='/adddorm'"></button>
-            <button class="bt-adddorm del"></button>
+            <button class="bt-adddorm del" onclick="toggleDelState()"></button>
         </div>
         <% data.forEach((i)=> { %>
-            <div class="mydorm" id="mydorm" onclick="window.location.href='/addroom/<%= i.owner_id %>'">
-                <img src="../uploads/<%= i.dorm_pic %>" alt="">
-                <div class="dorm-information">
-                    <p><strong>
-                            <%= i.name %>
-                        </strong></p>
-                    <p>รายละเอียด : <%= i.detail %> <br>
-                            ที่อยู่ : <%= i.address %> <br>
-                                ห้อง : <%= i.rent %> <br>
-                                    เรตติ้ง : <%= i.rating %>
-                    </p>
+            <div class="all">
+                <div class="mydorm" id="mydorm" onclick="window.location.href='/addroom/<%= i.owner_id %>'">
+                    <img src="../uploads/<%= i.dorm_pic %>" alt="">
+                    <div class="dorm-information">
+                        <p><strong>
+                                <%= i.name %>
+                            </strong></p>
+                        <p>รายละเอียด : <%= i.detail %> <br>
+                                ที่อยู่ : <%= i.address %> <br>
+                                    ห้อง : <%= i.rent %> <br>
+                                        เรตติ้ง : <%= i.rating %>
+                        </p>
+                    </div>
+                </div>
+                <div class="deleteDiv" id="deleteDiv<%= i.owner_id %>" style="display:none;">
+                    <form action="/process_del/<%= i.dorm_id %>" method="POST" enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
+                        <button type="submit">ลบข้อมูลหอพัก</button>
+                    </form>
+                    <form action="/editdorm/<%= i.dorm_id %>/<%= i.owner_id %>" method="GET">
+                        <button type="submit">แก้ไขหอพัก</button>
+                    </form>                                    
                 </div>
             </div>
-        <% }); %>
+            <% }); %>
+
+
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const delState = false;
+            const deleteDivs = document.querySelectorAll('.deleteDiv');
+            deleteDivs.forEach((deleteDiv) => {
+                deleteDiv.style.display = delState ? 'block' : 'none';
+            });
+            localStorage.setItem('del_state', delState);
+        });
+        function toggleDelState() {
+            const currentState = localStorage.getItem('del_state') === 'true';
+            const newState = !currentState;
+            localStorage.setItem('del_state', newState);
+            const deleteDivs = document.querySelectorAll('.deleteDiv');
+            deleteDivs.forEach((deleteDiv) => {
+                deleteDiv.style.display = newState ? 'block' : 'none';
+            });
+        }
+    </script>
+
 </body>
 
 </html>

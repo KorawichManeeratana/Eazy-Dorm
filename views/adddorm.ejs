@@ -161,7 +161,7 @@
                     <label for="room">จำนวนห้อง :</label>
                     <input type="text" name="room" id="room" required>
 
-                        <label for="rent1">ราคาต่ำสุด :</label>
+                        <label for="rent1">ราคาเริ่มต้น :</label>
                         <input type="text" name="rent1"   id="rent1" required>
                         <label for="rent2">ราคาสูงสุด :</label>
                         <input type="text" name="rent2"  id="rent2" required>
@@ -170,9 +170,9 @@
                     <input type="text" name="contact" id="contact" required>
                     <label for="other_contact">ช่องทางติดต่ออื่น :</label>
                     <input type="text" name="other_contact" id="other_contact">
-                    <label for="electric_pay">ค่าไฟ :</label>
+                    <label for="electric_pay">ค่าไฟ (บาท/หน่วย) :</label>
                     <input type="text" name="electric_pay" id="electric_pay" required >
-                    <label for="water_pay">ค่าน้ำ :</label>
+                    <label for="water_pay">ค่าน้ำ (บาท/หน่วย) :</label>
                     <input type="text" name="water_pay" id="water_pay" required>
 <!-- 
                     <label for="status">สถานะ :</label>
@@ -194,7 +194,9 @@
             </form>
         </div>
     </div>
-    <button class="btback" onclick="window.location.href='/owneddorm';">ย้อนกลับ</button>
+    <% data.forEach((i) => { %>
+        <button class="btback" onclick="window.location.href='/owneddorm/<%= i.user_id %>';">ย้อนกลับ</button>
+      <% }); %>      
     <script>
         const fileInput = document.getElementById('fileInput');
         const imagePreview = document.getElementById('imagePreview');
