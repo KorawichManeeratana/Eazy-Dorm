@@ -38,6 +38,8 @@ app.use('/roominfo', require('./routes/roominfo'));
 app.use('/editdorm', require('./routes/editdorm'));
 app.use('/showproblem', require('./routes/showproblem'));
 
+app.use('/profile', require('./routes/profile'));
+
 //routing api
 app.use('/api', require('./routes/api/account_relate/registerroutes.js'));
 

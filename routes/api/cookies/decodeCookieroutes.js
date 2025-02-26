@@ -4,7 +4,6 @@ const CookiesController = require("../../../controller/cookies/Decode");
 const router = express.Router();
 
 router.post('/cookieInfo', (req, res) => {
-  console.log("error when");
   const token = req.body.token;
 
   if (!token) {
