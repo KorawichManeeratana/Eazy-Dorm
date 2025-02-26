@@ -89,37 +89,20 @@
         }
 
         .bt-adddorm.del::before {
-            content: "-";
-            font-size: 30px;
-            position: absolute;
-            transition: opacity 0.2s ease-in-out;
-        }
-
-        .bt-adddorm.del::after {
-            content: "ลบหอพัก";
-            font-size: 16px;
-            position: absolute;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease-in-out, visibility 0.2s;
-        }
-        .bt-adddorm.edit::before {
             content: "✎";
             font-size: 20px;
             position: absolute;
             transition: opacity 0.2s ease-in-out;
         }
 
-        .bt-adddorm.edit::after {
-            content: "แก้ไขหอพัก";
+        .bt-adddorm.del::after {
+            content: "จัดการหอพัก";
             font-size: 16px;
             position: absolute;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.2s ease-in-out, visibility 0.2s;
         }
-
-
 
         .bt-adddorm:hover {
             width: 140px;
@@ -161,7 +144,6 @@
         }
 
         .deleteDiv button {
-            background-color: red;
             color: white;
             font-size: 14px;
             padding: 8px 16px;
@@ -176,11 +158,16 @@
         }
 
         .deleteDiv button:hover {
-            background-color: darkred;
+            background: black;
             transform: translateY(-10px);
 
         }
-
+        .btndel{
+            background: red;
+        }
+        .btnedit{
+            background: rgb(15, 140, 243);
+        }
     </style>
 </head>
 
@@ -194,24 +181,25 @@
         <% data.forEach((i)=> { %>
             <div class="all">
                 <div class="mydorm" id="mydorm" onclick="window.location.href='/addroom/<%= i.owner_id %>'">
-                    <img src="../uploads/<%= i.dorm_pic %>" alt="">
+                    <img src="/images/<%= i.dorm_pic %>" alt="">
                     <div class="dorm-information">
                         <p><strong>
                                 <%= i.name %>
-                            </strong></p>
+                            </strong></p>   
                         <p>รายละเอียด : <%= i.detail %> <br>
                                 ที่อยู่ : <%= i.address %> <br>
-                                    ห้อง : <%= i.rent %> <br>
-                                        เรตติ้ง : <%= i.rating %>
+                                    ห้อง : <%= i.room %> <br>
+                                        เรตติ้ง : <%= i.rating %> <br>
+                           ค่าเช่า : <%= i.rent %>
                         </p>
                     </div>
                 </div>
                 <div class="deleteDiv" id="deleteDiv<%= i.owner_id %>" style="display:none;">
                     <form action="/process_del/<%= i.dorm_id %>" method="POST" enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
-                        <button type="submit">ลบข้อมูลหอพัก</button>
+                        <button type="submit" class="btndel">ลบข้อมูลหอพัก</button>
                     </form>
                     <form action="/editdorm/<%= i.dorm_id %>/<%= i.owner_id %>" method="GET">
-                        <button type="submit">แก้ไขหอพัก</button>
+                        <button type="submit" class="btnedit">แก้ไขหอพัก</button>
                     </form>                                    
                 </div>
             </div>

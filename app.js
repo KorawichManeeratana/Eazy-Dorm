@@ -7,6 +7,9 @@ const app = express();
 const PORT = 3000
 
 const connection= require('./dbconn.js');
+const cookieParser = require("cookie-parser");
+app.use(cookieParser())
+
 
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('public'));
@@ -32,6 +35,7 @@ app.use('/notification', require('./routes/notification'));
 app.use('/selectroom', require('./routes/selectroom'));
 app.use('/roominfo', require('./routes/roominfo'));
 
+app.use('/editdorm', require('./routes/editdorm'));
 app.use('/showproblem', require('./routes/showproblem'));
 
 //routing api

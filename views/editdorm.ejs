@@ -132,16 +132,16 @@
                         <input type="text" id="phone_contact" name="phone_contact" value="<%= data.phone_contact %>" required>
                     </div>
                     <div class="form-group">
-                        <label for="rent_min">ราคาเริ่มต้น:</label>
-                        <input type="text" id="rent_min" name="rent_min" value="<%= data.rent.split('-')[0] %>" required>
+                        <label for="rent1">ราคาเริ่มต้น:</label>
+                        <input type="text" id="rent1" name="rent1" value="<%= data.rent.split('-')[0] %>" required>
                     </div>
                     <div class="form-group">
                         <label for="other_contact">ช่องทางติดต่ออื่น ๆ:</label>
                         <input type="text" id="other_contact" name="other_contact" value="<%= data.other_contact %>">
                     </div>
                     <div class="form-group">
-                        <label for="rent_max">ราคาสูงสุด:</label>
-                        <input type="text" id="rent_max" name="rent_max" value="<%= data.rent.split('-')[1] %>" required>
+                        <label for="rent2">ราคาสูงสุด:</label>
+                        <input type="text" id="rent2" name="rent2" value="<%= data.rent.split('-')[1] %>" required>
                     </div>
                     <div class="form-group">
                         <label for="electric_pay">ค่าไฟ (บาท/หน่วย):</label>
@@ -152,7 +152,6 @@
                         <input type="text" id="water_pay" name="water_pay" value="<%= data.water_pay %>">
                     </div>
                     
-                    <!-- 📌 ช่องอัปโหลดรูปภาพ -->
                 </div>
                 <div>
                     <div class="image-upload">
@@ -161,7 +160,6 @@
                     <input type="file" name="image" style="display: none;" id="fileInput">
                 </div>
 
-                <!-- ✅ ปุ่มถูกย้ายมาข้างล่าง -->
                 <div class="buttons">
                     <input type="button" value="อัพโหลดรูปภาพ" class="upload-btn"
                         onclick="document.getElementById('fileInput').click();">

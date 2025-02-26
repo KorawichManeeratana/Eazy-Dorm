@@ -64,7 +64,7 @@ async function fetchCookieInfo() {
     
     getNotification(decodedata.userID);
     owneddorm.href = `/owneddorm/${decodedata.userID}`;
-
+    
     userpfp.src = decodedata.userpfp;
     biguserpfp.src = decodedata.userpfp;
     usernamedisplay.innerHTML = decodedata.username;

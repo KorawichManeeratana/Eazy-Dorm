@@ -42,27 +42,44 @@ router.post('/process_edit/:id/:uid', upload.single('image'), async (req, res) =
         detail: req.body.detail,
         address: req.body.address,
         room: req.body.room,
-        rent1: req.body.rent_min,
-        rent2: req.body.rent_max,
+        rent1: req.body.rent1,
+        rent2: req.body.rent2,
         contact: req.body.phone_contact,
         other_contact: req.body.other_contact,
         electric_pay: req.body.electric_pay,
         water_pay: req.body.water_pay,
         image: req.file ? req.file.filename : null
     };
+    let sql;
     let rent = formdata.rent1 + '-' + formdata.rent2;
-    let sql = `UPDATE Dormitory SET 
+    if(formdata.image == null){
+        console.log("yes it null");
+        sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
     address = '${formdata.address}',
     room = ${formdata.room},
-    rent = ${rent},
+    rent = '${rent}',
+    phone_contact = '${formdata.contact}',
+    other_contact = '${formdata.other_contact}',
+    electric_pay = ${formdata.electric_pay},
+    water_pay = ${formdata.water_pay}
+    WHERE dorm_id = ${req.params.id};`;
+    } else {
+        sql = `UPDATE Dormitory SET 
+    name = '${formdata.name}',
+    detail = '${formdata.detail}',
+    address = '${formdata.address}',
+    room = ${formdata.room},
+    rent = '${rent}',
     phone_contact = '${formdata.contact}',
     other_contact = '${formdata.other_contact}',
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay},
     dorm_pic = '${formdata.image}'
     WHERE dorm_id = ${req.params.id};`;
+    }   
+    
     try {
         await conn.query(sql);
         res.send(`<script>alert("แก้ไขข้อมูลสำเร็จ"); window.location.href = '/owneddorm/${req.params.uid}';</script>`);
