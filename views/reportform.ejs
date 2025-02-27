@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แจ้งปัญหา</title>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+        .container {
+            max-width: 70rem;
+            margin-left: 17vw;
+            margin-right: auto;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 56px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            padding-bottom: 20px;
+        }
+        .select-problem {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+            margin-bottom: 70px;
+
+        }
+        .grid-1, .grid-2 {
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            
+        }
+        input.room-number:focus, select:focus, textarea:focus {
+            border-color: #ccc;
+            box-shadow: 0 0 8px rgba(255, 171, 188, 0.5);
+            outline: none;
+        }
+        input.room-number, select {
+            width: 80%;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            height: 45px;
+            box-shadow: 1px 1px 3px rgba(100, 100, 100, 0.5);
+        }
+        select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="%237F5432"><path d="M7 10l5 5 5-5H7z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+        select option {
+            background-color: white;
+            color: #333;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 1px 1px 3px rgba(100, 100, 100, 0.5);
+        }
+        select option:hover {
+            background-color: #ffeaea;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 1px 1px 3px rgba(100, 100, 100, 0.5);
+        }
+        input.room-number {
+            margin-bottom: 10%;
+        }
+        textarea {
+            height: 100%;
+        }
+        button {
+            margin-top: auto;
+            width: 80%;
+            height: 45px;
+            padding: 10px;
+            background-color: #7F5432 ;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #502f1b;
+        }
+        input[type="radio"] {
+            transform: scale(1.2);
+            margin-left: 10px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+        }
+        span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>แจ้งปัญหา</h2>
+    <div class="select-problem">
+        <label>เลือกหมวดในการแจ้ง</label>
+        <input type="radio" name="category" value="room"> ห้อง
+        <input type="radio" name="category" value="bill"> บิล
+        <input type="radio" name="category" value="other"> อื่นๆ
+    </div>
+    <form>
+        <div class="grid-1">
+            <label for="room">เลขห้องพัก <span>*</span></label>
+            <input class="room-number" type="text" id="room" required>
+            <label for="issue">หมวดหมู่ปัญหา <span>*</span></label>
+            <select id="issue" required>
+                <option value="water">ปัญหาเรื่องน้ำ</option>
+                <option value="electric">ปัญหาเรื่องไฟ</option>
+                <option value="internet">อินเทอร์เน็ต</option>
+                <option value="furniture">เฟอร์นิเจอร์, เครื่องใช้ไฟฟ้า</option>
+                <option value="other">อื่นๆ</option>
+                
+            </select>
+            <button type="submit">ส่งข้อมูล</button>
+        </div>
+        
+        <div class="grid-2">
+            <label for="details">รายละเอียดเพิ่มเติม <span>*</span></label>
+            <textarea id="details" rows="4" required></textarea>
+        </div>
+            
+        
+    </form>
+</div>
+
+</body>
+</html>
