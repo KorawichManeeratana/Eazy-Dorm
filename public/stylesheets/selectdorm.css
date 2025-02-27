@@ -84,15 +84,9 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: 10px;
 }
 .price {
-    margin-top: 1px;
+    margin-top: 10px;
     position: absolute;
     right: 2%;
-}
-.describe > a {
-    color: white;
-    position: absolute;
-    bottom: 10%;
-    left: 2%;
 }
 .describe > button {
     position: absolute;

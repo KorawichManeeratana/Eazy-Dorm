@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/:id', (req, res) => {
-    res.render('selectroom');
+    const { id } = req.params;
+    res.render('selectroom', {id: id});
 })
 
 module.exports = router;
