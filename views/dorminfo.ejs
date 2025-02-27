@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link rel="stylesheet" href="/stylesheets/dorminfo.css">
+    <script src="/javascripts/dorminfo.js"></script>
+</head>
+<body>
+    <main>
+        <div class="dorm_info">     
+            <img src="/images/<%=data[0][0].dorm_pic%>" alt="roomimg" class="dorm_img">
+            <div class="info">
+                <h1><%=data[0][0].name%></h1>
+                <h3><%=data[0][0].rating%> ดาว</h3>
+                <p><%=data[0][0].address%></p>
+                <button type="button" onclick="openSelectRoom('<%=data[0][0].dorm_id%>')">เลือกดูห้อง</button>
+                <div class="mini_info">
+                    <h3>รายละเอียด</h3>
+                    <p><%=data[0][0].detail%></p>
+                    <p><%=data[0][0].rent%> บาท/เดือน</p>
+                    <p>ค่าไฟ: หน่วยละ <%=data[0][0].electric_pay%> บาท</p>
+                    <p>ค่าน้ำ: หน่วยละ <%=data[0][0].water_pay%> บาท</p>
+                    <p>อินเทอร์เน็ต: ฟรี</p>
+                    <p>เบอร์ติดต่อ: <%=data[0][0].phone_contact%></p>
+                </div>
+            </div>
+            <div class="facilities_container">
+                <h1>สิ่งอำนวยความสะดวก</h1>
+                <div class="facilities">
+                    <h3>เครื่องปรับอากาศ</h3>
+                    <h3>เครื่องปรับอากาศ</h3>
+                    <h3>เครื่องปรับอากาศ</h3>
+                    <h3>เครื่องปรับอากาศ</h3>
+                    <h3>เครื่องปรับอากาศ</h3>
+                    <h3>เครื่องปรับอากาศ</h3>
+                </div>
+            </div>
+        </div>
+        <div class="comments_box">
+            <h1>ความคิดเห็น</h1>
+            <div class="comments_container">
+                <div class="comment">
+                    <h3>ไอซี</h3>
+                    <h5>5 ดาว</h5>
+                    <p>ห้องดีมากครับ ผมพาสาวขึ้นห้อง แฟนไม่รู้ตัวเลยครับ</p>
+                </div>
+                <div class="comment">
+                    <h3>ไอซี</h3>
+                    <h5>5 ดาว</h5>
+                    <p>ห้องดีมากครับ ผมพาสาวขึ้นห้อง แฟนไม่รู้ตัวเลยครับ</p>
+                </div>
+                <div class="comment">
+                    <h3>ไอซี</h3>
+                    <h5>5 ดาว</h5>
+                    <p>ห้องดีมากครับ ผมพาสาวขึ้นห้อง แฟนไม่รู้ตัวเลยครับ</p>
+                </div>
+                <div class="comment">
+                    <h3>ไอซี</h3>
+                    <h5>5 ดาว</h5>
+                    <p>ห้องดีมากครับ ผมพาสาวขึ้นห้อง แฟนไม่รู้ตัวเลยครับ</p>
+                </div>
+                <div class="comment">
+                    <h3>ไอซี</h3>
+                    <h5>5 ดาว</h5>
+                    <p>ห้องดีมากครับ ผมพาสาวขึ้นห้อง แฟนไม่รู้ตัวเลยครับ</p>
+                </div>
+                <div class="comment">
+                    <h3>ไอซี</h3>
+                    <h5>5 ดาว</h5>
+                    <p>ห้องดีมากครับ ผมพาสาวขึ้นห้อง แฟนไม่รู้ตัวเลยครับ</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<html lang="th">

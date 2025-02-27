@@ -35,6 +35,7 @@ app.use('/notification', require('./routes/notification'));
 app.use('/selectdorm', require('./routes/selectdorm'));
 app.use('/selectroom', require('./routes/selectroom'));
 app.use('/roominfo', require('./routes/roominfo'));
+app.use('/dorminfo', require('./routes/dorminfo'));
 
 app.use('/editdorm', require('./routes/editdorm'));
 app.use('/showproblem', require('./routes/showproblem'));
