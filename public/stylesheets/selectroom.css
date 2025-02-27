@@ -1,11 +1,8 @@
-body {
-    background-color: #CABA9C;
-}
-
 main {
-    padding-block: 2%;
-    padding-inline: 5%;
+    padding: 5%;
+    background-color: #CABA9C;
     display: flex;
+    height: 100vh;
 }
 .filter {
     background-color: #8A6240;
@@ -97,8 +94,8 @@ input[type=number]::-webkit-outer-spin-button {
 .describe > button {
     position: absolute;
     background-color: #bb8454;
-    bottom: 20%;
-    right: 5%;
+    bottom: 10%;
+    left: 25%;
     color: white;
     padding-block: 1%;
     padding-inline: 5%;
