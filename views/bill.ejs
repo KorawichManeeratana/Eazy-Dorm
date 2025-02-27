@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชำระค่าหอพัก</title>
+    <style>
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px rgb(199, 199, 199) solid;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 900px;
+            height: 600px;
+            background: #FFFDFD;
+            position: relative;
+        }
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        .info {
+            margin-top: 10px;
+            display: flex;
+            gap: 1%;
+            margin-bottom: 40px;
+        }
+        .info p {
+            margin: 5px;
+        }
+        .icon {
+            width: 30px;
+            height: auto;
+        }
+        .amount {
+            border: 1px rgba(0, 0, 0, 0.1) solid;
+            background: white;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        .amount p {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            width: 140px;
+            padding: 15px;
+            background: #7F5432;
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            text-decoration: none;
+        }
+        .white-button {
+            display: block;
+            background: white;
+            border: 1px rgba(0, 0, 0, 0.1) solid;
+            width: 200px;
+            padding: 5px;
+            margin-top: 20px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: rgb(70, 46, 18);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div class="container">
+        <div class="title">หอพัก อินทรีย์ กินหมู</div>
+        <div class="info">
+            <img class="icon" src="https://img.icons8.com/?size=100&id=i6fZC6wuprSu&format=png&color=000000">
+            <p>ห้องพัก: 101</p>
+            <img class="icon" src="https://img.icons8.com/?size=100&id=uOoIUTYvxnso&format=png&color=000000">
+            <p>ชื่อผู้เช่า: นาย อินทรีย์ อ้วน</p>
+        </div>
+        <strong>รายการค่าใช้จ่าย</strong>
+        <div class="amount">
+            <p><span>ค่าเช่าห้อง:</span> <span>5000 บาท</span></p>
+            <p><span>ค่าน้ำ:</span> <span>120 บาท</span></p>
+            <p><span>ค่าไฟ:</span> <span>1100 บาท</span></p>
+            <hr>
+            <p><strong>รวมทั้งหมด:</strong> <strong>6220 บาท</strong></p>
+        </div>
+        <p>เลขที่บัญชี: 0201-23xx-xxxx กสิกร</p>
+        <a href="#" class="white-button">แบบหลักฐานสลิปการโอน</a>
+        <a href="#" class="white-button">ชำระเงินผ่าน QR Code</a>
+        <a href="#" class="button">ยืนยัน</a>
+    </div>
+    </div>
+</body>
+</html>
