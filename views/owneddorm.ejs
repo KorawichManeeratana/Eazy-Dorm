@@ -17,7 +17,7 @@
         </div>
         <% data.forEach((i)=> { %>
             <div class="all">
-                <div class="mydorm" id="mydorm" onclick="window.location.href='/addroom/<%= i.owner_id %>'">
+                <div class="mydorm" id="mydorm" onclick="window.location.href='/owndorminfo/<%= i.dorm_id %>'">
                     <img src="/images/<%= i.dorm_pic %>" alt="">
                     <div class="dorm-information">
                         <p><strong>

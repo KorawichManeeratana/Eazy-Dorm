@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดห้องพัก</title>
+    <style>
+        main {
+            display: flex;
+            gap: 1%;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            margin-top: 70px;
+
+        }
+
+        .room-card {
+            display: flex;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            margin-top: 40px;
+            padding: 25px;
+            box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
+        }
+
+        .room-card img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .room-info {
+            padding-left: 25px;
+            flex: 1;
+            color: rgb(150, 150, 150);
+        }
+
+        .room-title {
+            font-weight: bold;
+            font-size: 26px;
+            color: black;
+        }
+
+        .room-status {
+            font-weight: bold;
+            color: green;
+        }
+
+        .room-status.unavailable {
+            color: red;
+        }
+
+        .head {
+            display: flex;
+            position: relative;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            position: absolute;
+            right: 10px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button-all {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .button-all a {
+            margin-top: 10px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: rgb(151, 96, 51);
+            padding: 15px;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .deleteDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .deleteDiv button {
+            color: white;
+            font-size: 14px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition-duration: 3s;
+            transition: transform 0.3s ease-in-out, background 3s cubic-bezier(0, 1, 1, 0);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin-top: 60px;
+            height: 80%;
+        }
+
+        .deleteDiv button:hover {
+            background: black;
+            transform: translateY(-10px);
+
+        }
+
+        .btndel {
+            background: red;
+        }
+
+        .btnedit {
+            background: rgb(15, 140, 243);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="head">
+            <h2>รายละเอียดห้องพัก</h2>
+            <div class="button-group">
+                <div class="button-all">จัดการปัญหา
+                    <a href="#" class="button"><img class="icon"
+                            src="https://img.icons8.com/?size=100&id=FN71YxTPZVQC&format=png&color=000000"></a>
+                </div>
+                <div class="button-all">จัดการหอพัก
+                    <a class="button"><img class="icon" src="https://www.svgrepo.com/show/2087/plus.svg"
+                            onclick="toggleDelState()"></a>
+                </div>
+                <div class="button-all">แจ้งค่าเช่า
+                    <a href="#" class="button"><img class="icon"
+                            src="https://img.icons8.com/?size=100&id=FN71YxTPZVQC&format=png&color=000000"></a>
+                </div>
+            </div>
+        </div>
+        <% data.forEach((i)=>{ %>
+            <main>
+                <div class="room-card">
+                    <img src="https://www.grandecentrepointpattaya.com/upload/rooms-and-suites/2-rooms-and-suites.jpg?v=66"
+                        alt="ห้องพัก 101">
+                    <div class="room-info">
+                        <div class="room-title">ห้องพัก <%= i.room_number %>
+                        </div>
+                        <div>ขนาดห้อง <%= i.size %> ตร.ม. | ห้องคู่ เตียงเดี่ยว</div>
+                        <div>สิ่งอำนวยความสะดวก : เครื่องปรับอากาศ (Air Conditioner), เครื่องทำน้ำอุ่น (Water Heater),
+                            อินเทอร์เน็ต / WiFi (Internet)
+                            เฟอร์นิเจอร์ภายในห้อง : เตียง, ตู้เสื้อผ้า, โต๊ะ, เก้าอี้, โทรทัศน์ (TV), ตู้เย็น
+                            (Refrigerator
+                        </div> <br>
+                        <% if (i.loger_id) { %>
+                            <div>สถานะ : <span class="room-status unavailable" style="color: red;">ไม่ว่าง</span></div>
+                            <% } else { %>
+                                <div>สถานะ : <span class="room-status unavailable" style="color: green;">ว่าง</span>
+                                </div>
+                                <% } %>
+                    </div>
+
+                </div>
+                <div class="deleteDiv" id="deleteDiv<%= i.room_id %>" style="display:none;">
+                    <form action="" method="POST" enctype="multipart/form-data"
+                        onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
+                        <button type="submit" class="btndel">ลบห้องพัก</button>
+                    </form>
+                    <form action="" method="GET">
+                        <button type="submit" class="btnedit">แก้ไขห้องพัก</button>
+                    </form>
+                </div>
+            </main>
+            <% }); %>
+    </div>
+
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const delState = false;
+            const deleteDivs = document.querySelectorAll('.deleteDiv');
+            deleteDivs.forEach((deleteDiv) => {
+                deleteDiv.style.display = delState ? 'block' : 'none';
+            });
+            localStorage.setItem('del_state', delState);
+        });
+        function toggleDelState() {
+            const currentState = localStorage.getItem('del_state') === 'true';
+            const newState = !currentState;
+            localStorage.setItem('del_state', newState);
+            const deleteDivs = document.querySelectorAll('.deleteDiv');
+            deleteDivs.forEach((deleteDiv) => {
+                deleteDiv.style.display = newState ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+
+</html>

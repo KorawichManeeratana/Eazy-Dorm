@@ -44,6 +44,8 @@ app.use('/profile', require('./routes/profile'));
 app.use('/bill', require('./routes/bill'));
 app.use('/userselect', require('./routes/userselect'));
 app.use('/reportform', require('./routes/reportform'));
+app.use('/editroom', require('./routes/editroom'));
+app.use('/owndorminfo', require('./routes/owndorminfo'));
 
 //routing api
 app.use('/api', require('./routes/api/account_relate/registerroutes.js'));
