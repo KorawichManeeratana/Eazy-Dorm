@@ -1,8 +1,11 @@
-main {
-    padding: 5%;
+body {
     background-color: #CABA9C;
+}
+
+main {
+    padding-block: 2%;
+    padding-inline: 5%;
     display: flex;
-    min-height: 100vh;
 }
 .filter {
     background-color: #8A6240;
@@ -81,21 +84,15 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: 10px;
 }
 .price {
-    margin-top: 1px;
+    margin-top: 10px;
     position: absolute;
     right: 2%;
-}
-.describe > a {
-    color: white;
-    position: absolute;
-    bottom: 10%;
-    left: 2%;
 }
 .describe > button {
     position: absolute;
     background-color: #bb8454;
-    bottom: 10%;
-    left: 25%;
+    bottom: 20%;
+    right: 5%;
     color: white;
     padding-block: 1%;
     padding-inline: 5%;

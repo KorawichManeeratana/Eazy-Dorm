@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
    <link rel="stylesheet" href="/stylesheets/selectroom.css">
+   <script src="/javascripts/selectroom.js"></script>
 </head>
-<body>
+<body onload="loadAllRoom('<%=id%>')">
     <main>
         <div class="filter">
             <h3>Filters</h3>
@@ -29,96 +30,6 @@
         </div>
 
         <div class="roomcontainer">
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
-            <div class="room">
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-                <div class="describe">
-                    <h2>ห้อง 305</h2>
-                    <div class="price">ราคา 1ล้าน บาท</div>
-                    <a href="">รายละเอียด</a>
-                    <button>โทร</button>
-                </div>
-            </div>
         </div>
     </main>
 </body>
