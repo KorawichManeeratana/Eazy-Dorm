@@ -1,0 +1,70 @@
+const fileInput = document.getElementById('fileInput');
+const imagePreview = document.getElementById('imagePreview');
+
+fileInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+});
+function validate(event) {
+    event.preventDefault();
+
+    let form = event.target;
+    let room = document.getElementById("room").value.trim();
+    let rent1 = document.getElementById("rent1").value.trim();
+    let rent2 = document.getElementById("rent2").value.trim();
+    let phone = document.getElementById("contact").value.trim();
+    let electric_pay = document.getElementById("electric_pay").value.trim();
+    let water_pay = document.getElementById("water_pay").value.trim();
+
+    let isValid = true; 
+
+    if (isNaN(room) || room === "") {
+        alert("จำนวนห้องต้องเป็นตัวเลขเท่านั้น");
+        isValid = false;
+        return false;
+    }
+    
+    if (isNaN(rent1) || rent1 === "") {
+        alert("ราคาเริ่มต้นต้องเป็นตัวเลขเท่านั้น");
+        isValid = false;
+        return false;
+    }
+    if (isNaN(rent2) || rent2 === "") {
+        alert("ราคาสูงสุดต้องเป็นตัวเลขเท่านั้น");
+        isValid = false;
+        return false;
+    }
+
+    if (parseFloat(rent1) > parseFloat(rent2)) {
+        alert("ราคาสูงสุดต้องมากกว่าหรือเท่ากับราคาเริ่มต้น");
+        isValid = false;
+        return false;
+    }
+
+    let phonePattern = /^[0-9-]+$/;
+    if (!phonePattern.test(phone) || phone === "") {
+        alert("หมายเลขโทรศัพท์ต้องเป็นตัวเลขและสามารถมีเครื่องหมาย '-' ได้เท่านั้น");
+        isValid = false;
+        return false;
+    }
+    if (isNaN(electric_pay) || electric_pay === "") {
+        alert("ค่าไฟต้องเป็นตัวเลขเท่านั้น");
+        isValid = false;
+        return false;
+    }
+    if (isNaN(water_pay) || water_pay === "") {
+        alert("ค่าน้ำต้องเป็นตัวเลขเท่านั้น");
+        isValid = false;
+        return false;
+    }
+    if (isValid) {
+        form.submit();
+    }
+}

@@ -98,8 +98,11 @@
                     <th>หมายเลขห้อง</th>
                     <th>ชื่อผู้เช่า</th>
                     <th>ค่าเช่า</th>
+                    <th>วันที่</th>
                     <th>สถานะ</th>
+                    <th>ยืนยันชำระ</th>
                     <th>ดำเนินการ</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -107,7 +110,19 @@
                     <td>101</td>
                     <td>กระดุก ดำดุ้ย</td>
                     <td>450,000</td>
-                    <td>ยังไม่จ่ายเลย</td>
+                    <td>20/12/2042</td>
+                    <td>ยังไม่ชำระ</td>
+                    <td><button>ดูสลิป</button></td>
+                    <td><button onclick="openPopup()">ส่งใบแจ้งหนี้</button></td>
+                    
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>กระดุก ดำดุ้ย</td>
+                    <td>450,000</td>
+                    <td>20/12/2042</td>
+                    <td>ชำระแล้ว</td>
+                    <td><button>ดูสลิป</button></td>
                     <td><button onclick="openPopup()">ส่งใบแจ้งหนี้</button></td>
                 </tr>
             </tbody>
@@ -119,10 +134,10 @@
         <div class="popup-content">
             <h2>ส่งใบแจ้งหนี้</h2>
             <form>
-                <label for="invoiceNumber">หมายเลขใบแจ้งหนี้:</label>
-                <input type="text" id="invoiceNumber" placeholder="กรอกหมายเลขใบแจ้งหนี้" required>
-                <label for="dueDate">วันที่ครบกำหนด:</label>
-                <input type="date" id="dueDate" required>
+                <label for="water_pay">ค่าน้ำ :</label>
+                <input type="text" id="water_pay" required>
+                <label for="electric_pay">ค่าไฟ :</label>
+                <input type="text" id="electric_pay" required>
                 <label for="invoiceImage">อัปโหลดรูปภาพใบแจ้งหนี้:</label>
                 <input type="file" id="invoiceImage" accept="image/*" required>
                 <button type="submit">ส่งใบแจ้งหนี้</button>
@@ -132,12 +147,9 @@
     </div>
 
     <script>
-        // เปิด popup
         function openPopup() {
             document.getElementById('popupForm').style.display = 'flex';
         }
-
-        // ปิด popup
         function closePopup() {
             document.getElementById('popupForm').style.display = 'none';
         }

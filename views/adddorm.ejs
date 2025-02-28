@@ -5,152 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>adddorm</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        .contain {
-            background-color: #CABA9C;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .main {
-            margin: 20px;
-            display: grid;
-            grid-template-columns: 1fr 0fr;
-            gap: 20px;
-            padding: 40px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 900px;
-        }
-
-        .text-information {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            font-size: 18px;
-            padding: 20px;
-        }
-
-        .text-information label {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .text-information input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-            transition: border-color 0.3s ease-in-out;
-        }
-
-        .text-information input:focus {
-            border-color: #8A6240;
-        }
-
-        .bt-save {
-            background-color: #8A6240;
-            color: white;
-            padding: 12px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: underline;
-            margin-top: 15px;
-        }
-
-        .bt-save:hover {
-            background-color: #6d4f34;
-            transform: scale(1.05);
-        }
-
-        .image-information {
-            background: #f9f9f9;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            min-height: 400px;
-            border: 2px dashed #8A6240;
-        }
-
-        .image-information img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .upload {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #d4a073;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .upload:hover {
-            background-color: #f0d6bf;
-        }
-
-        .btback {
-            position: absolute;
-            bottom: 10%;
-            right: 10%;
-        }
-
-        .btback {
-            position: fixed;
-            bottom: 30px;
-            right: 40px;
-            background-color: #8A6240;
-            color: white;
-            padding: 12px 20px;
-            font-size: 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            text-decoration: underline;
-        }
-        .pricerange{
-            display: grid;
-            grid-template-columns: auto auto;
-            label{
-                width: 120px;
-            }
-            input{
-                margin-top: 2%;
-            }
-        }
-        
-    </style>
+    <link rel="stylesheet" href="/stylesheets/adddorm.css">
+    <script src="/javascripts/adddorm.js"></script>
 </head>
-
 <body>
     <div class="contain">
         <div class="main">
-            <form action="/adddorm/process_addorm" method="POST" enctype="multipart/form-data">
+            <form action="/adddorm/process_addorm" method="POST" enctype="multipart/form-data" onsubmit="return validate(event);">
                 <div class="text-information">
                     <label for="name">ชื่อหอพัก :</label>
                     <input type="text" name="name" id="name" required>
@@ -169,7 +30,7 @@
                     <label for="contact">เบอร์ติดต่อ :</label>
                     <input type="text" name="contact" id="contact" required>
                     <label for="other_contact">ช่องทางติดต่ออื่น :</label>
-                    <input type="text" name="other_contact" id="other_contact">
+                    <input type="text" name="other_contact" id="other_contact" placeholder="เช่น FB: somchai maimeetung">
                     <label for="electric_pay">ค่าไฟ (บาท/หน่วย) :</label>
                     <input type="text" name="electric_pay" id="electric_pay" required >
                     <label for="water_pay">ค่าน้ำ (บาท/หน่วย) :</label>
@@ -197,85 +58,6 @@
     <% data.forEach((i) => { %>
         <button class="btback" onclick="window.location.href='/owneddorm/<%= i.user_id %>';">ย้อนกลับ</button>
       <% }); %>      
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const imagePreview = document.getElementById('imagePreview');
-
-        fileInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        // function validate() {
-        //     let name = document.getElementById("name").value;
-        //     if (personid.length != 13) {
-        //         alert("เขียนให้ครบ 13 ตัวดิ้")
-        //     }
-        //     let noun = document.getElementById("noun").value;
-        //     if (noun == "---เลือกคำนำหน้าชื่อ---") {
-        //         console.log("ee");
-        //     }
-        //     let fname = document.getElementById("fname").value;
-        //     if (fname.length == 0) {
-        //         alert("เขียนชื่อที");
-        //         return false;
-        //     }
-        //     else if (fname.length <= 2) {
-        //         alert("ชื่อต้องเป็นตัวอักษร ความยาวระหว่าง 2-20 ตัวอักษร");
-        //         return false;
-        //     } else if (fname.length >= 20) {
-        //         alert("ชื่อต้องเป็นตัวอักษร ความยาวระหว่าง 2-20 ตัวอักษร");
-        //         return false;
-        //     }
-        //     let lname = document.getElementById("lname").value;
-        //     if (lname.length == 0) {
-        //         alert("เขียนนามสกุลที");
-        //         return false;
-        //     }
-        //     else if (lname.length <= 2) {
-        //         alert("นามสกุลต้องเป็นตัวอักษร ความยาวระหว่าง 2-30 ตัวอักษร");
-        //         return false;
-        //     } else if (lname.length >= 30) {
-        //         alert("นามสกุลต้องเป็นตัวอักษร ความยาวระหว่าง 2-30 ตัวอักษร");
-        //         return false;
-        //     }
-        //     let home = document.getElementById("home").value;
-        //     if (home.length < 15) {
-        //         alert("ความยาวไม่ต่ำกว่า 15 ตัวอักษร")
-        //         return false;
-        //     }
-        //     let state1 = document.getElementById("state1").value;
-        //     if (state1.length < 2) {
-        //         alert("ความยาวตำบล,แขวงไม่ต่ำกว่า 2 ตัวอักษร")
-        //         return false;
-        //     }
-        //     let state2 = document.getElementById("state2").value;
-        //     if (state2.length < 2) {
-        //         alert("ความยาวอำเภอ,เขตไม่ต่ำกว่า 2 ตัวอักษร")
-        //         return false;
-        //     }
-        //     ตรวจสอบจังหวัด
-        //     let state3 = document.getElementById("state3").value;
-        //     if(state2.length > 2){
-        //         alert("ความยาวไม่ต่ำกว่า 2 ตัวอักษร")
-        //         return false;
-        //     }
-        //     ตรวจสอบรหัสไปรษณี
-        //     let postalcode = document.getElementById("postalcode").value;
-        //     if (postalcode.length != 5) {
-        //         alert("รหัสไปรษณีต้องเป็นตัวเลข 5 ตัวเลข")
-        //         return false;
-        //     }
-        //     console.log(noun);
-        // }
-
-    </script>
 </body>
 
 </html>

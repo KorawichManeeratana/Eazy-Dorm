@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c8b090;
+    margin: 0;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    margin-top: 2%;
+    margin-bottom: 5%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 1400px;
+    gap: 2%;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3%;
+    row-gap: 1rem;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+textarea {
+    resize: none;
+    height: 80px;
+}
+.image-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    height: 200px;
+    margin: 15px 0;
+    text-align: center;
+    color: #888;
+    cursor: pointer;
+    grid-column: span 2;
+    width: 400px;
+    justify-self: center;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    grid-column: span 2;
+}
+.upload-btn, .submit-btn {
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+}
+.upload-btn {
+    background-color: #c79a6b;
+    color: white;
+}
+.upload-btn:hover {
+    background-color: #b0835a;
+}
+.submit-btn {
+    background-color: #5a3d2b;
+    color: white;
+}
+.submit-btn:hover {
+    background-color: #3d2a1e;
+}
+img{
+    width: 350px;
+    height: 150px;
+}
