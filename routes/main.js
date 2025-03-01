@@ -3,7 +3,7 @@ const router = express.Router();
 const conn = require('../dbconn');
 //Routes
 router.get('', async (req, res) => {
-    const sql = `SELECT user_id FROM Users;`
+    const sql = `SELECT * FROM Dormitory ORDER BY rating DESC LIMIT 3;`
     try {
         const [rows] = await conn.query(sql);
         res.render('index', { data: rows });
@@ -12,6 +12,5 @@ router.get('', async (req, res) => {
     }
     
 })
-
 
 module.exports = router;

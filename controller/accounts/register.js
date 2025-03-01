@@ -15,7 +15,6 @@ async function registerAccount(userData) {
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        console.log("hashedPassword: ", hashedPassword);
         const userpic = 'https://th.bing.com/th/id/OIP.Od4m4w455EEToOQDKESqvgHaFJ?rs=1&pid=ImgDetMain';
 
         const [result, fill] = await (await db.getConnection()).query(

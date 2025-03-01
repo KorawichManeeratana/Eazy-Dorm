@@ -12,7 +12,6 @@ async function CookiesDecode(token) {
         }
 
         const decoded = jwt.verify(token, SECRET_KEY);
-        console.log("Decoded token:", decoded);
         return { status: 200, message: 'Token verified and decoded', decoded: decoded };
 
     } catch (error) {

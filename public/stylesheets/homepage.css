@@ -99,8 +99,8 @@ body{
     padding: 10px 20px;
     box-shadow: 0px 0px 3px 1px #888;
     position: absolute;
-    right: 54vh;
-    bottom: 56vh;
+    right: 26%;
+    bottom: 56%;
     transition: opacity 0.3s ease-in-out;
     pointer-events: none;
   }
@@ -176,4 +176,64 @@ body{
     width: 10px;
     border-radius: 50%;
     cursor: pointer;
+  }
+
+  .popular{
+    display: flex;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .popular-container{
+    padding: 0 7%;
+  }
+
+  .card {
+    width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+  }
+  
+  .card-image {
+    width: 150px;
+    height: 150px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ccc;
+  }
+  
+  .card-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .card-content {
+    flex: 1;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-body {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+  }
+
+  .populardisplay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
   }

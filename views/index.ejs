@@ -24,27 +24,48 @@
       <div class="rangepick-wrap" id="rangePick">
         <div class="mix-max">
           <div class="min">
-            <label>ช่วงต่ำสุด</label><span id="min-value"></span>
-            </div>
-            <div class="max">
-              <label>ช่วงสูงสุด</label><span id="max-value"></span>
-              </div>
+            <label>ช่วงต่ำสุด</label><input type="text" id="min-value">
+          </div>
+          <div class="max">
+            <label>ช่วงสูงสุด</label><input type="text" id="max-value">
+          </div>
         </div>
         <div class="min-max-range">
-          <input type="range" min="0" max="5000" value="2000" class="range" id="min">
-          <input type="range" min="5001" max="10000" value="8000" class="range" id="max">
+          <input type="range" min="0" max="10000" value="2000" class="range" id="min">
+          <input type="range" min="0" max="10000" value="8000" class="range" id="max">
         </div>
-        <div style="clear:both">
-
-        </div>
+        <div style="clear:both"></div>
       </div>
-      
       <div>
         <button
             class="Searchbutton"
         ><Link>ยืนยัน</Link></button>
       </div>
+        </div>
+      </div>
   </div>
+  <div class="popular-container">
+    <div class="popular">
+      <h2>หอพักยอดนิยม</h2>
+      <p style="font-size: 20.5px;">กรุงเทพฯ/ปริมณฑล</p>
+    </div>
+
+    <div class="populardisplay">
+      <% data.forEach((i)=>{ %>
+      <div class="card">
+        <div class="card-image">
+          <img src="<%= i.dorm_pic %>" alt="dorm-pic" />
+        </div>
+        <div class="card-content">
+          <h2 class="card-title"><%= i.name %></h2>
+          <p class="card-body"><%= i.address %></p>
+        </div>
+      </div>
+      
+      <% }); %>
+    </div>
+  </div>
+  <%- include('../components/footer.ejs') %>
   <script src="/javascripts/homepage.js"></script>
 </body>
 </html>

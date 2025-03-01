@@ -4,7 +4,6 @@ const db = require('../../dbconn');
 const jwt = require('jsonwebtoken');
 
 async function loginUser(loginData) {
-    console.log("Login Data: ", loginData);
     const eoru = loginData.uore;
     const password = loginData.password;
 

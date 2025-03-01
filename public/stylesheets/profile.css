@@ -126,6 +126,15 @@ body {
     width: 1200px;
     border-radius: 10px;
   }
+
+  .profile-about.notfound {
+    position: absolute;
+    bottom: 27%;
+    padding: 20px;
+    background-color: #fff;
+    width: 1200px;
+    border-radius: 10px;
+  }
   
   .profile-about h2 {
     margin-bottom: 10px;

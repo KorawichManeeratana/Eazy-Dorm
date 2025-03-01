@@ -4,6 +4,8 @@ const loginBtn = document.querySelector(".loginBtn")
 const notiMenu = document.getElementById("notiMenu");
 const viewallNotifi = document.getElementById("viewallNotifi");
 const spanofviewall = document.getElementById("spanofviewall");
+const profilea = document.getElementById("profilea");
+const notiBadge = document.getElementById("badge");
 
 function toggleMenu() {
   if (notiMenu.classList.contains("open-menu")) {
@@ -13,12 +15,16 @@ function toggleMenu() {
   subMenu.classList.toggle("open-menu");
 }
 
-function toggleNoti(){
+function toggleNoti() {
   if (subMenu.classList.contains("open-menu")) {
     subMenu.classList.remove("open-menu");
   }
 
   notiMenu.classList.toggle("open-menu");
+
+  if (notiMenu.classList.contains("open-menu")) {
+    markNotificationsAsRead();
+  }
 }
 
 function hasAccessTokenCookie() {
@@ -26,6 +32,38 @@ function hasAccessTokenCookie() {
   return value
 }
 
+
+function markNotificationsAsRead() {
+  const notificationItems = document.querySelectorAll('.noti-menu');
+  notiBadge.classList.add("hidden");
+
+  notificationItems.forEach(item => {
+    const notificationId = item.dataset.notificationId;
+    updateNotificationStatus(notificationId);
+  });
+}
+
+function updateNotificationStatus(notificationId) {
+  fetch('/api/update_notification_status', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ notificationId: notificationId })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Notification status updated successfully:', data);
+  })
+  .catch(error => {
+    console.error('There was an error updating the notification status:', error);
+  });
+}
 
 if (hasAccessTokenCookie()) {
   console.log("Access token exists.");
@@ -68,6 +106,7 @@ async function fetchCookieInfo() {
     userpfp.src = decodedata.userpfp;
     biguserpfp.src = decodedata.userpfp;
     usernamedisplay.innerHTML = decodedata.username;
+    profilea.href = `/profile/${decodedata.userID}`;
 
     if (decodedata.role == "owner") {
       owneddorm.classList.remove("hidden");
@@ -94,16 +133,28 @@ async function getNotification(user_id) {
     }
 
     const data = await response.json();
-    console.log("data:", data.allNoti[0][0]);
     const finalData = data.allNoti[0][0];
+    console.log(finalData)
 
-    notiList.insertAdjacentHTML('afterbegin', `<div class="noti-menu">
-            <img src="${finalData.user_pic}" alt="noti" class="noti-img"/>
-            <div class="date-content">
-              <span class="noti-content">${finalData.content}</span>
-              <span class="noti-date">14 ชั่วโมง</span>
-            </div>
-          </div>`);
+    data.allNoti[0].forEach(noti => {
+  notiList.insertAdjacentHTML('afterbegin', `
+    <div class="noti-menu" data-notification-id="${noti.NotiID}">
+      <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+      <div class="date-content">
+        <span class="noti-content">${noti.content}</span>
+        <span class="noti-date">${timeSince(noti.createAt)}</span>
+      </div>
+    </div>
+  `);
+});
+    
+    if (finalData.unread_count > 9){
+      notiBadge.classList.remove("hidden");
+      notiBadge.innerHTML = "9+";
+    }else if (finalData.unread_count > 0){
+      notiBadge.classList.remove("hidden");
+      notiBadge.innerHTML = finalData.unread_count;
+    }
 
     spanofviewall.innerHTML = `ดูทั้งหมด (${data.allNoti[0].length})`;
     viewallNotifi.href = `/notification/${finalData.toWho}`;
@@ -111,6 +162,36 @@ async function getNotification(user_id) {
   }catch (error) {
     console.error('Error fetching user info:', error);
   }
+}
+
+function timeSince(dateString) {
+  const date = new Date(dateString);
+  console.log(date)
+  const seconds = Math.floor((new Date() - date) / 1000);
+  console.log("seconds,", seconds)
+
+  let interval = seconds / 31536000;
+
+  if (interval > 1) {
+    return Math.floor(interval) + " ปีที่แล้ว";
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return Math.floor(interval) + " เดือนที่แล้ว";
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return Math.floor(interval) + " วันที่แล้ว";
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return Math.floor(interval) + " ชั่วโมงที่แล้ว";
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return Math.floor(interval) + " นาทีที่แล้ว";
+  }
+  return Math.floor(seconds) + " วินาทีที่แล้ว";
 }
 
 fetchCookieInfo();

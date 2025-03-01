@@ -61,6 +61,8 @@ app.use('/api', require('./routes/api/dorm/dormRoute.js'));
 
 app.use('/:id/api', require('./routes/api/room/roomRoute.js'));
 
+app.use('/api', require('./routes/api/notfications/updatestatus.js'));
+
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
     console.log(`http://localhost:${PORT}`)
