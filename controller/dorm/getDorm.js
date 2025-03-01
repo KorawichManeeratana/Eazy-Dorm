@@ -3,16 +3,13 @@ const db = require("../../dbconn");
 
 async function getDorm(text) {
   try {
-    if (text){
-        query = `SELECT dorm_id, name, rent, dorm_pic FROM Dormitory WHERE name = "%${text}%";`;
-    }else{
-        query = `SELECT dorm_id, name, rent, dorm_pic FROM Dormitory;`;
-    }
-    const [result, fill] = await (await db.getConnection()).query(query);
+    text = `%${text}%`
+    query = `SELECT dorm_id, name, rent, dorm_pic, address FROM Dormitory WHERE name LIKE ? UNION SELECT dorm_id, name, rent, dorm_pic, address FROM Dormitory WHERE address LIKE ?;`;
+    const result = (await db.query(query, [text, text]))[0];
     return {
       status: 200,
       message: "Dorm queryed",
-      allDorm: [result, fill],
+      allDorm: result,
     };
   } catch (error) {
     console.error(error);

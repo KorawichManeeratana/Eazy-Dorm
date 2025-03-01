@@ -54,15 +54,54 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.search {
+    position: absolute;
+    top: 100px;
+    left: 40%;
+}
+
+.search > input {
+    font-size: 18px;
+    color: black;
+    width: 24rem;
+    padding: 1rem 0.8rem;
+    border-radius: 1.5rem;
+    border: 1px solid gray;
+    outline: none;
+  }
+  
+.search > input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(153, 104, 12);
+}
+
+.search > button {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    font-family: Kanit;
+    font-weight: 500;
+    padding: 0.8rem 1.5rem;
+    border-radius: 1.5rem;
+    border: 2px solid #8A6240;
+}
+  
+.search > button:hover {
+    background-color: #CABA9C;
+}
+
 .dormcontainer {
     display: flex;
     flex-wrap: wrap;
     max-width: 1230px;
     gap: 15px;
+    margin-top: 5%;
     margin-left: 5%;
     color: white;
 }
 .dorm {
+    cursor: pointer;
     border-radius: 5px;
     height: 350px;
     width: 400px;
@@ -83,24 +122,14 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 1px;
     margin-left: 10px;
 }
-.price {
+.describe > h4 {
     margin-top: 10px;
     position: absolute;
     right: 2%;
 }
-.describe > button {
+.describe > p {
+    font-size: x-small;
+    bottom: 10px;
     position: absolute;
-    background-color: #bb8454;
-    bottom: 20%;
-    right: 5%;
-    color: white;
-    padding-block: 1%;
-    padding-inline: 5%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 200ms;
-}
-.describe > button:hover {
-    transform: scale(1.05);
+    left: 2%;
 }

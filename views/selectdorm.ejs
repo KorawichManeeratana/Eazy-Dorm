@@ -4,7 +4,7 @@
    <link rel="stylesheet" href="/stylesheets/selectdorm.css">
    <script src="/javascripts/selectdorm.js"></script>
 </head>
-<body onload="loadAllDorm()">
+<body onload="searchDorm(event)">
     <main>
         <div class="filter">
             <h3>Filters</h3>
@@ -28,6 +28,11 @@
                 <input type="number" placeholder="ขั้นต่ำ"> - <input type="number" placeholder="สูงสุด"> บาท
             </div>
         </div>
+
+        <form class="search" onsubmit="searchDorm(event)">
+            <input type="text" placeholder="ค้นหาหอพัก" id="searchtext">
+            <button type="submit">ค้นหา</button>
+        </form>
 
         <div class="dormcontainer">
         </div>
