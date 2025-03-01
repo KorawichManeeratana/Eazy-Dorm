@@ -13,7 +13,7 @@
             font-family: Arial, sans-serif;
         }
 
-        body {
+        main {
             background-color: #CABA9C;
             display: flex;
             justify-content: center;
@@ -23,19 +23,18 @@
         }
 
         .main {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 20px;
             padding: 20px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
             max-width: 1200px;
-            height: 90vh;
+            height: 75vh;
             overflow: hidden;
             box-sizing: border-box;
-            margin-top:50px;
+            margin-top: 50px;
         }
 
         .text-information {
@@ -49,7 +48,9 @@
 
         .text-information label {
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            /* เพิ่มระยะห่าง */
+            display: block;
         }
 
         .text-information input,
@@ -61,26 +62,14 @@
             border-radius: 5px;
             outline: none;
             transition: border-color 0.3s ease-in-out;
+            margin-bottom: 15px;
+            /* เพิ่มระยะห่าง */
         }
+
 
         .text-information input:focus,
         .text-information select:focus {
             border-color: #8A6240;
-        }
-
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .checkbox-group label {
-            font-weight: bold;
-        }
-
-        .checkbox-group input {
-            margin-right: 10px;
-            width:auto;
         }
         .bt-save {
             background-color: #8A6240;
@@ -100,24 +89,8 @@
             transform: scale(1.05);
         }
 
-        .image-information {
-            background: #f9f9f9;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            min-height: 100%;
-            border: 2px dashed #8A6240;
-        }
-
-        .image-information img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        button {
+            max-height: 50px;
         }
 
         .btfromdevice {
@@ -153,51 +126,64 @@
             text-decoration: underline;
         }
 
-
     </style>
 </head>
 
 <body>
-    <div class="main">
-        <div class="text-information">
-            <label for="">เลขที่ห้อง : </label>
-            <input type="text" placeholder="กรอกเลขที่ห้อง">
-            <label for="">ชั้น : </label>
-            <input type="text" placeholder="กรอกชั้น">
-            <label for="">ขนาดห้อง (ตร.ม.) : </label>
-            <input type="number" placeholder="กรอกขนาดห้อง">
-            
-            <label for="">ในห้องมีอะไรบ้าง : </label>
-            <div class="checkbox-group">
-                <label><input type="checkbox"> เตียง</label>
-                <label><input type="checkbox"> โต๊ะเขียนหนังสือ</label>
-                <label><input type="checkbox"> ตู้เสื้อผ้า</label>
-                <label><input type="checkbox"> แอร์</label>
-                <label><input type="checkbox"> ตู้เย็น</label>
-                <label><input type="checkbox"> ไมโครเวฟ</label>
-                <label><input type="checkbox"> โทรทัศน์</label>
-                <label><input type="checkbox"> อินเทอร์เน็ต</label>
-                <label><input type="checkbox"> ห้องน้ำในตัว</label>
+    <main>
+        <div class="main">
+            <!-- ส่วนข้อมูลห้อง -->
+            <div class="text-information">
+                <h1>เพิ่มห้องพัก</h1>
+                <form action="/addroom/process_addroom/<%= dormid %>" method="post" onsubmit="return validate(event);">
+                    <label for="room_number">เลขที่ห้อง :</label>
+                    <input type="text" placeholder="กรอกเลขที่ห้อง" name="room_number" id="room_number" required>
+
+                    <label for="floor">ชั้น :</label>
+                    <input type="number" placeholder="กรอกชั้น" name="floor" id="floor" required>
+
+                    <label for="size">ขนาดห้อง (ตร.ม.) :</label>
+                    <input type="number" placeholder="กรอกขนาดห้อง" name="size" id="size" required>
+
+                    <label for="rent">ราคา :</label>
+                    <input type="number" placeholder="กรอกราคา" name="rent" id="rent" required>
+                    <button class="bt-save" type="submit">บันทึกข้อมูล</button>
+                </form>
             </div>
-
-            <label for="">ราคา : </label>
-            <input type="number" placeholder="กรอกราคา">
-            <label for="">ค่าไฟ : </label>
-            <input type="number" placeholder="กรอกค่าไฟ (บาท)">
-            <label for="">ค่าน้ำ : </label>
-            <input type="number" placeholder="กรอกค่าน้ำ (บาท)">
-            
-            <button class="bt-save">บันทึกข้อมูล</button>
         </div>
+    </main>
 
-        <div class="image-information">
-            <label for="room-images">อัพโหลดรูปห้อง :</label>
-            <input type="file" id="room-images" name="room-images" accept="image/*" multiple>
-            <div id="image-preview" style="margin-top: 15px; display: flex; gap: 10px;"></div>
-        </div>
-    </div>
+    <script>
+        function validate(event) {
+            event.preventDefault();
+            let form = event.target;
+            let floor = document.getElementById("floor").value.trim();
+            let size = document.getElementById("size").value.trim();
+            let rent = document.getElementById("rent").value.trim();
+            let isValid = true;
 
-    <button class="btback">ย้อนกลับ</button>
+            if (isNaN(floor) || floor === "") {
+                alert("ชั้นต้องเป็นตัวเลขเท่านั้น");
+                isValid = false;
+                return false;
+            }
+
+            if (isNaN(size) || size === "") {
+                alert("ขนาดห้องต้องเป็นตัวเลขเท่านั้น หน่วยเป็น ตร.ม.");
+                isValid = false;
+                return false;
+            }
+            if (isNaN(rent) || rent === "") {
+                alert("ราคาต้องเป็นตัวเลขเท่านั้น");
+                isValid = false;
+                return false;
+            }
+            if (isValid) {
+                form.submit();
+            }
+        }
+
+    </script>
 </body>
 
 </html>

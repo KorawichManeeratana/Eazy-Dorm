@@ -21,6 +21,7 @@
         }
 
         .room-card {
+            width: 900px;
             display: flex;
             background: #fff;
             border: 1px solid #ddd;
@@ -147,16 +148,19 @@
             <h2>รายละเอียดห้องพัก</h2>
             <div class="button-group">
                 <div class="button-all">จัดการปัญหา
-                    <a href="#" class="button"><img class="icon"
-                            src="https://img.icons8.com/?size=100&id=FN71YxTPZVQC&format=png&color=000000"></a>
-                </div>
-                <div class="button-all">จัดการหอพัก
-                    <a class="button"><img class="icon" src="https://www.svgrepo.com/show/2087/plus.svg"
-                            onclick="toggleDelState()"></a>
+                    <a href="/reportnoti" class="button"><img class="icon"
+                            src="https://www.svgrepo.com/show/535539/octagon-exclamation.svg"></a>
                 </div>
                 <div class="button-all">แจ้งค่าเช่า
-                    <a href="#" class="button"><img class="icon"
-                            src="https://img.icons8.com/?size=100&id=FN71YxTPZVQC&format=png&color=000000"></a>
+                    <a href="#" class="button"><img class="icon" src="https://www.svgrepo.com/show/535388/file.svg"></a>
+                </div>
+                <div class="button-all">จัดการหอพัก
+                    <a class="button"><img class="icon" src="https://www.svgrepo.com/show/535450/indent.svg"
+                            onclick="toggleDelState()"></a>
+                </div>
+                <div class="button-all">เพิ่มห้องพัก
+                    <a href="/addroom/<%= dormid %>" class="button"><img class="icon"
+                            src="https://www.svgrepo.com/show/2087/plus.svg"></a>
                 </div>
             </div>
         </div>
@@ -168,14 +172,28 @@
                     <div class="room-info">
                         <div class="room-title">ห้องพัก <%= i.room_number %>
                         </div>
-                        <div>ขนาดห้อง <%= i.size %> ตร.ม. | ห้องคู่ เตียงเดี่ยว</div>
-                        <div>สิ่งอำนวยความสะดวก : เครื่องปรับอากาศ (Air Conditioner), เครื่องทำน้ำอุ่น (Water Heater),
-                            อินเทอร์เน็ต / WiFi (Internet)
-                            เฟอร์นิเจอร์ภายในห้อง : เตียง, ตู้เสื้อผ้า, โต๊ะ, เก้าอี้, โทรทัศน์ (TV), ตู้เย็น
-                            (Refrigerator
+                        <div>ขนาดห้อง <%= i.size %> ตร.ม.</div>
+                        <div>ราคาห้องพัก : <%= i.rent %> <br>
+                                อยู่ชั่นที่ : <%= i.floor %>
+                                    <div>สิ่งอำนวยความสะดวก:
+                                        <% if (roomAmenities[i.room_id] && roomAmenities[i.room_id].length> 0) { %>
+                                            <ul>
+                                                <% roomAmenities[i.room_id].forEach(amenity=> { %>
+                                                    <li>
+                                                        <%= amenity %>
+                                                    </li>
+                                                    <% }); %>
+                                            </ul>
+                                            <% } else { %>
+                                                <span>ไม่มีข้อมูล</span>
+                                                <% } %>
+                                    </div>
                         </div> <br>
                         <% if (i.loger_id) { %>
-                            <div>สถานะ : <span class="room-status unavailable" style="color: red;">ไม่ว่าง</span></div>
+                            <div>สถานะ : <span class="room-status unavailable" style="color: red;">ไม่ว่าง</span><br>
+                                ผู้เช่าปัจจุบัน : <strong>
+                                    <%= userName[i.room_id] %>
+                                </strong></div>
                             <% } else { %>
                                 <div>สถานะ : <span class="room-status unavailable" style="color: green;">ว่าง</span>
                                 </div>
@@ -184,19 +202,17 @@
 
                 </div>
                 <div class="deleteDiv" id="deleteDiv<%= i.room_id %>" style="display:none;">
-                    <form action="" method="POST" enctype="multipart/form-data"
-                        onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
+                    <form action="/owndorminfo/process_delroom/<%= i.room_id %>/ <%= dormid %>" method="POST"
+                        enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
                         <button type="submit" class="btndel">ลบห้องพัก</button>
                     </form>
-                    <form action="" method="GET">
+                    <form action="/editroom/<%= i.room_id %>" method="GET">
                         <button type="submit" class="btnedit">แก้ไขห้องพัก</button>
                     </form>
                 </div>
             </main>
             <% }); %>
     </div>
-
-
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
