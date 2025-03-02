@@ -132,10 +132,9 @@
 <body>
     <main>
         <div class="main">
-            <!-- ส่วนข้อมูลห้อง -->
             <div class="text-information">
                 <h1>เพิ่มห้องพัก</h1>
-                <form action="/addroom/process_addroom/<%= dormid %>" method="post" onsubmit="return validate(event);">
+                <form action="/addroom/process_addroom/<%= dormid %>/<%= userid %>" method="post" onsubmit="return validate(event);">
                     <label for="room_number">เลขที่ห้อง :</label>
                     <input type="text" placeholder="กรอกเลขที่ห้อง" name="room_number" id="room_number" required>
 

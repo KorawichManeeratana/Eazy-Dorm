@@ -138,6 +138,12 @@
         .btnedit {
             background: rgb(15, 140, 243);
         }
+        .deleteDORM{
+            position: absolute;
+            right: 5%;
+            top: 20%;
+            background: rgb(214, 0, 0);
+        }
     </style>
 </head>
 
@@ -152,14 +158,15 @@
                             src="https://www.svgrepo.com/show/535539/octagon-exclamation.svg"></a>
                 </div>
                 <div class="button-all">แจ้งค่าเช่า
-                    <a href="/addpayment/<%= dormid %>" class="button"><img class="icon" src="https://www.svgrepo.com/show/535388/file.svg"></a>
+                    <a href="/addpayment/<%= dormid %>" class="button"><img class="icon"
+                            src="https://www.svgrepo.com/show/535388/file.svg"></a>
                 </div>
                 <div class="button-all">จัดการหอพัก
                     <a class="button"><img class="icon" src="https://www.svgrepo.com/show/535450/indent.svg"
                             onclick="toggleDelState()"></a>
                 </div>
                 <div class="button-all">เพิ่มห้องพัก
-                    <a href="/addroom/<%= dormid %>" class="button"><img class="icon"
+                    <a href="/addroom/<%= dormid %>/<%= userid %>" class="button"><img class="icon"
                             src="https://www.svgrepo.com/show/2087/plus.svg"></a>
                 </div>
             </div>
@@ -202,11 +209,11 @@
 
                 </div>
                 <div class="deleteDiv" id="deleteDiv<%= i.room_id %>" style="display:none;">
-                    <form action="/owndorminfo/process_delroom/<%= i.room_id %>/ <%= dormid %>" method="POST"
+                    <form action="/owndorminfo/process_delroom/<%= i.room_id %>/ <%= dormid %>/<%= userid %>" method="POST"
                         enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
                         <button type="submit" class="btndel">ลบห้องพัก</button>
                     </form>
-                    <form action="/editroom/<%= i.room_id %>" method="GET">
+                    <form action="/editroom/<%= i.room_id %>/<%= userid %>" method="GET">
                         <button type="submit" class="btnedit">แก้ไขห้องพัก</button>
                     </form>
                 </div>
@@ -214,6 +221,13 @@
             <% }); %>
     </div>
     </div>
+    <div class="deleteDORM">
+        <form action="/owndorminfo/process_deldorm/<%= dormid %>/<%= userid %>" method="POST"
+            onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
+            <button type="submit" class="btndel">ลบข้อมูลหอพัก</button>
+        </form>
+    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const delState = false;

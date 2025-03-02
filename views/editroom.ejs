@@ -226,9 +226,8 @@
 <body>
     <main>
         <div class="main">
-            <!-- ส่วนข้อมูลห้อง -->
             <div class="text-information">
-                <form action="/editroom/process_editroom/<%= data.room_id %>" method="post">
+                <form action="/editroom/process_editroom/<%= data.room_id %>/<%= userid %>" method="post">
                     <label for="room_number">เลขที่ห้อง :</label>
                     <input type="text" placeholder="กรอกเลขที่ห้อง" name="room_number" value="<%= data.room_number %>" required>
 
@@ -241,7 +240,6 @@
                     <label for="rent">ราคา :</label>
                     <input type="number" placeholder="กรอกราคา" name="rent" value="<%= data.rent %>" required>
 
-                    <!-- พื้นที่เช็คสิ่งอำนวยความสะดวก -->
                     <div class="facilities">
                         <h3>สิ่งอำนวยความสะดวก</h3>
                         <div class="facilities-grid">
@@ -281,7 +279,6 @@
 
 
             </div>
-            <!-- ส่วนอัปโหลดรูปภาพ -->
             <div class="image-information">
                 <div class="upload-icon" id="uploadIcon"></div>
                 <img src="" alt="Image Here" id="imagePreview" for="finp">
@@ -316,7 +313,7 @@
             let previewContainer = document.getElementById("image-preview");
             let file = document.getElementById("room-image").files[0];
 
-            previewContainer.innerHTML = ""; // ล้างค่าก่อนหน้า
+            previewContainer.innerHTML = "";
 
             if (file) {
                 let reader = new FileReader();

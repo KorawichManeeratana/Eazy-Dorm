@@ -17,7 +17,7 @@
         </div>
         <% data.forEach((i)=> { %>
             <div class="all">
-                <div class="mydorm" id="mydorm" onclick="window.location.href='/owndorminfo/<%= i.dorm_id %>'">
+                <div class="mydorm" id="mydorm" onclick="window.location.href='/owndorminfo/<%= i.dorm_id %>/<%= i.owner_id %>'">
                     <img src="/images/<%= i.dorm_pic %>" alt="">
                     <div class="dorm-information">
                         <p><strong>
@@ -32,9 +32,6 @@
                     </div>
                 </div>
                 <div class="deleteDiv" id="deleteDiv<%= i.owner_id %>" style="display:none;">
-                    <form action="/owneddorm/process_del/<%= i.dorm_id %>/<%= i.owner_id %>" method="POST" enctype="multipart/form-data" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
-                        <button type="submit" class="btndel">ลบข้อมูลหอพัก</button>
-                    </form>
                     <form action="/editdorm/<%= i.dorm_id %>/<%= i.owner_id %>" method="GET">
                         <button type="submit" class="btnedit">แก้ไขหอพัก</button>
                     </form>                                    

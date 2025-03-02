@@ -3,14 +3,16 @@ const router = express.Router();
 const conn = require('../dbconn');
 
 //Routes
-router.get('/:id', (req, res) => {
+router.get('/:id/:uid', (req, res) => {
     let dormid = req.params.id;
-    res.render('addroom',{dormid});
+    let userid = req.params.uid;
+    res.render('addroom',{dormid, userid});
 })
 
 
-router.post('/process_addroom/:id', async (req, res) =>{
+router.post('/process_addroom/:id/:uid', async (req, res) =>{
     let dormid = req.params.id;
+    let userid = req.params.uid;
     let formdata ={
         room_number: req.body.room_number,
         floor: req.body.floor,
@@ -21,7 +23,7 @@ router.post('/process_addroom/:id', async (req, res) =>{
                VALUES (${dormid}, '${formdata.room_number}', ${formdata.floor}, ${formdata.size}, ${formdata.rent});`
     try {
         await conn.query(sql);
-        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owndorminfo/${dormid}';</script>`);
+        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owndorminfo/${dormid}/${userid}';</script>`);
     } catch (err) {
         console.log(err);
     }
