@@ -1,158 +1,180 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รายการเช่า</title>
+    <title>Document</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
         main {
-            max-width: 1200px;
-            margin: 20px auto;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        .dormname {
+            text-align: center;
             margin-bottom: 20px;
         }
-        th, td {
+
+        .dormname h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .contain {
+            background: #ffffff;
+            padding: 20px;
+            width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        .contain select,
+        .contain input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ddd;
-            padding: 12px;
+            border-radius: 5px;
+        }
+
+        .calculate {
             text-align: left;
         }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
+
         button {
-            background-color: #007BFF;
+            background-color: #007bff;
             color: white;
+            padding: 10px 15px;
             border: none;
-            padding: 8px 16px;
+            border-radius: 5px;
             cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
+            margin-top: 10px;
         }
+
         button:hover {
             background-color: #0056b3;
         }
 
-        /* Popup style */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
+        .calpay {
+            width: 500px;
+            display: flex;
             align-items: center;
-        }
-        .popup-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            width: 400px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .popup-content h2 {
-            margin-top: 0;
-        }
-        .popup input, .popup textarea {
-            width: 100%;
-            padding: 10px;
+            justify-content: flex-start;
             margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
         }
-        .popup button {
-            width: 100%;
-            background-color: #28a745;
+
+        .calpay label,
+        .calpay input,
+        .calpay p {
+            margin-right: 10px;
             font-size: 16px;
         }
-        .popup button.cancel {
-            background-color: #dc3545;
+
+        .calpay input {
+            width: 60px;
+        }
+
+        #dname {
+            color: blue;
+        }
+
+        #totalrent {
+            color: green;
         }
     </style>
 </head>
+
 <body>
     <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>หมายเลขห้อง</th>
-                    <th>ชื่อผู้เช่า</th>
-                    <th>ค่าเช่า</th>
-                    <th>วันที่</th>
-                    <th>สถานะ</th>
-                    <th>ยืนยันชำระ</th>
-                    <th>ดำเนินการ</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>101</td>
-                    <td>กระดุก ดำดุ้ย</td>
-                    <td>450,000</td>
-                    <td>20/12/2042</td>
-                    <td>ยังไม่ชำระ</td>
-                    <td><button>ดูสลิป</button></td>
-                    <td><button onclick="openPopup()">ส่งใบแจ้งหนี้</button></td>
-                    
-                </tr>
-                <tr>
-                    <td>101</td>
-                    <td>กระดุก ดำดุ้ย</td>
-                    <td>450,000</td>
-                    <td>20/12/2042</td>
-                    <td>ชำระแล้ว</td>
-                    <td><button>ดูสลิป</button></td>
-                    <td><button onclick="openPopup()">ส่งใบแจ้งหนี้</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
-
-    <!-- Popup Form -->
-    <div class="popup" id="popupForm">
-        <div class="popup-content">
-            <h2>ส่งใบแจ้งหนี้</h2>
-            <form>
-                <label for="water_pay">ค่าน้ำ :</label>
-                <input type="text" id="water_pay" required>
-                <label for="electric_pay">ค่าไฟ :</label>
-                <input type="text" id="electric_pay" required>
-                <label for="invoiceImage">อัปโหลดรูปภาพใบแจ้งหนี้:</label>
-                <input type="file" id="invoiceImage" accept="image/*" required>
-                <button type="submit">ส่งใบแจ้งหนี้</button>
-                <button type="button" class="cancel" onclick="closePopup()">ยกเลิก</button>
-            </form>
+        <div class="dormname">
+            <h1>ขื่อหอพัก : <strong id="dname">
+                    <%= data2[0].name %>
+                </strong></h1>
         </div>
-    </div>
+        <div class="contain">
+            <div>
+                <select id="roomSelect">
+                    <% if (data && data.length> 0) { %>
+                        <% data.forEach((i)=> { %>
+                            <option value="<%= i.room_number %>" data-tenant="<%= i.full || 'ไม่มีข้อมูล' %>"
+                                data-status="<%= i.status || 'ไม่มีข้อมูล' %>" data-rent="<%= i.rent || 0 %>">
+                                <%= i.room_number %>
+                            </option>
+                            <% }); %>
+                                <% } else { %>
+                                    <option value="">ไม่มีห้องให้เลือก</option>
+                                    <% } %>
+                </select>
 
+            </div>
+            <div>
+                <p>ชื่อผู้เช่า: <strong id="tenantName"></strong></p>
+                <p>สถานะ: <strong id="roomStatus"></strong></p>
+            </div>
+
+            <div class="calculate" id="calculate">
+                <div class="calpay">
+                    <label for="">ค่าน้ำ :</label><input type="number" class="water_pay" id="water_pay" required>*
+                    <input type="number" name="" id="waterpm" readonly value="<%= data2[0].water_pay %>"> = <p><b
+                            id="wres"></b></p><br>
+                </div>
+                <div class="calpay">
+                    <label for="">ค่าไฟ :</label><input type="number" class="electric_pay" id="electric_pay" required> *
+                    <input type="number" name="" id="electpm" value="<%= data2[0].electric_pay %>"> = <p><b
+                            id="eres"></b></p><br>
+                </div>
+                <p>ค่าเช่า : <b id="rent">
+                        <%= data[0].rent %>
+                    </b></p>
+                <button onclick="cal()">คำนวณ</button>
+                <h1>รวมค่าเช่า : <strong id="totalrent"></strong></h1>
+            </div>
+            <button>ส่งใบแจ้งหนี้</button>
+        </div>
+    </main>
     <script>
-        function openPopup() {
-            document.getElementById('popupForm').style.display = 'flex';
+        function cal() {
+            let water = document.getElementById("water_pay").value;
+            let elect = document.getElementById("electric_pay").value;
+
+            let wpm = document.getElementById("waterpm").value;
+            let epm = document.getElementById("electpm").value;
+            let waterprice = water * wpm;
+            let electprice = elect * epm;
+            document.getElementById("wres").innerHTML = waterprice;
+            document.getElementById("eres").innerHTML = electprice;
+            document.getElementById("totalrent").innerHTML = waterprice + electprice + parseInt(document.getElementById("rent").textContent) + '🤑';
         }
-        function closePopup() {
-            document.getElementById('popupForm').style.display = 'none';
-        }
+        document.getElementById("roomSelect").addEventListener("change", function () {
+            let selectedOption = this.options[this.selectedIndex];
+            let tenantName = selectedOption.getAttribute("data-tenant");
+            let roomStatus = selectedOption.getAttribute("data-status");
+            let rent = selectedOption.getAttribute("data-rent");
+
+
+            document.getElementById("water_pay").value = "";
+            document.getElementById("electric_pay").value = "";
+
+            document.getElementById("tenantName").innerText = tenantName || "ไม่มีข้อมูล";
+            document.getElementById("roomStatus").innerText = roomStatus || "ไม่มีข้อมูล";
+            document.getElementById("rent").innerText = rent || "ไม่มีข้อมูล";
+            document.getElementById("wres").innerText = "";
+            document.getElementById("eres").innerText = "";
+            document.getElementById("totalrent").innerText = " ";
+        });
+        document.getElementById("roomSelect").dispatchEvent(new Event("change"));
+
     </script>
 </body>
+
 </html>
