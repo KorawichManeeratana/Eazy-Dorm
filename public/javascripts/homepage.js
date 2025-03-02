@@ -63,3 +63,8 @@ outputMax.addEventListener("input", function() {
 function toggleRange() {
   RangeCon.classList.toggle("open-range");
 }
+
+function openSearchPage() {
+  sessionStorage.setItem("search", document.getElementsByClassName("searchbar")[0].value);
+  window.open(`/selectdorm`, "_self");
+}

@@ -15,11 +15,20 @@ function showDorm(data) {
 
 function openDormInfo(id) {
     window.open(`/dorminfo/${id}`, "_self");
-    return;
 }
 
-async function searchDorm(event) {
-    event.preventDefault();
+function openPage(){
+    console.log("openPage")
+    const maintext = sessionStorage.getItem("search");
+    if (maintext) {
+        document.getElementById("searchtext").value = maintext;
+        sessionStorage.removeItem("search");
+    }
+    searchDorm();
+}
+
+async function searchDorm(event = null) {
+    if (event) event.preventDefault();
     const text = document.getElementById("searchtext").value;
     const response = await fetch('api/loaddorm', {
         method: 'POST',
