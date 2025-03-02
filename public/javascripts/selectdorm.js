@@ -1,7 +1,20 @@
 function showDorm(data) {
     document.getElementsByClassName("dormcontainer")[0].innerHTML = "";
     const dorm_container = document.getElementsByClassName("dormcontainer")[0];
+    let minprice = document.getElementById("minprice").value;
+    let maxprice = document.getElementById("maxprice").value;
+    minprice = minprice ? parseInt(minprice) : 0;
+    maxprice = maxprice ? parseInt(maxprice) : Infinity;
     for (dorm of data) {
+        if (dorm.rent.includes("-")) {
+            let [min, max] = dorm.rent.split("-").map(n => parseInt(n.trim()));
+            console.log(min, minprice, max, maxprice);
+            if (min < minprice || max > maxprice) {continue;}
+        } else {
+            let rent = parseInt(dorm.rent);
+            console.log(rent, minprice, rent, maxprice);
+            if (rent < minprice || rent > maxprice) {continue;}
+        }
         dorm_container.insertAdjacentHTML('afterbegin', `<div class="dorm" onclick="openDormInfo(${dorm.dorm_id})">
                 <img src="/images/${dorm.dorm_pic}" alt="dorm_img">
                 <div class="describe">
@@ -18,7 +31,6 @@ function openDormInfo(id) {
 }
 
 function openPage(){
-    console.log("openPage")
     const maintext = sessionStorage.getItem("search");
     if (maintext) {
         document.getElementById("searchtext").value = maintext;

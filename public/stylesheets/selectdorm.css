@@ -39,10 +39,6 @@ main {
     background-color: #CABA9C;
     cursor: pointer;
 }
-.floorselect {
-    display: flex;
-    flex-direction: column;
-}
 .pricerange > input {
     width: 60px;
     height: 20px;
