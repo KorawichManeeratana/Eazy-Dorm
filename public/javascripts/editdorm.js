@@ -1,16 +1,28 @@
-const fileInput = document.getElementById('fileInput');
-const imagePreview = document.getElementById('imagePreview');
+document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById("fileInput");
+    const imagePreview = document.getElementById("imagePreview");
+    const qrFileInput = document.getElementById("qrFileInput");
 
-fileInput.addEventListener('change', function () {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-    }
+    fileInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    qrFileInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            document.getElementById('filesel').value = file.name;
+        } else {
+            document.getElementById('filesel').value = "อัพโหลด QR code";
+        }
+    });
 });
 
 function validate(event) {

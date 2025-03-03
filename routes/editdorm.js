@@ -15,7 +15,19 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        const allowedTypes = /jpeg|jpg|png|gif/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = allowedTypes.test(file.mimetype);
+        if (extname && mimetype) {
+            return cb(null, true);
+        } else {
+            return cb(new Error("รองรับเฉพาะไฟล์รูปภาพเท่านั้น (jpeg, jpg, png, gif)"));
+        }
+    }
+});
 
 //Routes
 router.get('/:id/:uid', async (req, res) => {
@@ -30,7 +42,7 @@ router.get('/:id/:uid', async (req, res) => {
 });
 
 
-router.post('/process_edit/:id/:uid', upload.single('image'), async (req, res) => {
+router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 'qrimage' }]), async (req, res) => {
     console.log("heer")
     const token = req.body.token || req.headers.authorization?.split(" ")[1] || req.cookies?.access_token;
     console.log("Extracted token:", token);
@@ -48,11 +60,12 @@ router.post('/process_edit/:id/:uid', upload.single('image'), async (req, res) =
         other_contact: req.body.other_contact,
         electric_pay: req.body.electric_pay,
         water_pay: req.body.water_pay,
-        image: req.file ? req.file.filename : null
+        image: req.files['image'] ? req.files['image'][0].filename : null,
+        qrimage: req.files['qrimage'] ? req.files['qrimage'][0].filename : null
     };
     let sql;
     let rent = formdata.rent1 + '-' + formdata.rent2;
-    if(formdata.image == null){
+    if(formdata.image == null && formdata.qrimage == null){
         console.log("yes it null");
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
@@ -65,7 +78,22 @@ router.post('/process_edit/:id/:uid', upload.single('image'), async (req, res) =
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay}
     WHERE dorm_id = ${req.params.id};`;
-    } else {
+    } else if(formdata.image == null){
+        console.log("yes it null");
+        sql = `UPDATE Dormitory SET 
+    name = '${formdata.name}',
+    detail = '${formdata.detail}',
+    address = '${formdata.address}',
+    room = ${formdata.room},
+    rent = '${rent}',
+    phone_contact = '${formdata.contact}',
+    other_contact = '${formdata.other_contact}',
+    electric_pay = ${formdata.electric_pay},
+    water_pay = ${formdata.water_pay},
+    qrcode = '${formdata.qrimage}'
+    WHERE dorm_id = ${req.params.id};`;
+    } else if(formdata.qrimage == null){
+        console.log("yes it null");
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
@@ -77,6 +105,20 @@ router.post('/process_edit/:id/:uid', upload.single('image'), async (req, res) =
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay},
     dorm_pic = '${formdata.image}'
+    WHERE dorm_id = ${req.params.id};`;
+    } else {
+        sql = `UPDATE Dormitory SET 
+    name = '${formdata.name}',
+    detail = '${formdata.detail}',
+    address = '${formdata.address}',
+    room = ${formdata.room},
+    rent = '${rent}',
+    phone_contact = '${formdata.contact}',
+    other_contact = '${formdata.other_contact}',
+    electric_pay = ${formdata.electric_pay},
+    water_pay = ${formdata.water_pay},
+    dorm_pic = '${formdata.image}',
+    qrcode = '${formdata.qrimage}'
     WHERE dorm_id = ${req.params.id};`;
     }   
     

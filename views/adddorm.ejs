@@ -35,21 +35,17 @@
                     <input type="text" name="electric_pay" id="electric_pay" required >
                     <label for="water_pay">ค่าน้ำ (บาท/หน่วย) :</label>
                     <input type="text" name="water_pay" id="water_pay" required>
-<!-- 
-                    <label for="status">สถานะ :</label>
-                    <select name="status" id="select" >
-                        <option value="none" selected>เลือกสถานะห้องว่าง</option>
-                        <option value="Full">เต็ม</option>
-                        <option value="Available">ว่าง</option>
-                      </select> -->
-
+                    
                     <div class="image-information">
-                        <div class="upload-icon" id="uploadIcon"></div>
-                        <img src="" alt="Image Here" id="imagePreview" for="finp">
+                        <img src="" alt="Image Preview" id="imagePreview" style="display: none;">
                     </div>
-                    <input type="file" name="image" style="display: none;" id="fileInput" class="finp">
-                    <input type="button" value="อัพโหลดรูปภาพ" class="upload"
-                        onclick="document.getElementById('fileInput').click();">
+                    <input type="file" name="image" id="fileInput" style="display: none;">
+                    <input type="button" value="อัพโหลดรูปหอพัก" class="upload" onclick="document.getElementById('fileInput').click();">
+
+                    <input type="file" name="qrimage" id="qrFileInput" class="qr" style="display: none;">
+                    
+                    <input type="button" value="อัพโหลด QR Code" class="upload" onclick="document.getElementById('qrFileInput').click();" id="filesel">
+
                     <button class="bt-save" type="submit">บันทึก</button>
                 </div>
             </form>

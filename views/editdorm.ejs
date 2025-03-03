@@ -63,10 +63,17 @@
                 </div>
 
                 <div class="buttons">
+                    <button type="submit" class="submit-btn">บันทึก</button>
                     <input type="button" value="อัพโหลดรูปภาพ" class="upload-btn"
                         onclick="document.getElementById('fileInput').click();">
-                    <button type="submit" class="submit-btn">บันทึก</button>
+                        <input type="file" name="qrimage" id="qrFileInput" class="qr" style="display: none;">
+                    <input type="button" value="อัพโหลด QR Code" class="upload-btn" onclick="document.getElementById('qrFileInput').click();" id="filesel">
+
                 </div>
+                <div class="buttons">
+                    
+                </div>
+                
             </form>
         </div>
     </div>

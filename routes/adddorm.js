@@ -13,7 +13,20 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        const allowedTypes = /jpeg|jpg|png|gif/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = allowedTypes.test(file.mimetype);
+        if (extname && mimetype) {
+            return cb(null, true);
+        } else {
+            return cb(new Error("รองรับเฉพาะไฟล์รูปภาพเท่านั้น (jpeg, jpg, png, gif)"));
+        }
+    }
+});
+
 //Routes
 router.get('', async (req, res) => {
     const sql = `SELECT user_id FROM Users;`
@@ -25,7 +38,7 @@ router.get('', async (req, res) => {
     }
 })
 
-router.post('/process_addorm', upload.single('image'), async (req, res) => {
+router.post('/process_addorm', upload.fields([{ name: 'image' }, { name: 'qrimage' }]), async (req, res) => {
     const token = req.body.token || req.headers.authorization?.split(" ")[1] || req.cookies?.access_token;
     console.log("Extracted token:", token);
     if (!token) {
@@ -42,11 +55,12 @@ router.post('/process_addorm', upload.single('image'), async (req, res) => {
         other_contact: req.body.other_contact,
         electric_pay: req.body.electric_pay,
         water_pay: req.body.water_pay,
-        image: req.file ? req.file.filename : null
+        image: req.files['image'] ? req.files['image'][0].filename : null,
+        qrimage: req.files['qrimage'] ? req.files['qrimage'][0].filename : null
     };
     let rent = formdata.rent1 + '-' + formdata.rent2;
-    let sql = `INSERT INTO Dormitory(owner_id, name, detail, address, room, status, rent, rating, phone_contact, other_contact, electric_pay, water_pay, dorm_pic) 
-               VALUES (?, ?, ?, ?, ?, 'Available', ?, 0.0, ?, ?, ?, ?, ?);`;
+    let sql = `INSERT INTO Dormitory(owner_id, name, detail, address, room, status, rent, rating, phone_contact, other_contact, electric_pay, water_pay, dorm_pic, qrcode) 
+               VALUES (?, ?, ?, ?, ?, 'Available', ?, 0.0, ?, ?, ?, ?, ?, ?);`;
     try {
         const response = await fetch("http://localhost:3000/api/cookieInfo", {
             method: 'POST',
@@ -78,7 +92,8 @@ router.post('/process_addorm', upload.single('image'), async (req, res) => {
             formdata.other_contact,
             formdata.electric_pay,
             formdata.water_pay,
-            formdata.image
+            formdata.image,
+            formdata.qrimage
         ]);
         res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owneddorm/${decodedata.userID}';</script>`);
     } catch (err) {
