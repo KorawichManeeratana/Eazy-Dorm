@@ -106,7 +106,7 @@
                 <select id="roomSelect">
                     <% if (data && data.length> 0) { %>
                         <% data.forEach((i)=> { %>
-                            <option value="<%= i.room_number %>" data-tenant="<%= i.full || 'ไม่มีข้อมูล' %>"
+                            <option value="<%= i.room_id %>" data-tenant="<%= i.full || 'ไม่มีข้อมูล' %>"
                                 data-status="<%= i.status || 'ไม่มีข้อมูล' %>" data-rent="<%= i.rent || 0 %>">
                                 <%= i.room_number %>
                             </option>
@@ -139,42 +139,10 @@
                 <button onclick="cal()">คำนวณ</button>
                 <h1>รวมค่าเช่า : <strong id="totalrent"></strong></h1>
             </div>
-            <button>ส่งใบแจ้งหนี้</button>
+            <button onclick="sendBill()">ส่งใบแจ้งหนี้</button>
         </div>
     </main>
-    <script>
-        function cal() {
-            let water = document.getElementById("water_pay").value;
-            let elect = document.getElementById("electric_pay").value;
-
-            let wpm = document.getElementById("waterpm").value;
-            let epm = document.getElementById("electpm").value;
-            let waterprice = water * wpm;
-            let electprice = elect * epm;
-            document.getElementById("wres").innerHTML = waterprice;
-            document.getElementById("eres").innerHTML = electprice;
-            document.getElementById("totalrent").innerHTML = waterprice + electprice + parseInt(document.getElementById("rent").textContent) + '🤑';
-        }
-        document.getElementById("roomSelect").addEventListener("change", function () {
-            let selectedOption = this.options[this.selectedIndex];
-            let tenantName = selectedOption.getAttribute("data-tenant");
-            let roomStatus = selectedOption.getAttribute("data-status");
-            let rent = selectedOption.getAttribute("data-rent");
-
-
-            document.getElementById("water_pay").value = "";
-            document.getElementById("electric_pay").value = "";
-
-            document.getElementById("tenantName").innerText = tenantName || "ไม่มีข้อมูล";
-            document.getElementById("roomStatus").innerText = roomStatus || "ไม่มีข้อมูล";
-            document.getElementById("rent").innerText = rent || "ไม่มีข้อมูล";
-            document.getElementById("wres").innerText = "";
-            document.getElementById("eres").innerText = "";
-            document.getElementById("totalrent").innerText = " ";
-        });
-        document.getElementById("roomSelect").dispatchEvent(new Event("change"));
-
-    </script>
+    <script src="/javascripts/addpayment.js"> </script>
 </body>
 
 </html>

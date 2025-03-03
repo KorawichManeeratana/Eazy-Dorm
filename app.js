@@ -64,6 +64,8 @@ app.use('/:id/api', require('./routes/api/room/roomRoute.js'));
 
 app.use('/api', require('./routes/api/notfications/updatestatus.js'));
 
+app.use('/api', require('./routes/api/payment/sendbill.js'))
+
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
     console.log(`http://localhost:${PORT}`)

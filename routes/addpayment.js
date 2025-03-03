@@ -6,7 +6,7 @@ const conn = require('../dbconn');
 router.get('/:id', async (req, res) => {
     let dormid = req.params.id;
     let sql = `
-    SELECT r.room_number, r.status, r.rent, IFNULL(CONCAT(u.first_name, ' ', u.last_name), 'ไม่มีผู้เช่า') AS full 
+    SELECT r.room_id, r.room_number, r.status, r.rent, IFNULL(CONCAT(u.first_name, ' ', u.last_name), 'ไม่มีผู้เช่า') AS full 
     FROM Room r 
     LEFT JOIN Users u ON r.loger_id = u.user_id 
     WHERE r.dorm_id = ${dormid};`;
