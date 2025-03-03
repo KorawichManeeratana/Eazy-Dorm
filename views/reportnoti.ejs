@@ -96,47 +96,24 @@
 <body>
     <div class="container">
         <h2>ปัญหาที่ถูกแจ้งเข้ามา</h2>
-
-        <div class="issue-card">
-            <div class="room-info">
-                <div class="room-number">101</div>
-                <div>เบอร์ติดต่อ</div>
-                <div class="contact-number">087 123 2345</div>
+        <% data.forEach((i)=>{ %>
+            <div class="issue-card">
+                <div class="room-info">
+                    <div class="room-number"><%= i.room_number %></div>
+                    <div>เบอร์ติดต่อ</div>
+                    <div class="contact-number"><%= i.phone %></div>
+                </div>
+                <div class="issue-details">
+                    <strong>รายละเอียดปัญหา</strong>
+                    <div><%= i.detail %></div>
+                </div>
+                <form action="/reportnoti/success/<%= i.report_id %>/<%= dormid %>" method="post" onsubmit="return confirm('ปัญหาถูกแก้ไขแล้วใช่หรือไม่')">
+                    <button class="completed-btn">เสร็จสิ้น</button>
+                </form>
+                
             </div>
-            <div class="issue-details">
-                <strong>รายละเอียดปัญหา</strong>
-                <div>น้ำรั่วช่วยด้วย</div>
-            </div>
-            <button class="completed-btn">เสร็จสิ้น</button>
-        </div>
-
-        <div class="issue-card">
-            <div class="room-info">
-                <div class="room-number">107</div>
-                <div>เบอร์ติดต่อ</div>
-                <div class="contact-number">087 123 8749</div>
-            </div>
-            <div class="issue-details">
-                <strong>รายละเอียดปัญหา</strong>
-                <div>น้ำรั่วช่วยด้วย</div>
-            </div>
-            <button class="completed-btn">เสร็จสิ้น</button>
-        </div>
-
-        <div class="issue-card">
-            <div class="room-info">
-                <div class="room-number">301</div>
-                <div>เบอร์ติดต่อ</div>
-                <div class="contact-number">087 123 3949</div>
-            </div>
-            <div class="issue-details">
-                <strong>รายละเอียดปัญหา</strong>
-                <div>น้ำรั่วช่วยด้วย</div>
-            </div>
-            <button class="completed-btn">เสร็จสิ้น</button>
-        </div>
-    </div>
-
+        <% }); %>
+        
     <button class="back-btn">ย้อนกลับ</button>
 </body>
 

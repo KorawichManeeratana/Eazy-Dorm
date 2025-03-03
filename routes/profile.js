@@ -7,7 +7,7 @@ let rent = false;
 let [rows] = [];
 router.get('/:id', async (req, res) => {
     console.log("Received id:", req.params.id);
-    const sql = `SELECT Users.user_id, Users.first_name, Users.last_name, Users.Phone, Users.email, Users.dob, Users.username, Users.role, Users.user_pic, Room.room_number, Dormitory.dorm_id, Dormitory.name, Dormitory.phone_contact, Dormitory.address, Dormitory.dorm_pic
+    const sql = `SELECT Users.user_id, Users.first_name, Users.last_name, Users.Phone, Users.email, Users.dob, Users.username, Users.role, Users.user_pic, Room.room_number, Room.room_id,Dormitory.dorm_id, Dormitory.name, Dormitory.phone_contact, Dormitory.address, Dormitory.dorm_pic
     FROM Users INNER JOIN Room ON Users.user_id = Room.loger_id
     INNER JOIN
         Dormitory ON Room.dorm_id = Dormitory.dorm_id

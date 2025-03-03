@@ -84,7 +84,7 @@
             height: 100%;
         }
         button {
-            margin-top: auto;
+            margin-top: 5%;
             width: 80%;
             height: 45px;
             padding: 10px;
@@ -116,32 +116,26 @@
 
 <div class="container">
     <h2>แจ้งปัญหา</h2>
-    <div class="select-problem">
-        <label>เลือกหมวดในการแจ้ง</label>
-        <input type="radio" name="category" value="room"> ห้อง
-        <input type="radio" name="category" value="bill"> บิล
-        <input type="radio" name="category" value="other"> อื่นๆ
-    </div>
-    <form>
+    <form action="/reportform/sendproblem/<%= roomid %>" method="post">
         <div class="grid-1">
-            <label for="room">เลขห้องพัก <span>*</span></label>
-            <input class="room-number" type="text" id="room" required>
             <label for="issue">หมวดหมู่ปัญหา <span>*</span></label>
-            <select id="issue" required>
-                <option value="water">ปัญหาเรื่องน้ำ</option>
-                <option value="electric">ปัญหาเรื่องไฟ</option>
-                <option value="internet">อินเทอร์เน็ต</option>
-                <option value="furniture">เฟอร์นิเจอร์, เครื่องใช้ไฟฟ้า</option>
-                <option value="other">อื่นๆ</option>
+            <select id="issue" name="title" required>
+                <option value="ปัญหาเรื่องน้ำ">ปัญหาเรื่องน้ำ</option>
+                <option value="ปัญหาเรื่องไฟ">ปัญหาเรื่องไฟ</option>
+                <option value="อินเทอร์เน็ต">อินเทอร์เน็ต</option>
+                <option value="เฟอร์นิเจอร์, เครื่องใช้ไฟฟ้า">เฟอร์นิเจอร์, เครื่องใช้ไฟฟ้า</option>
+                <option value="อื่นๆ">อื่นๆ</option>
                 
             </select>
+            
+            <div class="grid-2">
+                <label for="details">รายละเอียดเพิ่มเติม <span>*</span></label>
+                <textarea id="detail" name="content" rows="4" required></textarea>
+            </div>
             <button type="submit">ส่งข้อมูล</button>
         </div>
         
-        <div class="grid-2">
-            <label for="details">รายละเอียดเพิ่มเติม <span>*</span></label>
-            <textarea id="details" rows="4" required></textarea>
-        </div>
+        
             
         
     </form>
