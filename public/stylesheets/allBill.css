@@ -1,0 +1,67 @@
+body {
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+
+}
+
+table {
+    padding: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff; /* สีพื้นหลังตารางสีขาว */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเล็กน้อย */
+    border-radius: 5px; /* ขอบมน */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #e9e2d0; /* สีหัวตารางน้ำตาลอ่อน */
+    color: #333;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* สลับสีแถว */
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    color: #795548; /* สีน้ำตาลเข้ม */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #795548; /* สีปุ่มน้ำตาลเข้ม */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5d4037; /* สีปุ่มน้ำตาลเข้มเมื่อ hover */
+}

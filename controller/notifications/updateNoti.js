@@ -7,6 +7,7 @@ async function updateNotification(notiId){
         const query = `UPDATE notifications SET status = "read" WHERE NotiID = ${id}`;
 
         await db.query(query);
+        db.releaseConnection();
         return {status: 200, message: 'Notification updated successfully'};
     } catch (error) {
         console.error('Error updating notification:', error);

@@ -10,6 +10,7 @@ router.get('/:id', async (req, res) => {
         const dorm = await conn.query(sql1, [id]);
         const comment = await conn.query(sql2, [id]);
         res.render('dorminfo', { dorm: dorm[0][0], comment: comment[0] });
+        conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
     }

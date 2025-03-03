@@ -21,6 +21,7 @@ router.post('/gogoqr', upload.single('slip'), async (req, res) => {
                VALUE (20, 11/11/1111, '${formdata.slip}');`;
     try {
         await conn.query(sql);
+        conn.releaseConnection();
         res.send(`<script>alert("เพิ่มข้อมูลสำเร็จ"); window.location.href = '/qrbill/1';</script>`);
     } catch (err) {
         console.log(err);

@@ -11,10 +11,10 @@ SELECT
 FROM Room r
 JOIN Dormitory d ON r.dorm_id = d.dorm_id
 WHERE r.room_id = ${roomid};`;
-        const sqltohistory = `INSERT INTO Paymenthistory (room_id) VALUES (${roomid})`;
+        const sqltohistory = `INSERT INTO Paymenthistory (room_id, totalamount) VALUES (${roomid}, ${totalrent})`;
         await db.query(query);
         await db.query(sqltohistory);
-
+        db.releaseConnection();
         return {status: 200, message: 'ADD NEW Payment successfully'};
     } catch (error) {
         console.error('Error during add new Payment:', error);

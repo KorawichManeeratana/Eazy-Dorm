@@ -138,13 +138,15 @@ async function getNotification(user_id) {
 
     data.allNoti[0].forEach(noti => {
   notiList.insertAdjacentHTML('afterbegin', `
-    <div class="noti-menu" data-notification-id="${noti.NotiID}">
-      <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
-      <div class="date-content">
-        <span class="noti-content">${noti.content}</span>
-        <span class="noti-date">${timeSince(noti.createAt)}</span>
-      </div>
+    <a href="/bill/${noti.pay_id}" class="noti-link">
+  <div class="noti-menu" data-notification-id="${noti.NotiID}">
+    <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+    <div class="date-content">
+      <span class="noti-content">${noti.content}</span>
+      <span class="noti-date">${timeSince(noti.createAt)}</span>
     </div>
+  </div>
+</a>
   `);
 });
     

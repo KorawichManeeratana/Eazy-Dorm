@@ -10,6 +10,7 @@ router.get('/:id', async (req, res) => {
         let userid = await req.params.id;
         const [rows] = await conn.query(sql, [req.params.id]);
         res.render('owneddorm', { data: rows, userid, del_state: false});
+        conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
     }
@@ -20,6 +21,7 @@ router.get('/adddorm/:id', async (req, res) => {
     try {
         const [rows] = await conn.query(sql);
         res.render('adddorm', { data: rows });
+        conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
     }

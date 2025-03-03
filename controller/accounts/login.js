@@ -28,12 +28,14 @@ async function loginUser(loginData) {
                     process.env.ACCESSKEYID,
                     { expiresIn: '1d' }
                 );
-
+                db.releaseConnection();
                 return ({ status: 200, message: 'Login successful', token: token });
             } else {
+                db.releaseConnection();
                 return ({ status: 401, message: 'รหัสผ่านไม่ถูกต้อง' });
             }
         } else {
+            db.releaseConnection();
             return ({ status: 404, message: 'User not found' });
         }
     } catch (error) {

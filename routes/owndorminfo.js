@@ -28,6 +28,7 @@ router.get('/:id/:uid', async (req, res) => {
             userName[room.room_id] = username.length > 0 ? username[0].full : "ไม่มีผู้เช่า";
         }
         res.render('owndorminfo', { data: rooms, dormid, roomAmenities, userName, userid});
+        conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
         res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูล");
@@ -45,6 +46,7 @@ router.post('/process_delroom/:id/:did/:uid', async (req, res) =>{
         await conn.query(sql2);
         await conn.query(sql, [dormid]);
         res.send(`<script>alert("ลบข้อมูลห้องพักสำเร็จ"); window.location.href = '/owndorminfo/${dormid}/${userid}';</script>`);
+        conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
     }
@@ -70,6 +72,7 @@ router.post('/process_deldorm/:id/:uid', async (req, res) => {
             console.log("ลบสำเร็จ");
             res.send(`<script>alert("ลบข้อมูลหอพักสำเร็จ"); window.location.href = '/owneddorm/${userid}';</script>`);
         }  
+        conn.releaseConnection();
     } catch (err) {
         console.error("เกิดข้อผิดพลาด:", err);
     }

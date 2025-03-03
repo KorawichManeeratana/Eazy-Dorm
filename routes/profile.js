@@ -27,6 +27,7 @@ router.get('/:id', async (req, res) => {
             rent = true;
         }
         console.log("prof:", rows)
+        conn.releaseConnection();
         res.render('profile', { data: rows[0], id: userid, rent: rent});
     } catch (error) {
         console.error("Error during per user profile info:", error);

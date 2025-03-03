@@ -22,6 +22,7 @@
       .main {
         display: flex;
         align-items: flex-start;
+        flex-direction: column;
         margin-top: 10px;
         gap: 15px;
         width: 100%;
@@ -84,13 +85,15 @@
             console.log(noti);
             Menu.insertAdjacentHTML(
               "beforeend",
-              `<div class="noti-menu">
-            <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
-            <div class="date-content">
-              <span class="noti-content">${noti.content}</span>
-              <span class="noti-date">14 ชั่วโมง</span>
-            </div>
-          </div>`
+              `<a href="/bill/${noti.pay_id}" class="noti-link">
+  <div class="noti-menu" data-notification-id="${noti.NotiID}">
+    <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+    <div class="date-content">
+      <span class="noti-content">${noti.content}</span>
+      <span class="noti-date">${timeSince(noti.createAt)}</span>
+    </div>
+  </div>
+</a>`
             );
             console.log("noti");
           });

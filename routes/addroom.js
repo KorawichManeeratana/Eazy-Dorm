@@ -24,6 +24,8 @@ router.post('/process_addroom/:id/:uid', async (req, res) =>{
     try {
         await conn.query(sql);
         res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owndorminfo/${dormid}/${userid}';</script>`);
+
+        conn.releaseConnection();
     } catch (err) {
         console.log(err);
     }

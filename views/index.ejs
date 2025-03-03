@@ -53,15 +53,18 @@
 
     <div class="populardisplay">
       <% data.forEach((i)=>{ %>
-      <div class="card">
-        <div class="card-image">
-          <img src="<%= i.dorm_pic %>" alt="dorm-pic" />
-        </div>
-        <div class="card-content">
-          <h2 class="card-title"><%= i.name %></h2>
-          <p class="card-body"><%= i.address %></p>
-        </div>
-      </div>
+        <a href="/dorminfo/<%= i.dorm_id %>">
+          <div class="card">
+            <div class="card-image">
+              <img src="/images/<%= i.dorm_pic %>" alt="dorm-pic" />
+            </div>
+            <div class="card-content">
+              <h2 class="card-title"><%= i.name %></h2>
+              <p class="card-body"><%= i.address %></p>
+            </div>
+          </div>
+        </a>
+      
       
       <% }); %>
     </div>

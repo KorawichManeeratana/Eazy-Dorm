@@ -36,6 +36,7 @@ router.get('/:id/:uid', async (req, res) => {
         const [rows] = await conn.query(sql, [req.params.id]);
         console.log(rows);
         res.render('editdorm', { data: rows[0] });
+        conn.releaseConnection();
     } catch (error) {
         console.error("Error :", error);
     }
@@ -125,6 +126,7 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     try {
         await conn.query(sql);
         res.send(`<script>alert("แก้ไขข้อมูลสำเร็จ"); window.location.href = '/owneddorm/${req.params.uid}';</script>`);
+        conn.releaseConnection();
     } catch (err) {
         console.error("Error :", err);
     }

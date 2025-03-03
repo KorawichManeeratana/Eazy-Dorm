@@ -267,7 +267,6 @@ nav ul li {
 
   .big-noti{
     background-color: white;
-    border-radius: 20px;
   }
 
   .viewallNoti{
@@ -282,8 +281,8 @@ nav ul li {
   }
 
   .notification-container {
-    position: relative; /* ทำให้ container เป็น relative */
-    display: inline-block; /* หรือ block ขึ้นอยู่กับ layout */
+    position: relative;
+    display: inline-block;
     margin-right: 20px;
   }
   
@@ -302,7 +301,17 @@ nav ul li {
     font-size: 11px;
   }
   
-  /* ถ้าต้องการซ่อนจุดเมื่อไม่มี notification */
   .notification-badge.hidden {
     display: none;
+  }
+
+  .noti-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  .noti-link:hover {
+    background-color: #f0f0f0;
+    width: 100%;
   }

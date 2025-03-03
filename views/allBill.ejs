@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Link rel="stylesheet" href="/stylesheets/allBill.css"></Link>
+    <style>
+        .no-data-message {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2 style="margin-left: 2%;">จัดการบิล - <%= dname[0].name %></h2>
+        <% if (data.length > 0) { %>
+        <table>
+            <thead>
+              <tr>
+                <th>เลขที่ห้อง</th>
+                <th>จำนวนทั้งหมด</th>
+                <th>รูปภาพสลิป</th>
+                <th>วันที่</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.forEach(item => { %>
+                <tr>
+                    <td><%= item.room_number %></td>
+                  <td><%= item.totalamount %></td>
+                  <td style="display: flex; gap: 10%; justify-content: left; align-items: center;">
+                    <% if (item.pay_img && item.pay_img.trim() !== '[NULL]') { %>
+                      <p><%= item.pay_img %></p>
+                      <a href="<%= item.pay_img %>">
+                        <img src="https://www.svgrepo.com/show/530429/picture.svg" class="icon"></img>
+                      </a>
+                    <% } else { %>
+                      <p>ไม่มีข้อมูลสลิป</p>
+                    <% } %>
+                  </td>
+                  <td><%= new Date(item.pay_date).toLocaleDateString() %></td>
+                  <td>
+                    <button id="confirmButton<%= item.pay_id %>" onclick="ConfirmPayment('<%= item.pay_id %>')">ยืนยันการโอน</button>
+                    <p id="confirmationMessage<%= item.pay_id %>" style="display: none; color: green;" class="confirmed">ยืนยันแล้ว</p>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <table>
+                <thead>
+                  <tr>
+                    <th>เลขที่ห้อง</th>
+                    <th>จำนวนทั้งหมด</th>
+                    <th>รูปภาพสลิป</th>
+                    <th>วันที่</th>
+                    <th></th>
+                  </tr>
+                </thead>
+            </table>
+            <p class="no-data-message">ไม่มียอดค้างการจ่ายเงิน</p>
+        <% } %>
+        <script>
+            async function ConfirmPayment(payId){
+                console.log(payId)
+                try{
+                    const response = await fetch('/api/confirmPayment',{
+                    method: "POST",
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({payId: payId}),
+                    });
+                    
+                    if (response.ok){
+                        document.getElementById(`confirmButton${payId}`).style.display = 'none';
+                        document.getElementById(`confirmationMessage${payId}`).style.display = 'block';
+                    } else {
+                        console.error("Confirm payment error");
+                    }
+
+                }catch(error){
+                    console.error("Confirm payment error")
+                }
+                
+            }
+        </script>
+    </div>
+</body>
+</html>

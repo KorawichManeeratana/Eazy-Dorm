@@ -67,7 +67,7 @@
 
         .button-group {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             position: absolute;
             right: 10px;
             align-items: center;
@@ -153,6 +153,10 @@
         <div class="head">
             <h2>รายละเอียดห้องพัก</h2>
             <div class="button-group">
+                <div class="button-all">จัดการบิล
+                    <a href="/allBill/<%= dormid %>" class="button"><img class="icon"
+                            src="https://www.svgrepo.com/show/265765/invoice-receipt.svg"></a>
+                </div>
                 <div class="button-all">จัดการปัญหา
                     <a href="/reportnoti/<%= dormid %>" class="button"><img class="icon"
                             src="https://www.svgrepo.com/show/535539/octagon-exclamation.svg"></a>

@@ -7,6 +7,7 @@ router.get('', async (req, res) => {
     try {
         const [rows] = await conn.query(sql);
         res.render('index', { data: rows });
+        conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
     }

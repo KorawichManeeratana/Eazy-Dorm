@@ -22,8 +22,10 @@ async function registerAccount(userData) {
         );
 
         if (result && result.affectedRows > 0) {
+            db.releaseConnection();
             return { status: 201, message: 'Account registered successfully' };
         } else {
+            db.releaseConnection();
             return { status: 500, message: 'Failed to register account' };
         }
         

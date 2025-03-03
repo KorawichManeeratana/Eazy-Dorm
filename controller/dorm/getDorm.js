@@ -6,6 +6,7 @@ async function getDorm(text) {
     text = `%${text}%`
     query = `SELECT dorm_id, name, rent, dorm_pic, address FROM Dormitory WHERE name LIKE ? UNION SELECT dorm_id, name, rent, dorm_pic, address FROM Dormitory WHERE address LIKE ?;`;
     const result = (await db.query(query, [text, text]))[0];
+    db.releaseConnection();
     return {
       status: 200,
       message: "Dorm queryed",

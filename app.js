@@ -43,6 +43,7 @@ app.use('/showproblem', require('./routes/showproblem'));
 app.use('/profile', require('./routes/profile'));
 app.use('/bill', require('./routes/bill'));
 app.use('/qrbill', require('./routes/qrbill'));
+app.use('/allBill', require('./routes/allBill'));
 app.use('/userselect', require('./routes/userselect'));
 app.use('/reportform', require('./routes/reportform'));
 app.use('/editroom', require('./routes/editroom'));
@@ -64,7 +65,9 @@ app.use('/:id/api', require('./routes/api/room/roomRoute.js'));
 
 app.use('/api', require('./routes/api/notfications/updatestatus.js'));
 
-app.use('/api', require('./routes/api/payment/sendbill.js'))
+app.use('/api', require('./routes/api/payment/sendbill.js'));
+
+app.use('/api', require('./routes/api/payment/confirmpayment.js'))
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
