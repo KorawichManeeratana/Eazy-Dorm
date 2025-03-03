@@ -7,20 +7,20 @@
 <body>
     <main>
         <div class="dorm_info">     
-            <img src="/images/<%=dorm[0][0].dorm_pic%>" alt="roomimg" class="dorm_img">
+            <img src="/images/<%=dorm.dorm_pic%>" alt="dormimg" class="dorm_img">
             <div class="info">
-                <h1><%=dorm[0][0].name%></h1>
-                <h3><%=dorm[0][0].rating%> ดาว</h3>
-                <p><%=dorm[0][0].address%></p>
-                <button type="button" onclick="openSelectRoom('<%=dorm[0][0].dorm_id%>')">เลือกดูห้อง</button>
+                <h1><%=dorm.name%></h1>
+                <h3><%=dorm.rating%> ดาว</h3>
+                <p><%=dorm.address%></p>
+                <button type="button" onclick="openSelectRoom('<%=dorm.dorm_id%>')">เลือกดูห้อง</button>
                 <div class="mini_info">
                     <h3>รายละเอียด</h3>
-                    <p><%=dorm[0][0].detail%></p>
-                    <p><%=dorm[0][0].rent%> บาท/เดือน</p>
-                    <p>ค่าไฟ: หน่วยละ <%=dorm[0][0].electric_pay%> บาท</p>
-                    <p>ค่าน้ำ: หน่วยละ <%=dorm[0][0].water_pay%> บาท</p>
+                    <p><%=dorm.detail%></p>
+                    <p><%=dorm.rent%> บาท/เดือน</p>
+                    <p>ค่าไฟ: หน่วยละ <%=dorm.electric_pay%> บาท</p>
+                    <p>ค่าน้ำ: หน่วยละ <%=dorm.water_pay%> บาท</p>
                     <p>อินเทอร์เน็ต: ฟรี</p>
-                    <p>เบอร์ติดต่อ: <%=dorm[0][0].phone_contact%></p>
+                    <p>เบอร์ติดต่อ: <%=dorm.phone_contact%></p>
                 </div>
             </div>
             <div class="facilities_container">
@@ -38,7 +38,7 @@
         <div class="comments_box">
             <h1>ความคิดเห็นทั้งหมด</h1>
             <div class="comments_container">
-                <%comment[0].forEach(com => {%>
+                <%comment.forEach(com => {%>
                     <div class="comment">
                         <div class="top">
                             <img src="/images/<%=com.username%>" alt="user_img">

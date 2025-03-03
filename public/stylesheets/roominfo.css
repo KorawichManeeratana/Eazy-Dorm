@@ -1,6 +1,9 @@
+body {
+    background-color: #CABA9C;
+}
+
 main {
     padding-inline: 20%;
-    background-color: #CABA9C;
 }
 .room_info {
     width: 100%;
@@ -63,7 +66,10 @@ main {
 .facilities {
     display: flex;
     flex-wrap: wrap;
-    gap: 5%;
+    gap: 1%;
+}
+.facilities > h5 {
+    margin-block: 5px;
 }
 .comments_box {
     color: white;

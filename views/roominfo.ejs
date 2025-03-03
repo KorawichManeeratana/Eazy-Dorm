@@ -5,32 +5,25 @@
 </head>
 <body>
     <main>
-        <div class="room_info">
-            <div class="room_img">        
-                <img src="https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg" alt="roomimg">
-            </div>
+        <div class="room_info">     
+            <img src="/images/<%=room.room_pic%>" alt="roomimg" class="room_img">
             <div class="info">
-                <h1>ห้อง 305</h1>
-                <h3>5 ดาว</h3>
-                <p>ห้องขนาดใหญ่ 48 ตร.ม. ประเภทเตียงคู่</p>
-                <button>โทรสอบถาม</button>
+                <h1><%=room.room_number%></h1>
+                <h3>ชั้น <%=room.floor%></h3>
+                <p><%=room.status%></p>
+                <button type="button" onclick="rent('<%=room.room_id%>')">เช่าห้อง</button>
                 <div class="mini_info">
                     <h3>รายละเอียด</h3>
-                    <p>5500 บาท/เดือน</p>
-                    <p>ค่าไฟ: หน่วยละ 8 บาท</p>
-                    <p>ค่าน้ำ: หน่วยละ 16 บาท</p>
-                    <p>อินเทอร์เน็ต: ฟรี</p>
+                    <p>ขนาด <%=room.size%> ตร.ม</p>
+                    <p><%=room.rent%> บาท/เดือน</p>
                 </div>
             </div>
             <div class="facilities_container">
                 <h1>สิ่งอำนวยความสะดวก</h1>
                 <div class="facilities">
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
+                    <%amenities.forEach(fac => {%>
+                        <h5><%=fac.name%></h5>
+                    <%});%>
                 </div>
             </div>
         </div>

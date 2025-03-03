@@ -7,19 +7,18 @@ async function loadAllRoom(id) {
         body: JSON.stringify({id}),
     });
     const data = await response.json();
-    console.log(data)
-    showRoom(data.allRoom[0])
+    showRoom(data.allRoom)
 }
 
 function showRoom(data) {
     const room_container = document.getElementsByClassName("roomcontainer")[0];
     for (room of data) {
-        room_container.insertAdjacentHTML('afterbegin', `<div class="room">
-                <img src="/images/${room.room_img} alt="room_img">
+        room_container.insertAdjacentHTML('afterbegin', `<div class="room" onclick="openRoomInfo(${room.room_id})">
+                <img src="/images/${room.room_img}" alt="room_img">
                 <div class="describe">
-                    <h2>${room.number}</h2>
-                    <div class="price">${room.rent} บาท</div>
-                    <button type="button" onclick="openRoomInfo(${room.room_id})">รายละเอียด</button>
+                    <h2>${room.room_number}</h2>
+                    <h4>${room.rent} บาท</h4>
+                    <p>${room.floor}</p>
                 </div>
             </div>`);
     }
