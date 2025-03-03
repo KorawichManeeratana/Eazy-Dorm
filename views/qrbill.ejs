@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าชำระเงิน</title>
+    <link rel="stylesheet" href="/stylesheets/qrbill.css">
+</head>
+<body>
+    <div class="container">
+        <div class="qr-code-section">
+            <h2>สแกนเพื่อชำระเงิน</h2>
+            <img src="https://cdn.discordapp.com/attachments/1144652683077242940/1346060353318162432/IMG_1909.jpg?ex=67c6cfe4&is=67c57e64&hm=e064a5aff6b07f1dd00303e1fb3f390616923110e02dca9f1f9374494b3a0d49&" alt="QR Code" class="qr-code">
+        </div>
+
+        <div class="details-section">
+            <h2>รายละเอียดการชำระเงิน</h2>
+            <p><strong>ชื่อเจ้าของหอ:</strong> คุณสมชาย ใจดี</p>
+            <p><strong>ค่าน้ำ:</strong> 150 บาท</p>
+            <p><strong>ค่าไฟฟ้า:</strong> 300 บาท</p>
+            <p><strong>ค่าเช่า:</strong> 5000 บาท</p>
+            <p class="total"><strong>รวมทั้งหมด:</strong> 5450 บาท</p>
+        </div>
+        
+        <div class="upload-section">
+            <input type="file" id="slip-upload" accept="image/*">
+            <label for="slip-upload" class="upload-button">แนบหลักฐานสลิปการโอน</label>
+            <span id="file-name"></span>  <!-- for ชื่อไฟล์ เด้อ -->
+        </div>
+
+        <button class="confirm-button">ยืนยันการโอน</button>
+    </div>
+</body>
+</html>

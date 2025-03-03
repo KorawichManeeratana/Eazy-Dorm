@@ -3,8 +3,8 @@ const router = express.Router();
 
 
 //Routes
-router.get('/:pid', (req, res) => {
-    res.render('bill');
+router.get('/:qrpid', (req, res) => {
+    res.render('qrbill');
 })
 
 module.exports = router;

@@ -42,6 +42,7 @@ app.use('/showproblem', require('./routes/showproblem'));
 
 app.use('/profile', require('./routes/profile'));
 app.use('/bill', require('./routes/bill'));
+app.use('/qrbill', require('./routes/qrbill'));
 app.use('/userselect', require('./routes/userselect'));
 app.use('/reportform', require('./routes/reportform'));
 app.use('/editroom', require('./routes/editroom'));
