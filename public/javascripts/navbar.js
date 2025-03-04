@@ -56,11 +56,7 @@ function updateNotificationStatus(notificationId) {
       throw new Error('Network response was not ok');
     }
     return response.json();
-  })
-  .then(data => {
-    console.log('Notification status updated successfully:', data);
-  })
-  .catch(error => {
+  }).catch(error => {
     console.error('There was an error updating the notification status:', error);
   });
 }
@@ -134,6 +130,7 @@ async function getNotification(user_id) {
 
     const data = await response.json();
     const finalData = data.allNoti[0][0];
+    console.log("data:", data)
     console.log(finalData)
 
     data.allNoti[0].forEach(noti => {

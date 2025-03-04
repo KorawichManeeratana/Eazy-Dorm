@@ -10,20 +10,20 @@
 
 <body>
     <div class="container">
-        <form action="/qrbill/gogoqr" method="post" enctype="multipart/form-data" class="container">
+        <form action="/qrbill/gogoqr/<%= data.pay_id%>" method="post" enctype="multipart/form-data" class="container">
             <div class="qr-code-section">
                 <h2>สแกนเพื่อชำระเงิน</h2>
-                <img src="https://cdn.discordapp.com/attachments/1144652683077242940/1346060353318162432/IMG_1909.jpg?ex=67c6cfe4&is=67c57e64&hm=e064a5aff6b07f1dd00303e1fb3f390616923110e02dca9f1f9374494b3a0d49&"
+                <img src="/images/<%= data.qrcode%>"
                     alt="QR Code" class="qr-code">
             </div>
 
             <div class="details-section">
                 <h2>รายละเอียดการชำระเงิน</h2>
-                <p><strong>ชื่อเจ้าของหอ:</strong> คุณสมชาย ใจดี</p>
-                <p><strong>ค่าน้ำ:</strong> 150 บาท</p>
-                <p><strong>ค่าไฟฟ้า:</strong> 300 บาท</p>
-                <p><strong>ค่าเช่า:</strong> 5000 บาท</p>
-                <p class="total"><strong>รวมทั้งหมด:</strong> 5450 บาท</p>
+                <p><strong>ชื่อเจ้าของหอ:</strong> <%= data.first_name %> <%= data.last_name %></p>
+                <p><strong>ค่าน้ำ:</strong> <%= data.waterBill %> บาท</p>
+                <p><strong>ค่าไฟฟ้า:</strong> <%= data.electricBill %> บาท</p>
+                <p><strong>ค่าเช่า:</strong> <%= data.rent %> บาท</p>
+                <p class="total"><strong>รวมทั้งหมด:</strong> <%= data.totalamount %> บาท</p>
             </div>
 
             <div class="upload-section">

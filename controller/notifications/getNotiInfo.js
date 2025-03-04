@@ -11,29 +11,59 @@ async function CookiesDecode(id, limit) {
     let query = ``;
 
     if (limit) {
-      query = `SELECT
+      query = `WITH FirstPayment AS (
+    SELECT
+        room_id,
+        MIN(pay_id) AS first_pay_id
+    FROM
+        Paymenthistory
+    GROUP BY
+        room_id
+)
+SELECT DISTINCT
     n.*,
     u.*,
     (SELECT COUNT(*) FROM notifications WHERE toWho = ${id} AND status = 'unread') AS unread_count,
-    ph.pay_id
+    fp.first_pay_id AS pay_id
 FROM
     notifications n
 LEFT JOIN
     Users u ON n.fromWho = u.user_id
-LEFT JOIN  -- Join Room table
+LEFT JOIN
     Room r ON n.toWho = r.loger_id
-LEFT JOIN  -- Join Paymenthistory table
-    Paymenthistory ph ON r.room_id = ph.room_id
+LEFT JOIN
+    FirstPayment fp ON r.room_id = fp.room_id
 WHERE
     n.toWho = ${id}
-GROUP BY
-    n.NotiID, ph.pay_id
 ORDER BY
     n.createAt ASC
-LIMIT 5;`;
+LIMIT 5;`
     } else {
-      query = `SELECT n.*, u.* FROM notifications n LEFT JOIN Users u ON n.fromWho = u.user_id WHERE n.toWho = ${id};`;
+      query = `WITH FirstPayment AS (
+    SELECT
+        room_id,
+        MIN(pay_id) AS first_pay_id
+    FROM
+        Paymenthistory
+    GROUP BY
+        room_id
+)
+SELECT
+    n.*,
+    u.*,
+    fp.first_pay_id AS pay_id
+FROM
+    notifications n
+LEFT JOIN
+    Users u ON n.fromWho = u.user_id
+LEFT JOIN
+    Room r ON n.toWho = r.loger_id
+LEFT JOIN
+    FirstPayment fp ON r.room_id = fp.room_id
+WHERE
+    n.toWho = ${id};`;
     }
+    
     const [result, fill] = await (await db.getConnection()).query(query);
     db.releaseConnection();
     return {

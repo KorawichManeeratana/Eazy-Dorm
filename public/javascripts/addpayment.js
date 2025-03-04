@@ -35,10 +35,15 @@ async function sendBill() {
   const roomid = document.getElementById("roomSelect").value;
   const rent = document.getElementById("totalrent");
   const dname = document.getElementById("dname");
+  const water = document.getElementById("wres");
+  const elec = document.getElementById("eres");
+
   const dormname = dname.textContent || dname.innerText;
   const totalrent = rent.textContent || rent.innerText;
+  const waterBill = water.textContent || water.innerText;
+  const elecBill = elec.textContent || elec.innerText;
 
-  console.log("data:", roomid, dormname.trim(), totalrent.trim());
+  console.log("data:", roomid, dormname.trim(), totalrent.trim(), waterBill.trim(), elecBill.trim());
 
   try {
     const response = await fetch("/api/sendpayment", {
@@ -46,7 +51,7 @@ async function sendBill() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ roomid: roomid, dormname: dormname.trim(), totalrent: totalrent.trim()}),
+      body: JSON.stringify({ roomid: roomid, dormname: dormname.trim(), totalrent: totalrent.trim(), waterBill: waterBill.trim(), elecBill: elecBill.trim()}),
     });
 
     if (!response.ok) {

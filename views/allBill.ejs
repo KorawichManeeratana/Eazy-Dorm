@@ -12,6 +12,37 @@
             font-size: 1.2em;
             color: #888;
         }
+
+        .popup {
+            display: none;
+            position: fixed;
+            flex-direction: column;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .btn {
+            padding: 10px 20px;
+            background: rgb(143, 107, 54);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -36,9 +67,15 @@
                   <td style="display: flex; gap: 10%; justify-content: left; align-items: center;">
                     <% if (item.pay_img && item.pay_img.trim() !== '[NULL]') { %>
                       <p><%= item.pay_img %></p>
-                      <a href="<%= item.pay_img %>">
+                      <a onclick="openPopup()">
                         <img src="https://www.svgrepo.com/show/530429/picture.svg" class="icon"></img>
                       </a>
+                      <div class="popup" id="popup">
+                        <img src="/images/<%= item.pay_img %>">
+                        <div style="padding: 20px;">
+                          <button style="margin-left: 40%;" class="btn" onclick="closePopup()">ปิด</button>
+                        </div>
+                    </div>
                     <% } else { %>
                       <p>ไม่มีข้อมูลสลิป</p>
                     <% } %>
@@ -49,9 +86,11 @@
                     <p id="confirmationMessage<%= item.pay_id %>" style="display: none; color: green;" class="confirmed">ยืนยันแล้ว</p>
                   </td>
                 </tr>
+                <div class="overlay" id="overlay" onclick="closePopup()"></div>
               <% }); %>
             </tbody>
         </table>
+    
         <% } else { %>
             <table>
                 <thead>
@@ -90,7 +129,17 @@
                 }
                 
             }
-        </script>
+
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+            document.getElementById('overlay').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+  </script>
     </div>
 </body>
 </html>

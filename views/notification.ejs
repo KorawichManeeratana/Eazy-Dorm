@@ -84,7 +84,7 @@
           allNotiData.forEach((noti) => {
             console.log(noti);
             Menu.insertAdjacentHTML(
-              "beforeend",
+              "afterbegin",
               `<a href="/bill/${noti.pay_id}" class="noti-link">
   <div class="noti-menu" data-notification-id="${noti.NotiID}">
     <img src="${noti.user_pic}" alt="noti" class="noti-img"/>

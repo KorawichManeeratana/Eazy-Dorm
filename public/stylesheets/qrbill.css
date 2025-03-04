@@ -94,7 +94,7 @@ body {
 }
 
 .confirm-button {
-    background-color: #008CBA;
+    background-color: burlywood;
     color: white;
     padding: 12px 24px;
     border: none;
@@ -104,5 +104,5 @@ body {
 }
 
 .confirm-button:hover {
-    background-color: #0077a3;
+    background-color: rgb(235, 163, 69);
 }
