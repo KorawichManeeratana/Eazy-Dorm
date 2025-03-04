@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 .navbar{
@@ -69,6 +70,7 @@ nav ul li {
     width: 320px;
     max-height: 600px;
     overflow: hidden;
+    z-index: 99;
   }
   
   .sub-menu-wrap.open-menu{
@@ -78,6 +80,7 @@ nav ul li {
   .sub-menu{
     background-color: white;
     padding: 20px;
+    z-index: 99;
   }
   
   .user-info{
@@ -247,10 +250,12 @@ nav ul li {
     width: 320px;
     max-height: 600px;
     overflow: hidden;
+    z-index: 99;
   }
 
   .noti-menu-wrap.open-menu{
     display: block;
+    z-index: 99;
   }
   
   .date-content{
@@ -267,6 +272,7 @@ nav ul li {
 
   .big-noti{
     background-color: white;
+    z-index: 99;
   }
 
   .viewallNoti{
