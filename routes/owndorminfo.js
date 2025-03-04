@@ -7,10 +7,11 @@ router.get('/:id/:uid', async (req, res) => {
     const userid = req.params.uid;
     console.log("This is :", dormid);
     console.log("This is :", userid);
-
     try {
+        const sqldname = `SELECT name FROM Dormitory WHERE dorm_id = ?;`
         const sqlRooms = `SELECT * FROM Room WHERE dorm_id = ?;`;
         const [rooms] = await conn.query(sqlRooms, [dormid]);
+        const dormname = await conn.query(sqldname, dormid);
         let roomAmenities = {};
         let userName = {};
         for (let room of rooms) {
@@ -27,7 +28,7 @@ router.get('/:id/:uid', async (req, res) => {
             roomAmenities[room.room_id] = amenities.map(a => a.name);
             userName[room.room_id] = username.length > 0 ? username[0].full : "ไม่มีผู้เช่า";
         }
-        res.render('owndorminfo', { data: rooms, dormid, roomAmenities, userName, userid});
+        res.render('owndorminfo', { data: rooms, dormid, roomAmenities, userName, userid, dname:dormname[0][0].name});
         conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
@@ -77,5 +78,29 @@ router.post('/process_deldorm/:id/:uid', async (req, res) => {
         console.error("เกิดข้อผิดพลาด:", err);
     }
 });
+
+router.post('/news/:did/:uid', async (req, res) => {
+    console.log("POST /tt/:did ถูกเรียกใช้"); 
+    let dormid = req.params.did;
+    let userid = req.params.uid;
+    let formdata = {
+        content: req.body.content
+    };
+    console.log('form', formdata.content);
+    let sql = `SELECT loger_id FROM Room WHERE dorm_id = ? and loger_id is not NULL;`;
+    try {
+        const [rows] = await conn.query(sql, [dormid]);
+        for (let i of rows){
+            console.log(i.loger_id);
+            let sql2 = `INSERT INTO notifications (toWho, fromWho, content) VALUE (?, ?, ?);`;
+            conn.query(sql2, [i.loger_id, userid, formdata.content]);
+        }
+        res.redirect('/owndorminfo/'+dormid+'/'+userid);
+        conn.releaseConnection();
+    } catch (err) {
+        console.log(err)
+    }
+});
+
 
 module.exports = router;

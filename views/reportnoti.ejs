@@ -95,26 +95,37 @@
 
 <body>
     <div class="container">
+
         <h2>ปัญหาที่ถูกแจ้งเข้ามา</h2>
-        <% data.forEach((i)=>{ %>
-            <div class="issue-card">
-                <div class="room-info">
-                    <div class="room-number"><%= i.room_number %></div>
-                    <div>เบอร์ติดต่อ</div>
-                    <div class="contact-number"><%= i.phone %></div>
-                </div>
-                <div class="issue-details">
-                    <strong>รายละเอียดปัญหา</strong>
-                    <div><%= i.detail %></div>
-                </div>
-                <form action="/reportnoti/success/<%= i.report_id %>/<%= dormid %>" method="post" onsubmit="return confirm('ปัญหาถูกแก้ไขแล้วใช่หรือไม่')">
-                    <button class="completed-btn">เสร็จสิ้น</button>
-                </form>
-                
-            </div>
-        <% }); %>
-        
-    <button class="back-btn">ย้อนกลับ</button>
+        <% if (data.length===0) { %>
+            <p style="text-align: center; font-size: 40px; color: rgb(255, 0, 0); margin-top: 150px;">ไม่พบปัญหา</p>
+            <% } else { %>
+                <% data.forEach((i)=>{ %>
+                    <div class="issue-card">
+                        <div class="room-info">
+                            <div class="room-number">
+                                <%= i.room_number %>
+                            </div>
+                            <div>เบอร์ติดต่อ</div>
+                            <div class="contact-number">
+                                <%= i.phone %>
+                            </div>
+                        </div>
+                        <div class="issue-details">
+                            <strong>รายละเอียดปัญหา</strong>
+                            <div>
+                                <%= i.detail %>
+                            </div>
+                        </div>
+                        <form action="/reportnoti/success/<%= i.report_id %>/<%= dormid %>" method="post"
+                            onsubmit="return confirm('ปัญหาถูกแก้ไขแล้วใช่หรือไม่')">
+                            <button class="completed-btn">เสร็จสิ้น</button>
+                        </form>
+
+                    </div>
+                    <% }); %>
+                        <% } %>
+                            <button class="back-btn">ย้อนกลับ</button>
 </body>
 
 </html>
