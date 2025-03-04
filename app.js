@@ -70,6 +70,10 @@ app.use('/api', require('./routes/api/payment/sendbill.js'));
 
 app.use('/api', require('./routes/api/payment/confirmpayment.js'))
 
+process.on('alert', (message) => {
+    console.log('Received alert:', message);
+});
+
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
     console.log(`http://localhost:${PORT}`)

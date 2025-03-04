@@ -95,7 +95,8 @@ router.post('/process_addorm', upload.fields([{ name: 'image' }, { name: 'qrimag
             formdata.image,
             formdata.qrimage
         ]);
-        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owneddorm/${decodedata.userID}';</script>`);
+        res.redirect('/owneddorm/'+decodedata.userID);
+        conn.releaseConnection();
     } catch (err) {
         console.error("Error :", err);
     }

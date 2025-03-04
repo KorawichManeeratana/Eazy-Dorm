@@ -21,7 +21,8 @@ router.post('/success/:rid/:did', async (req, res) => {
     let sql = `DELETE FROM Report WHERE report_id = ${report_id};`;
     try {
         await conn.query(sql, [report_id]);
-        res.send(`<script>alert("ปัญหาเสร็จสิ้นแล้ว"); window.location.href = '/reportnoti/${dormid}';</script>`);
+        res.redirect('/reportnoti/'+dormid);
+        conn.releaseConnection();
     } catch (err) {
         console.error(err);
     }

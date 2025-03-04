@@ -15,13 +15,13 @@ router.post('/sendproblem/:rid', async (req, res) => {
         content: req.body.content
     }
     let word = formdata.title+" : "+formdata.content;
-    let sql = `INSERT INTO Report(room_id, detail) VALUE ( ${roomid}, '${word}');`;
+    let sql = `INSERT INTO Report(room_id, detail) VALUE ( ?, ?);`;
     try {
-        const [rows] = await conn.query(sql);
+        const [rows] = await conn.query(sql, [roomid, word]);
         console.log(rows);
-        res.send(`<script>alert("ส่งข้อมูลสำเร็จ"); window.location.href = '/reportform/${roomid}';</script>`);
+        res.redirect('/reportform/'+roomid);
     } catch (err) {
-        console.log(err);
+        console.log(err)
     }
 });
 

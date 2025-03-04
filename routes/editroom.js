@@ -50,14 +50,12 @@ router.post('/process_editroom/:id/:uid', async (req, res) => {
         }
 
         await conn.query(sql);
-
-        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owndorminfo/${dorm[0][0].dorm_id}/${userid}';</script>`);
+        res.redirect('/owndorminfo/'+dorm[0][0].dorm_id+'/'+userid);
+        conn.releaseConnection();
     } catch (err) {
         console.log(err);
         res.status(500).send("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
     }
 });
-
-
 
 module.exports = router;

@@ -125,7 +125,7 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     
     try {
         await conn.query(sql);
-        res.send(`<script>alert("แก้ไขข้อมูลสำเร็จ"); window.location.href = '/owneddorm/${req.params.uid}';</script>`);
+        res.redirect('/owneddorm/'+req.params.uid);
         conn.releaseConnection();
     } catch (err) {
         console.error("Error :", err);

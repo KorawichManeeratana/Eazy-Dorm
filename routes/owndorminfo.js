@@ -45,7 +45,7 @@ router.post('/process_delroom/:id/:did/:uid', async (req, res) =>{
     try {
         await conn.query(sql2);
         await conn.query(sql, [dormid]);
-        res.send(`<script>alert("ลบข้อมูลห้องพักสำเร็จ"); window.location.href = '/owndorminfo/${dormid}/${userid}';</script>`);
+        res.redirect('/owndorminfo/'+dormid+'/'+userid);
         conn.releaseConnection();
     } catch (error) {
         console.error("Database Error:", error);
@@ -70,7 +70,7 @@ router.post('/process_deldorm/:id/:uid', async (req, res) => {
         }else{
             const [result] = await conn.query(sql, [dormId]); 
             console.log("ลบสำเร็จ");
-            res.send(`<script>alert("ลบข้อมูลหอพักสำเร็จ"); window.location.href = '/owneddorm/${userid}';</script>`);
+            res.redirect('/owneddorm/'+userid);
         }  
         conn.releaseConnection();
     } catch (err) {

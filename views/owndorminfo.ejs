@@ -132,6 +132,9 @@
         }
 
         .btndel {
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
+            cursor: pointer;
             background: red;
         }
 
@@ -143,6 +146,20 @@
             right: 5%;
             top: 20%;
             background: rgb(214, 0, 0);
+        }
+        .back {
+            height: 60px;
+            width: 150px;
+            position: fixed;
+            bottom: 5%;
+            right: 4%;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .back:hover{
+            background: #cac9c9;
         }
     </style>
 </head>
@@ -175,6 +192,10 @@
                 </div>
             </div>
         </div>
+        <% if (data.length === 0) { %>
+            <p style="text-align: center; font-size: 40px; color: red; margin-top: 150px;">ไม่พบข้อมูลห้องพัก</p>
+            <button class="back" onclick="window.location.href='/owneddorm/<%= userid %>'">ย้อนกลับ</button>
+        <% } else { %>
         <% data.forEach((i)=>{ %>
             <main>
                 <div class="room-card">
@@ -221,8 +242,10 @@
                         <button type="submit" class="btnedit">แก้ไขห้องพัก</button>
                     </form>
                 </div>
+                <button class="back" onclick="window.location.href='/owneddorm/<%= userid %>'">ย้อนกลับ</button>
             </main>
             <% }); %>
+        <% } %>
     </div>
     </div>
     <div class="deleteDORM">

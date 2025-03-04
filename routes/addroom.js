@@ -20,11 +20,10 @@ router.post('/process_addroom/:id/:uid', async (req, res) =>{
         rent: req.body.rent
     };
     let sql = `INSERT INTO Room (dorm_id, room_number, floor, size, rent) 
-               VALUES (${dormid}, '${formdata.room_number}', ${formdata.floor}, ${formdata.size}, ${formdata.rent});`
+               VALUES (?, ?, ?, ?, ?);`
     try {
-        await conn.query(sql);
-        res.send(`<script>alert("บันทึกข้อมูลสำเร็จ"); window.location.href = '/owndorminfo/${dormid}/${userid}';</script>`);
-
+        await conn.query(sql, [dormid, formdata.room_number, formdata.floor, formdata.size, formdata.rent]);
+        res.redirect('/owndorminfo/'+dormid+'/'+userid);
         conn.releaseConnection();
     } catch (err) {
         console.log(err);

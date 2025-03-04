@@ -15,30 +15,34 @@
             <button class="bt-adddorm add" onclick="window.location.href='/adddorm'"></button>
             <button class="bt-adddorm del" onclick="toggleDelState()"></button>
         </div>
-        <% data.forEach((i)=> { %>
-            <div class="all">
-                <div class="mydorm" id="mydorm" onclick="window.location.href='/owndorminfo/<%= i.dorm_id %>/<%= i.owner_id %>'">
-                    <img src="/images/<%= i.dorm_pic %>" alt="">
-                    <div class="dorm-information">
-                        <p><strong>
-                                <%= i.name %>
-                            </strong></p>   
-                        <p>รายละเอียด : <%= i.detail %> <br>
-                                ที่อยู่ : <%= i.address %> <br>
-                                    ห้อง : <%= i.room %> <br>
-                                        เรตติ้ง : <%= i.rating %> <br>
-                           ค่าเช่า : <%= i.rent %>
-                        </p>
+        <% if (data.length===0) { %>
+            <p style="text-align: center; font-size: 40px; color: rgb(255, 0, 0); margin-top: 150px;">ไม่พบข้อมูลหอพัก</p>
+            <% } else { %>
+                <% data.forEach((i)=> { %>
+                    <div class="all">
+                        <div class="mydorm" id="mydorm"
+                            onclick="window.location.href='/owndorminfo/<%= i.dorm_id %>/<%= i.owner_id %>'">
+                            <img src="/images/<%= i.dorm_pic %>" alt="">
+                            <div class="dorm-information">
+                                <p><strong>
+                                        <%= i.name %>
+                                    </strong></p>
+                                <p>รายละเอียด : <%= i.detail %> <br>
+                                        ที่อยู่ : <%= i.address %> <br>
+                                            ห้อง : <%= i.room %> <br>
+                                                เรตติ้ง : <%= i.rating %> <br>
+                                                    ค่าเช่า : <%= i.rent %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="deleteDiv" id="deleteDiv<%= i.owner_id %>" style="display:none;">
+                            <form action="/editdorm/<%= i.dorm_id %>/<%= i.owner_id %>" method="GET">
+                                <button type="submit" class="btnedit">แก้ไขหอพัก</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="deleteDiv" id="deleteDiv<%= i.owner_id %>" style="display:none;">
-                    <form action="/editdorm/<%= i.dorm_id %>/<%= i.owner_id %>" method="GET">
-                        <button type="submit" class="btnedit">แก้ไขหอพัก</button>
-                    </form>                                    
-                </div>
-            </div>
-            <% }); %>
-
+                    <% }); %>
+                        <% } %>
 
     </div>
     <script>
