@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+const session = require('express-session');
+
 
 const app = express();
 const PORT = 3000
@@ -73,11 +75,27 @@ app.use('/api', require('./routes/api/payment/confirmpayment.js'));
 
 app.use('/api', require('./routes/api/comment/addComment.js'))
 
-
+app.use(session({
+    secret: process.env.ACCESSKEYID,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 3600000
+    }
+  }));
+  
 
 process.on('alert', (message) => {
     console.log('Received alert:', message);
 });
+
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception:', err);
+  });
+  
+  process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  });
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)

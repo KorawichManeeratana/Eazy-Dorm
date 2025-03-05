@@ -13,6 +13,7 @@ function cal() {
     electprice +
     parseInt(document.getElementById("rent").textContent);
 }
+
 document.getElementById("roomSelect").addEventListener("change", function () {
   let selectedOption = this.options[this.selectedIndex];
   let tenantName = selectedOption.getAttribute("data-tenant");
@@ -29,6 +30,7 @@ document.getElementById("roomSelect").addEventListener("change", function () {
   document.getElementById("eres").innerText = "";
   document.getElementById("totalrent").innerText = " ";
 });
+
 document.getElementById("roomSelect").dispatchEvent(new Event("change"));
 
 async function sendBill() {
@@ -37,11 +39,18 @@ async function sendBill() {
   const dname = document.getElementById("dname");
   const water = document.getElementById("wres");
   const elec = document.getElementById("eres");
+  const lodger = document.getElementById("tenantName");
 
   const dormname = dname.textContent || dname.innerText;
   const totalrent = rent.textContent || rent.innerText;
   const waterBill = water.textContent || water.innerText;
   const elecBill = elec.textContent || elec.innerText;
+  const lodgerName = lodger.textContent || lodger.innerText;
+
+  if (lodgerName === "ไม่มีข้อมูล" || lodgerName === "ไม่มีผู้เช่า") {
+    showPopup('noTenantPopup');
+    return;
+  }
 
   try {
     const response = await fetch("/api/sendpayment", {
@@ -49,33 +58,36 @@ async function sendBill() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ roomid: roomid, dormname: dormname.trim(), totalrent: totalrent.trim(), waterBill: waterBill.trim(), elecBill: elecBill.trim()}),
+      body: JSON.stringify({
+        roomid: roomid,
+        dormname: dormname.trim(),
+        totalrent: totalrent.trim(),
+        waterBill: waterBill.trim(),
+        elecBill: elecBill.trim(),
+      }),
     });
 
     if (!response.ok) {
       throw new Error("Failed to send payment");
     }
 
-    showSuccessPopup();
-
+    showPopup('successPopup');
   } catch (error) {
     console.error("Error fetching user info:", error);
   }
 }
 
-function showSuccessPopup() {
-  document.getElementById('successPopup').style.display = 'flex';
+function showPopup(popupId) {
+  document.getElementById(popupId).style.display = 'flex';
 }
 
-function closePopup() {
-  document.getElementById('successPopup').style.display = 'none';
+function closePopup(popupId) {
+  document.getElementById(popupId).style.display = 'none';
 
-  document.getElementById('water_pay').value = ''; // Clear ค่าน้ำ
-  document.getElementById('electric_pay').value = ''; // Clear ค่าไฟ
+  document.getElementById('water_pay').value = '';
+  document.getElementById('electric_pay').value = '';
 
-  // Reset ค่าที่คำนวณ (ถ้ามี)
-  document.getElementById('wres').textContent = ''; // Clear ผลลัพธ์ค่าน้ำ
-  document.getElementById('eres').textContent = ''; // Clear ผลลัพธ์ค่าไฟ
-  document.getElementById('totalrent').textContent = ''; // Clear ผลลัพธ์รวมค่าเช่า
+  document.getElementById('wres').textContent = '';
+  document.getElementById('eres').textContent = '';
+  document.getElementById('totalrent').textContent = '';
 }
-

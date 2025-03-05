@@ -7,8 +7,10 @@ const connection = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
-  connectionLimit: 10,
+  connectionLimit: 20,
   enableKeepAlive: true,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 5000,
 });
 
 module.exports = connection;
