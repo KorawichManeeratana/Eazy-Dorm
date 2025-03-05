@@ -5,92 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        main {
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dormname {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .dormname h1 {
-            font-size: 24px;
-            color: #333;
-        }
-
-        .contain {
-            background: #ffffff;
-            padding: 20px;
-            width: 800px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-        }
-
-        .contain select,
-        .contain input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .calculate {
-            text-align: left;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .calpay {
-            width: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .calpay label,
-        .calpay input,
-        .calpay p {
-            margin-right: 10px;
-            font-size: 16px;
-        }
-
-        .calpay input {
-            width: 60px;
-        }
-
-        #dname {
-            color: blue;
-        }
-
-        #totalrent {
-            color: green;
-        }
-    </style>
+    <Link rel="stylesheet" href="/stylesheets/addpayment.css"></Link>
 </head>
 
 <body>
@@ -139,6 +54,20 @@
                 <h1>รวมค่าเช่า : <strong id="totalrent"></strong></h1>
             </div>
             <button onclick="sendBill()">ส่งใบแจ้งหนี้</button>
+        </div>
+        <div id="successPopup" class="popup">
+            <div class="popup-content">
+                <span class="close-button" onclick="closePopup()">×</span>
+                <div class="popup-icon">
+                    <!-- ไอคอนติ๊กถูก (สามารถใช้ SVG หรือ Font Awesome) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="green" class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                </div>
+                <p class="popup-message">ส่งใบแจ้งหนี้สำเร็จ!</p>
+            </div>
         </div>
     </main>
     <script src="/javascripts/addpayment.js"> </script>

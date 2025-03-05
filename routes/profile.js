@@ -1,11 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const conn = require('../dbconn');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 //Routes
 let rent = false;
 let [rows] = [];
+
 router.get('/:id', async (req, res) => {
+    const accessToken = req.cookies.access_token;
+    const SECRET_KEY = process.env.ACCESSKEYID;
+  let userIdFromCookie = null;
+
+  if (accessToken) {
+    try {
+      const decoded = jwt.verify(accessToken, SECRET_KEY);
+      userIdFromCookie = decoded.userID;
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+      userIdFromCookie = null;
+    }
+  }
     console.log("Received id:", req.params.id);
     const sql = `SELECT Users.user_id, Users.first_name, Users.last_name, Users.Phone, Users.email, Users.dob, Users.username, 
     Users.role, Users.user_pic, Room.room_number, Room.room_id,Dormitory.dorm_id, Dormitory.name, Dormitory.phone_contact, Dormitory.address, Dormitory.dorm_pic
@@ -29,7 +45,7 @@ router.get('/:id', async (req, res) => {
         }
         console.log("prof:", rows)
         conn.releaseConnection();
-        res.render('profile', { data: rows[0], id: userid, rent: rent});
+        res.render('profile', { data: rows[0], id: userid, rent: rent, userIdFromCookie: userIdFromCookie });
     } catch (error) {
         console.error("Error during per user profile info:", error);
         res.status(500).send("An error occurred.");

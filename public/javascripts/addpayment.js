@@ -58,7 +58,26 @@ async function sendBill() {
       throw new Error("Failed to send payment");
     }
 
+    showSuccessPopup();
+
   } catch (error) {
     console.error("Error fetching user info:", error);
   }
 }
+
+function showSuccessPopup() {
+  document.getElementById('successPopup').style.display = 'flex';
+}
+
+function closePopup() {
+  document.getElementById('successPopup').style.display = 'none';
+
+  document.getElementById('water_pay').value = ''; // Clear ค่าน้ำ
+  document.getElementById('electric_pay').value = ''; // Clear ค่าไฟ
+
+  // Reset ค่าที่คำนวณ (ถ้ามี)
+  document.getElementById('wres').textContent = ''; // Clear ผลลัพธ์ค่าน้ำ
+  document.getElementById('eres').textContent = ''; // Clear ผลลัพธ์ค่าไฟ
+  document.getElementById('totalrent').textContent = ''; // Clear ผลลัพธ์รวมค่าเช่า
+}
+

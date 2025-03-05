@@ -57,6 +57,7 @@ app.use('/api', require('./routes/api/account_relate/registerroutes.js'));
 app.use('/api', require('./routes/api/account_relate/loginroutes.js'));
 
 app.use('/api', require('./routes/api/cookies/decodeCookieroutes.js'));
+app.use('/api', require('./routes/api/cookies/clearCookies.js'))
 
 app.use('/api', require('./routes/api/notfications/noriroutes.js'));
 
@@ -69,6 +70,8 @@ app.use('/api', require('./routes/api/notfications/updatestatus.js'));
 app.use('/api', require('./routes/api/payment/sendbill.js'));
 
 app.use('/api', require('./routes/api/payment/confirmpayment.js'))
+
+
 
 process.on('alert', (message) => {
     console.log('Received alert:', message);

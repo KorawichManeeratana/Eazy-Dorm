@@ -109,16 +109,19 @@ nav ul li {
     margin: 15px 0 10px;
   }
   
-  .sub-menu-link{
+  .sub-menu-link {
     display: flex;
-    justify-items: center;
+    justify-content: space-between;
     align-items: center;
     text-decoration: none;
     color: #525252;
-    margin: 8px 0;
+    width: 100%;
+    text-align: left;
   }
   
   .dowhat{
+    font-family: kanit;
+    font-size: 16px;
     width: 100%;
   }
   
@@ -145,13 +148,17 @@ nav ul li {
   }
   
   .dowhat:hover{
+
     font-weight: 600;
   }
 
   .sub-menu-link.ownedDorm.hidden{
     display: none;
   }
-  
+
+ 
+
+
   nav ul{
     width: 100%;
     text-align: center;

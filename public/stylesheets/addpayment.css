@@ -1,0 +1,124 @@
+main {
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dormname {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dormname h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.contain {
+    background: #ffffff;
+    padding: 20px;
+    width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.contain select,
+.contain input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.calculate {
+    text-align: left;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.calpay {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.calpay label,
+.calpay input,
+.calpay p {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.calpay input {
+    width: 60px;
+}
+
+#dname {
+    color: blue;
+}
+
+#totalrent {
+    color: green;
+}
+
+.popup {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 1000;
+align-items: center;
+justify-content: center;
+}
+
+.popup-content {
+background-color: #fff;
+padding: 20px;
+border-radius: 10px;
+text-align: center;
+position: relative;
+width: 300px;
+}
+
+.close-button {
+position: absolute;
+top: 0;
+right: 10px;
+font-size: 32px;
+cursor: pointer;
+color: #888;
+}
+
+.popup-icon {
+margin-bottom: 10px;
+}
+
+.popup-message {
+font-size: 18px;
+color: #333;
+}

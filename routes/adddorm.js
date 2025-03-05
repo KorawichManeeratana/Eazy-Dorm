@@ -4,6 +4,7 @@ const conn = require('../dbconn');
 const multer = require('multer');
 const path = require('path');
 
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/images/');
@@ -32,6 +33,7 @@ router.get('', async (req, res) => {
     const sql = `SELECT user_id FROM Users;`
     try {
         const [rows] = await conn.query(sql);
+        console.log("rows:", rows);
         res.render('adddorm', { data: rows });
     } catch (error) {
         console.error("Database Error:", error);

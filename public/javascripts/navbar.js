@@ -94,7 +94,10 @@ async function fetchCookieInfo() {
 
     const data = await response.json();
     decodedata = data.decoded;
-    console.log(decodedata);
+
+    localStorage.setItem('userID', decodedata.userID);
+    localStorage.setItem('username', decodedata.username);
+    localStorage.setItem('userpfp', decodedata.userpfp);
     
     getNotification(decodedata.userID);
     owneddorm.href = `/owneddorm/${decodedata.userID}`;
@@ -192,5 +195,6 @@ function timeSince(dateString) {
   }
   return Math.floor(seconds) + " วินาทีที่แล้ว";
 }
+
 
 fetchCookieInfo();
