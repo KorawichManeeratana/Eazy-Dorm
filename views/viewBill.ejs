@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Link rel="stylesheet" href="/stylesheets/viewBill.css"></Link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <% if (data && data.length > 0) { %>
+        <table>
+            <thead>
+              <tr>
+                <th>วันที่</th>
+                <th>จำนวนทั้งหมด</th>
+                <th>ค่าน้ำ</th>
+                <th>ค่าไฟฟ้า</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(item => { %>
+                    <tr>
+                        <td><%= new Date(item.pay_date).toLocaleDateString() %></td>
+                      <td><%= item.totalamount %></td>
+                      <td><%= item.waterBill %></td>
+                      <td><%= item.electricBill%></td>
+                      <td>
+                        <a href="/bill/<%= item.pay_id%>" style="text-decoration: none;">จ่ายบิล</a>
+                      </td>
+                    </tr>
+                  <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <div class="no-data-container">
+            <i class="fa-regular fa-folder-open"></i>
+            <p>ไม่มียอดชำระตกค้าง</p>
+        </div>
+    <% } %>
+</body>
+</html>

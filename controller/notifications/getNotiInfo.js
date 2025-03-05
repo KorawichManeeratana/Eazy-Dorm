@@ -2,8 +2,6 @@ require("dotenv").config();
 const db = require("../../dbconn");
 
 async function CookiesDecode(id, limit) {
-  console.log("ToWhoID:", id);
-
   try {
     if (!id) {
       return { status: 400, message: "Token is required" };

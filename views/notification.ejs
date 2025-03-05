@@ -65,7 +65,6 @@
       const userId = userIdElement.textContent || userIdElement.innerText;
 
       async function getNoti(id) {
-        console.log("id:", id);
         try {
           const response = await fetch("http://localhost:3000/api/getNoti", {
             method: "POST",
@@ -80,9 +79,7 @@
           }
           const data = await response.json();
           const allNotiData = data.allNoti[0];
-          console.log("Allnoti:", allNotiData);
           allNotiData.forEach((noti) => {
-            console.log(noti);
             Menu.insertAdjacentHTML(
               "afterbegin",
               `<a href="/bill/${noti.pay_id}" class="noti-link">
@@ -95,7 +92,6 @@
   </div>
 </a>`
             );
-            console.log("noti");
           });
         } catch (error) {
           console.error(error);

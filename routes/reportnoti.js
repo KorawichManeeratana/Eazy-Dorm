@@ -9,7 +9,6 @@ router.get('/:did', async (req, res) => {
         JOIN Room r ON rp.room_id = r.room_id JOIN Users u ON r.loger_id = u.user_id WHERE r.dorm_id = ${dormid};`;
     try {
         const [rows] = await conn.query(sql, [dormid]);
-        console.log(rows);
         res.render('reportnoti', { data: rows, dormid });
     } catch (err) {
         console.error(err);

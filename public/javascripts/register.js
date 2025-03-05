@@ -64,7 +64,6 @@ async function registerUser() {
     email: emailInput,
   };
 
-  console.log("UserData: ", userData);
 
   try {
     const response = await fetch("http://localhost:3000/api/register", {
@@ -75,18 +74,15 @@ async function registerUser() {
         body: JSON.stringify(userData),
     });
     
-    console.log(response)
     const data = await response.json();
     
 
     if (response.ok) {
-        console.log("ลงทะเบียนสำเร็จ!");
 
       window.location.href = "/login";
 
-    } else {
-        console.log("ลงทะเบียนไม่สำเร็จ: " + (data.message || response.statusText));
     }
+    
   } catch (error) {
     console.log("เกิดข้อผิดพลาดในการลงทะเบียน: " + error);
   }

@@ -33,7 +33,6 @@ router.get('', async (req, res) => {
     const sql = `SELECT user_id FROM Users;`
     try {
         const [rows] = await conn.query(sql);
-        console.log("rows:", rows);
         res.render('adddorm', { data: rows });
     } catch (error) {
         console.error("Database Error:", error);
@@ -42,7 +41,6 @@ router.get('', async (req, res) => {
 
 router.post('/process_addorm', upload.fields([{ name: 'image' }, { name: 'qrimage' }]), async (req, res) => {
     const token = req.body.token || req.headers.authorization?.split(" ")[1] || req.cookies?.access_token;
-    console.log("Extracted token:", token);
     if (!token) {
         return res.status(401).json({ error: "Token not provided" });
     }
@@ -77,7 +75,6 @@ router.post('/process_addorm', upload.fields([{ name: 'image' }, { name: 'qrimag
         }
         const data = await response.json();      
         decodedata = data.decoded;
-        console.log("userID :", decodedata.userID);
         
 
         if (!decodedata.userID) {

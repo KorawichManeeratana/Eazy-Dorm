@@ -43,8 +43,6 @@ async function sendBill() {
   const waterBill = water.textContent || water.innerText;
   const elecBill = elec.textContent || elec.innerText;
 
-  console.log("data:", roomid, dormname.trim(), totalrent.trim(), waterBill.trim(), elecBill.trim());
-
   try {
     const response = await fetch("/api/sendpayment", {
       method: "POST",

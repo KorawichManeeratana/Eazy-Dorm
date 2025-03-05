@@ -237,3 +237,8 @@ body{
     align-items: center;
     gap: 20px;
   }
+
+  .populardisplay a{
+    text-decoration: none;
+    color:#8A6240;
+  }

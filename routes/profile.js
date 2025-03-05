@@ -22,7 +22,6 @@ router.get('/:id', async (req, res) => {
       userIdFromCookie = null;
     }
   }
-    console.log("Received id:", req.params.id);
     const sql = `SELECT Users.user_id, Users.first_name, Users.last_name, Users.Phone, Users.email, Users.dob, Users.username, 
     Users.role, Users.user_pic, Room.room_number, Room.room_id,Dormitory.dorm_id, Dormitory.name, Dormitory.phone_contact, Dormitory.address, Dormitory.dorm_pic
     FROM Users INNER JOIN Room ON Users.user_id = Room.loger_id
@@ -36,14 +35,12 @@ router.get('/:id', async (req, res) => {
     try {
         let userid = req.params.id;
         [rows] = await conn.query(sql, [req.params.id]);
-        console.log("brforeprof:", rows)
         if  (rows.length == 0 || rows == []){
             rent = false;
             [rows] = await conn.query(newsql, [req.params.id]);
         }else{
             rent = true;
         }
-        console.log("prof:", rows)
         conn.releaseConnection();
         res.render('profile', { data: rows[0], id: userid, rent: rent, userIdFromCookie: userIdFromCookie });
     } catch (error) {

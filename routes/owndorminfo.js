@@ -26,8 +26,6 @@ router.get("/:id/:uid", async (req, res) => {
     return res.redirect("/");
   }
   
-  console.log("This is :", dormid);
-  console.log("This is :", userid);
   try {
     const sqldname = `SELECT name FROM Dormitory WHERE dorm_id = ?;`;
     const sqlRooms = `SELECT * FROM Room WHERE dorm_id = ?;`;
@@ -82,11 +80,8 @@ router.post("/process_delroom/:id/:did/:uid", async (req, res) => {
 });
 
 router.post("/process_deldorm/:id/:uid", async (req, res) => {
-  console.log("POST /process_del/:id ถูกเรียกใช้");
   const dormId = req.params.id;
   const userid = req.params.uid;
-  console.log("กำลังลบหอพัก ID:", dormId);
-  console.log("กำลังลบหอพัก ID:", userid);
 
   const sql = `DELETE FROM Dormitory WHERE dorm_id = ${dormId};`;
   const sql2 = `SELECT COUNT(room_id) as croom FROM Room WHERE dorm_id = ${dormId};`;
@@ -98,7 +93,6 @@ router.post("/process_deldorm/:id/:uid", async (req, res) => {
       );
     } else {
       const [result] = await conn.query(sql, [dormId]);
-      console.log("ลบสำเร็จ");
       res.redirect("/owneddorm/" + userid);
     }
     conn.releaseConnection();
@@ -108,18 +102,15 @@ router.post("/process_deldorm/:id/:uid", async (req, res) => {
 });
 
 router.post("/news/:did/:uid", async (req, res) => {
-  console.log("POST /tt/:did ถูกเรียกใช้");
   let dormid = req.params.did;
   let userid = req.params.uid;
   let formdata = {
     content: req.body.content,
   };
-  console.log("form", formdata.content);
   let sql = `SELECT loger_id FROM Room WHERE dorm_id = ? and loger_id is not NULL;`;
   try {
     const [rows] = await conn.query(sql, [dormid]);
     for (let i of rows) {
-      console.log(i.loger_id);
       let sql2 = `INSERT INTO notifications (toWho, fromWho, content) VALUE (?, ?, ?);`;
       conn.query(sql2, [i.loger_id, userid, formdata.content]);
     }

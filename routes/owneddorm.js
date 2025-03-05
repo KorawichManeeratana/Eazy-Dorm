@@ -25,7 +25,6 @@ router.get('/:id', async (req, res) => {
         return res.redirect("/");
       }
       
-    console.log("Received id:", req.params.id);
     const sql = `SELECT * FROM Dormitory WHERE owner_id = ?;`
     try {
         let userid = await req.params.id;

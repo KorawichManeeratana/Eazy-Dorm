@@ -107,7 +107,6 @@
         <% } %>
         <script>
             async function ConfirmPayment(payId){
-                console.log(payId)
                 try{
                     const response = await fetch('/api/confirmPayment',{
                     method: "POST",

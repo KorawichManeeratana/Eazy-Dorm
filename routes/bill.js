@@ -49,7 +49,6 @@ WHERE
     ph.pay_id = ${payid};`;
     try {
         const [rows] = await conn.query(sql);
-        console.log(rows[0]);
         conn.releaseConnection();
         res.render('bill', { data: rows[0]});
     } catch (err) {

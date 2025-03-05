@@ -62,12 +62,10 @@ function updateNotificationStatus(notificationId) {
 }
 
 if (hasAccessTokenCookie()) {
-  console.log("Access token exists.");
   userDiv.classList.remove("hidden");
   loginBtn.classList.add("hidden");
 
 } else {
-  console.log("Access token does not exist.");
   userDiv.classList.add("hidden");
   loginBtn.classList.remove("hidden");
 }
@@ -79,6 +77,7 @@ async function fetchCookieInfo() {
   const usernamedisplay = document.getElementById("usernamedisplay");
   const userpfp = document.getElementById("userpfp");
   const biguserpfp = document.getElementById("biguserpfp");
+  const bill = document.getElementById("bill");
 
   try {
     const response = await fetch("http://localhost:3000/api/cookieInfo", {
@@ -102,6 +101,7 @@ async function fetchCookieInfo() {
     biguserpfp.src = decodedata.userpfp;
     usernamedisplay.innerHTML = decodedata.username;
     profilea.href = `/profile/${decodedata.userID}`;
+    bill.href = `/viewBill/${decodedata.userID}`;
 
     if (decodedata.role == "owner") {
       owneddorm.classList.remove("hidden");
@@ -129,8 +129,6 @@ async function getNotification(user_id) {
 
     const data = await response.json();
     const finalData = data.allNoti[0][0];
-    console.log("data:", data)
-    console.log(finalData)
 
     data.allNoti[0].forEach(noti => {
   notiList.insertAdjacentHTML('afterbegin', `
@@ -164,9 +162,7 @@ async function getNotification(user_id) {
 
 function timeSince(dateString) {
   const date = new Date(dateString);
-  console.log(date)
   const seconds = Math.floor((new Date() - date) / 1000);
-  console.log("seconds,", seconds)
 
   let interval = seconds / 31536000;
 

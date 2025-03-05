@@ -1,0 +1,69 @@
+body {
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+
+}
+
+table {
+    padding: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #e9e2d0;
+    color: #333;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a[href^="/bill"] {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #a1887f;
+    border: 1px solid #795548;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+a[href^="/bill"]:hover {
+    background-color: #795548;
+}
+
+
+.no-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #888;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.no-data-container i {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: #ccc;
+}

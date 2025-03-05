@@ -60,7 +60,6 @@
     password: password.value,
   };
 
-  console.log("loginData: ", loginData);
 
   try {
     const response = await fetch("http://localhost:3000/api/login", {
@@ -71,12 +70,10 @@
         body: JSON.stringify(loginData),
     });
     
-    console.log(response)
     const data = await response.json();
     
 
     if (response.ok) {
-        console.log("ลงชื่อเข้าใช้สำเร็จ!");
 
       window.location.href = "/";
 
@@ -84,7 +81,6 @@
         validatemessage.innerHTML = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
         validatemessage.classList.add("show");
         return;
-        console.log("ลงชื่อเข้าใช้ไม่สำเร็จ: " + (data.message || response.statusText));
     }
   } catch (error) {
     console.log("เกิดข้อผิดพลาดในการลงชื่อเข้าใช้: " + error);

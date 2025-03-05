@@ -18,7 +18,6 @@ router.post('/sendproblem/:rid', async (req, res) => {
     let sql = `INSERT INTO Report(room_id, detail) VALUE ( ?, ?);`;
     try {
         const [rows] = await conn.query(sql, [roomid, word]);
-        console.log(rows);
         res.redirect('/reportform/'+roomid);
     } catch (err) {
         console.log(err)

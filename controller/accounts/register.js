@@ -11,7 +11,6 @@ async function registerAccount(userData) {
     const role = userData.role;
     const phone = userData.tel;
 
-    console.log("Info: ", username, password, firstname, lastname, dob, email, role, phone);
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);

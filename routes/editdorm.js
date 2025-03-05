@@ -3,8 +3,8 @@ const router = express.Router();
 const conn = require('../dbconn');
 const multer = require('multer');
 const path = require('path');
-
-
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -31,10 +31,26 @@ const upload = multer({
 
 //Routes
 router.get('/:id/:uid', async (req, res) => {
+      const accessToken = req.cookies.access_token;
+      const SECRET_KEY = process.env.ACCESSKEYID;
+      let userIdFromCookie = null;
+    
+      if (accessToken) {
+        try {
+          const decoded = jwt.verify(accessToken, SECRET_KEY);
+          userIdFromCookie = decoded.userID;
+        } catch (error) {
+          console.error("Error decoding JWT:", error);
+          userIdFromCookie = null;
+        }
+      }
+    
+      if(userIdFromCookie != req.params.uid){
+        return res.redirect("/");
+      }
     const sql = `SELECT * FROM Dormitory WHERE dorm_id = ?;`
     try {
         const [rows] = await conn.query(sql, [req.params.id]);
-        console.log(rows);
         res.render('editdorm', { data: rows[0] });
         conn.releaseConnection();
     } catch (error) {
@@ -44,9 +60,7 @@ router.get('/:id/:uid', async (req, res) => {
 
 
 router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 'qrimage' }]), async (req, res) => {
-    console.log("heer")
     const token = req.body.token || req.headers.authorization?.split(" ")[1] || req.cookies?.access_token;
-    console.log("Extracted token:", token);
     if (!token) {
         return res.status(401).json({ error: "Token not provided" });
     }
@@ -67,7 +81,6 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     let sql;
     let rent = formdata.rent1 + '-' + formdata.rent2;
     if(formdata.image == null && formdata.qrimage == null){
-        console.log("yes it null");
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
@@ -80,7 +93,6 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     water_pay = ${formdata.water_pay}
     WHERE dorm_id = ${req.params.id};`;
     } else if(formdata.image == null){
-        console.log("yes it null");
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
@@ -94,7 +106,6 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     qrcode = '${formdata.qrimage}'
     WHERE dorm_id = ${req.params.id};`;
     } else if(formdata.qrimage == null){
-        console.log("yes it null");
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
