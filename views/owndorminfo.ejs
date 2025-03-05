@@ -70,7 +70,6 @@
             grid-template-columns: repeat(6, 1fr);
             position: absolute;
             right: 30px;
-            /* ปรับจาก 30px เป็น 0 หรือค่าที่ต้องการ */
             top: 10px;
             align-items: center;
             gap: 15px;
@@ -132,7 +131,7 @@
             transition-duration: 3s;
             transition: transform 0.3s ease-in-out, background 3s cubic-bezier(0, 1, 1, 0);
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            margin-top: 60px;
+            margin-top: 50px;
             height: 80%;
         }
 
@@ -153,6 +152,21 @@
             background: rgb(15, 140, 243);
         }
 
+        .deluser {
+            background: rgb(170, 159, 0);
+            height: 50px;
+            width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-align: center;
+            padding: 0;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+
+
         .deleteDORM {
             position: absolute;
             right: 5%;
@@ -172,7 +186,7 @@
             cursor: pointer;
             z-index: 2;
         }
- 
+
         .back:hover {
             background: #cac9c9;
         }
@@ -285,7 +299,6 @@
         }
 
 
-        /* ปรับขนาด textarea */
         .popup textarea {
             width: 80%;
             height: 300px;
@@ -301,15 +314,12 @@
             flex-direction: column;
             position: absolute;
             right: -400px;
-            /* You can adjust this value to control how far from the right edge */
             top: 50%;
-            /* Adjust this to control the vertical position */
             transform: translateY(-50%);
-            /* This centers the element vertically */
         }
 
         #x {
-            background-color:  rgb(151, 96, 51);
+            background-color: rgb(151, 96, 51);
             border-radius: 50%;
             box-shadow: rgba(138, 98, 64, 0.2) 0 -25px 18px -14px inset,
                 rgba(138, 98, 64, 0.15) 0 1px 2px,
@@ -464,12 +474,19 @@
                         <div class="deleteDiv" id="deleteDiv<%= i.room_id %>" style="display:none;">
                             <form action="/owndorminfo/process_delroom/<%= i.room_id %>/ <%= dormid %>/<%= userid %>"
                                 method="POST" enctype="multipart/form-data"
-                                onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบหอพักนี้?')">
+                                onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบห้องพักนี้?')">
                                 <button type="submit" class="btndel">ลบห้องพัก</button>
                             </form>
+                            
                             <form action="/editroom/<%= i.room_id %>/<%= userid %>" method="GET">
                                 <button type="submit" class="btnedit">แก้ไขห้องพัก</button>
                             </form>
+                            <% if (i.loger_id) { %>
+                            <form action="/owndorminfo/deluser/<%= i.room_id %>/<%= dormid %>/<%= userid %>" method="POST" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าจะลบข้อมูลผู้เช่าออกจากหอพักนี้?')">
+                                <button type="submit" class="deluser">ลบข้อมูลผู้เช่า</button>
+                            </form>
+                            <% } else { %>
+                                <% } %>
                         </div>
                         <button id="backbutton" class="back"
                             onclick="window.location.href='/owneddorm/<%= userid %>'">ย้อนกลับ</button>

@@ -121,4 +121,18 @@ router.post("/news/:did/:uid", async (req, res) => {
   }
 });
 
+router.post('/deluser/:rid/:did/:uid', async (req, res) =>{
+  let dormid = req.params.did;
+  let userid = req.params.uid;
+  let roomid = req.params.rid;
+  let sql = `UPDATE Room SET loger_id = NULL WHERE room_id = ?;`
+  try {
+    await conn.query(sql, [roomid]);
+    res.redirect("/owndorminfo/" + dormid + "/" + userid);
+    conn.releaseConnection();
+  } catch (err) {
+    console.log(err);
+  }
+})
+
 module.exports = router;
