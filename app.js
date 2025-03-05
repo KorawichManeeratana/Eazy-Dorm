@@ -38,7 +38,6 @@ app.use('/roominfo', require('./routes/roominfo'));
 app.use('/dorminfo', require('./routes/dorminfo'));
 
 app.use('/editdorm', require('./routes/editdorm'));
-app.use('/showproblem', require('./routes/showproblem'));
 
 app.use('/profile', require('./routes/profile'));
 app.use('/bill', require('./routes/bill'));
@@ -63,13 +62,15 @@ app.use('/api', require('./routes/api/notfications/noriroutes.js'));
 
 app.use('/api', require('./routes/api/dorm/dormRoute.js'));
 
-app.use('/:id/api', require('./routes/api/room/roomRoute.js'));
+app.use('/api', require('./routes/api/room/roomRoute.js'));
 
 app.use('/api', require('./routes/api/notfications/updatestatus.js'));
 
 app.use('/api', require('./routes/api/payment/sendbill.js'));
 
-app.use('/api', require('./routes/api/payment/confirmpayment.js'))
+app.use('/api', require('./routes/api/payment/confirmpayment.js'));
+
+app.use('/api', require('./routes/api/comment/addComment.js'))
 
 
 

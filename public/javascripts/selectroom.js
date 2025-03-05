@@ -1,10 +1,10 @@
 async function loadAllRoom(id) {
-    const response = await fetch('api/loadroom', {
+    const response = await fetch('/api/loadroom', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({id}),
+        body: JSON.stringify({id: id, rent: false}),
     });
     const data = await response.json();
     showRoom(data.allRoom)
@@ -16,9 +16,9 @@ function showRoom(data) {
         room_container.insertAdjacentHTML('afterbegin', `<div class="room" onclick="openRoomInfo(${room.room_id})">
                 <img src="/images/${room.room_img}" alt="room_img">
                 <div class="describe">
-                    <h2>${room.room_number}</h2>
+                    <h3>${room.room_number}</h3>
                     <h4>${room.rent} บาท</h4>
-                    <p>${room.floor}</p>
+                    <h5>ชั้นที่${room.floor}</h5>
                 </div>
             </div>`);
     }
@@ -28,3 +28,4 @@ function openRoomInfo(id) {
     window.open(`/Roominfo/${id}`, "_self");
     return;
 }
+

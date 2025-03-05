@@ -1,9 +1,6 @@
-body {
-    background-color: #CABA9C;
-}
-
 main {
-    padding-inline: 20%;
+    padding-block: 2%;
+    padding-inline: 5%;
 }
 .room_info {
     width: 100%;
@@ -20,11 +17,11 @@ main {
 }
 .info {
     margin: 1%;
-    color: white;
     width: 47%;
+    height: fit-content;
     padding: 1%;
-    background-color: #8A6240;
     border-radius: 5px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
 }
 .info > h1 {
@@ -40,6 +37,7 @@ main {
     border-radius: 5px;
     width: 100%;
     color: white;
+    font-size: xx-large;
     background-color: #bb8454;
     padding-block: 1%;
     cursor: pointer;
@@ -49,27 +47,29 @@ main {
     transform: scale(1.01);
 }
 .mini_info {
-    margin-top: 5%;
-    border: 2px white solid;
+    margin-top: 10px;
     border-radius: 5px;
+    border: 2px solid black;
     padding: 1%;
     padding-inline: 5%;
 }
 .facilities_container {
     margin: 1%;
-    color: white;
     width: 100%;
     padding: 1%;
-    background-color: #8A6240;
     border-radius: 5px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 .facilities {
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 1%;
+    gap: 20px;
 }
-.facilities > h5 {
-    margin-block: 5px;
+.facilities > h3 {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 5px;
 }
 .comments_box {
     color: white;

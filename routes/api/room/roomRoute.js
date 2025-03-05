@@ -1,10 +1,17 @@
 const express = require("express");
-const getDorm = require("../../../controller/room/getRoom");
+const getRoom = require("../../../controller/room/getRoom");
+const rentRoomController = require("../../../controller/room/rentRoom");
 
 const router = express.Router();
 
 router.post('/loadroom', (req, res) => {
-  getDorm(req.body.id)
+  getRoom(req.body.id, req.body.rent)
+  .then(result => res.status(result.status).send(result))
+  .catch(error => res.status(500).send(error));
+});
+
+router.put('/rentRoom', (req, res) => {
+  rentRoomController(req.body.room_id, req.body.user_id)
   .then(result => res.status(result.status).send(result))
   .catch(error => res.status(500).send(error));
 });

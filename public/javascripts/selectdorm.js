@@ -18,7 +18,7 @@ function showDorm(data) {
         dorm_container.insertAdjacentHTML('afterbegin', `<div class="dorm" onclick="openDormInfo(${dorm.dorm_id})">
                 <img src="/images/${dorm.dorm_pic}" alt="dorm_img">
                 <div class="describe">
-                    <h2>${dorm.name}</h2>
+                    <h3>${dorm.name}</h3>
                     <h4>${dorm.rent} บาท</h4>
                     <p>${dorm.address}</p>
                 </div>

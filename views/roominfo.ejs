@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="/stylesheets/roominfo.css">
+    <script src="/javascripts/roominfo.js"></script>
 </head>
 <body>
     <main>
@@ -11,7 +12,7 @@
                 <h1><%=room.room_number%></h1>
                 <h3>ชั้น <%=room.floor%></h3>
                 <p><%=room.status%></p>
-                <button type="button" onclick="rent('<%=room.room_id%>')">เช่าห้อง</button>
+                <button type="button" onclick="rentTheRoom('<%=room.room_id%>')">เช่าห้อง</button>
                 <div class="mini_info">
                     <h3>รายละเอียด</h3>
                     <p>ขนาด <%=room.size%> ตร.ม</p>
@@ -22,7 +23,7 @@
                 <h1>สิ่งอำนวยความสะดวก</h1>
                 <div class="facilities">
                     <%amenities.forEach(fac => {%>
-                        <h5><%=fac.name%></h5>
+                        <h3><%=fac.name%></h3>
                     <%});%>
                 </div>
             </div>

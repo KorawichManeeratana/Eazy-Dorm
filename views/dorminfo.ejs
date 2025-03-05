@@ -12,7 +12,7 @@
                 <h1><%=dorm.name%></h1>
                 <h3><%=dorm.rating%> ดาว</h3>
                 <p><%=dorm.address%></p>
-                <button type="button" onclick="openSelectRoom('<%=dorm.dorm_id%>')">เลือกดูห้อง</button>
+                <button type="button" onclick="openSelectRoom('<%=dorm.dorm_id%>')">เลือกดูห้องที่ว่าง</button>
                 <div class="mini_info">
                     <h3>รายละเอียด</h3>
                     <p><%=dorm.detail%></p>
@@ -23,17 +23,12 @@
                     <p>เบอร์ติดต่อ: <%=dorm.phone_contact%></p>
                 </div>
             </div>
-            <div class="facilities_container">
-                <h1>สิ่งอำนวยความสะดวก</h1>
-                <div class="facilities">
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                    <h3>เครื่องปรับอากาศ</h3>
-                </div>
-            </div>
+        </div>
+        <div class="do_comment">
+            <h1>แสดงความคิดเห็น</h1>
+            <input type="number" id="my_comment_rating"> คะแนน
+            <textarea id="my_comment_text" rows="10"></textarea>
+            <button type="button" onclick="do_comment('<%=dorm.dorm_id%>')">ยืนยัน</button>
         </div>
         <div class="comments_box">
             <h1>ความคิดเห็นทั้งหมด</h1>

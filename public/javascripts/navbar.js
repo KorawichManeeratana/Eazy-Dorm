@@ -95,10 +95,6 @@ async function fetchCookieInfo() {
     const data = await response.json();
     decodedata = data.decoded;
 
-    localStorage.setItem('userID', decodedata.userID);
-    localStorage.setItem('username', decodedata.username);
-    localStorage.setItem('userpfp', decodedata.userpfp);
-    
     getNotification(decodedata.userID);
     owneddorm.href = `/owneddorm/${decodedata.userID}`;
     

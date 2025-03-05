@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const SECRET_KEY = process.env.ACCESSKEYID;
 
 async function CookiesDecode(token) {
-    console.log("Token received:", token);
+    //console.log("Token received:", token);
 
     try {
         if (!token) {

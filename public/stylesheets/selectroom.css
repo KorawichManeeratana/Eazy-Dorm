@@ -1,17 +1,12 @@
-body {
-    background-color: #CABA9C;
-}
-
 main {
-    padding-block: 2%;
-    padding-inline: 5%;
+    margin: none;
     display: flex;
 }
 .filter {
-    background-color: #8A6240;
-    color: white;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     border-radius: 25px;
-    width: 200px;
+    margin-left: 10px;
+    margin-top: 100px;
     padding: 1%;
     height: fit-content;
 }
@@ -28,15 +23,13 @@ main {
     margin-bottom: 5px;
 }
 .item {
-    background-color: #CABA9C;
-    color: black;
+    background-color: whitesmoke;
     border-radius: 5px;
     margin: 1px;
     padding: 1px;
 }
 .item > button {
     border: none;
-    background-color: #CABA9C;
     cursor: pointer;
 }
 .floorselect {
@@ -46,8 +39,8 @@ main {
 .pricerange > input {
     width: 60px;
     height: 20px;
-    border: none;
     border-radius: 5px;
+    border: 1px black solid;
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -57,17 +50,17 @@ input[type=number]::-webkit-outer-spin-button {
 .roomcontainer {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1230px;
-    gap: 15px;
-    margin-left: 5%;
-    color: white;
+    gap: 5px;
+    margin-top: 100px;
+    margin-left: 25px;
 }
 .room {
     cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+    padding: 5px;
     height: 350px;
-    width: 400px;
-    background-color: #8A6240;
+    width: 350px;
 }
 .room > img {
     border-radius: 5px;
@@ -80,8 +73,8 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
     display: flex;
 }
-.describe > h2 {
-    margin-top: 1px;
+.describe > h3 {
+    margin-top: 7px;
     margin-left: 10px;
 }
 .describe > h4 {
@@ -89,12 +82,8 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     right: 2%;
 }
-.price {
-    margin-top: 1px;
+.describe > h5 {
     position: absolute;
-    right: 2%;
-}
-
-.describe > button:hover {
-    transform: scale(1.05);
+    bottom: 5px;
+    left: 10px;
 }

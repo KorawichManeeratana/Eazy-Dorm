@@ -6,30 +6,18 @@
 </head>
 <body onload="openPage()">
     <main>
-        <div class="filter">
-            <h3>Filters</h3>
-            <div class="itemscontainer">
-                <div class="item">แอร์ <button>x</button></div>
-                <div class="item">เตียงคู่ <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-            </div>
-            <h3>ราคา</h3>
-            <div class="pricerange">
-                <input type="number" placeholder="ขั้นต่ำ" id="minprice"> - <input type="number" placeholder="สูงสุด" id="maxprice"> บาท
-            </div>
-        </div>
 
         <form class="search" onsubmit="searchDorm(event)">
             <input type="text" placeholder="ค้นหาหอพัก" id="searchtext">
+            <div class="pricerange">
+                ราคา <input type="number" placeholder="ขั้นต่ำ" id="minprice"> - <input type="number" placeholder="สูงสุด" id="maxprice"> บาท
+            </div>
             <button type="submit">ค้นหา</button>
         </form>
 
         <div class="dormcontainer">
         </div>
+        
     </main>
     
 </body>
