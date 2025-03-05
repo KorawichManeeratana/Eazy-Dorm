@@ -170,15 +170,9 @@
             border: 1px solid #ddd;
             box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
             cursor: pointer;
+            z-index: 2;
         }
-
-        #back-button.disabled {
-            opacity: 0.5;
-            /* ทำให้จางลง */
-            pointer-events: none;
-            /* ปิดการคลิก */
-        }
-
+ 
         .back:hover {
             background: #cac9c9;
         }
@@ -477,7 +471,7 @@
                                 <button type="submit" class="btnedit">แก้ไขห้องพัก</button>
                             </form>
                         </div>
-                        <button id="back-button" class="back"
+                        <button id="backbutton" class="back"
                             onclick="window.location.href='/owneddorm/<%= userid %>'">ย้อนกลับ</button>
                     </main>
                     <% }); %>
@@ -507,23 +501,11 @@
         function showPopup() {
             document.getElementById('popup').classList.add('show');
             document.getElementById('overlay').classList.add('show');
-
-            // ทำให้ปุ่มย้อนกลับจางลงและคลิกไม่ได้
-            let backButton = document.getElementById('back-button');
-            if (backButton) {
-                backButton.classList.add('disabled');
-            }
         }
 
         function closePopup() {
             document.getElementById('popup').classList.remove('show');
             document.getElementById('overlay').classList.remove('show');
-
-            // คืนค่าปุ่มย้อนกลับ
-            let backButton = document.getElementById('back-button');
-            if (backButton) {
-                backButton.classList.remove('disabled');
-            }
         }
 
         document.getElementById('overlay').addEventListener('click', function (event) {

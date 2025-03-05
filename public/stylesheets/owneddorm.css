@@ -1,13 +1,19 @@
 body {
-    background: #CABA9C;
+    background: #ffffff;
 }
 
 h1 {
     margin-top: 2%;
     text-align: center;
     font-size: 50px;
+    color: #000000;
+    font-size: 50px;
+    font-weight: bold;
     color: #ffffff;
-
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    background: linear-gradient(135deg, #80644a, #f2cfb7);
+    object-fit: cover;
 }
 
 img {
@@ -16,12 +22,15 @@ img {
 }
 
 .mydorm {
-    width: 900px;
-    /* กำหนดขนาดคงที่ */
-    height: 300px;
-    /* กำหนดความสูงคงที่ */
+    position: relative;
+    flex-grow: 1;
+    max-width: 900px;
+    max-height: 600px;
+    min-height: 250px;
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
-    color: #ffffff;
+    color: #79522e;
     border-radius: 20px;
     margin-top: 2%;
     font-size: 25px;
@@ -29,16 +38,28 @@ img {
     display: flex;
     gap: 2%;
     justify-content: left;
-    background: #8A6240;
-    transition-duration: 3s;
-    transition: transform 0.3s ease-in-out, background 3s cubic-bezier(0, 1, 1, 0);
+    background: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.btnedit {
+    position: absolute;
+    max-height: 50px;
+    bottom: 85%;
+    right: 3%;
+    background: rgb(15, 140, 243);
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px;
+    transition: 0.3s;
+}
 
 .mydorm:hover {
-    transform: translateY(-10px);
-    background: #bb8e66;
+    background: #dddddd;
 }
 
 .bt-adddorm {
@@ -123,11 +144,17 @@ img {
 }
 
 .all {
-    display: flex;
-    gap: 1%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 20px;
     justify-content: center;
+    width: 90%;
+    margin: auto;
 }
 
+.title {
+    color: #000000;
+}
 
 .deleteDiv {
     display: flex;
@@ -152,11 +179,11 @@ img {
 .deleteDiv button:hover {
     background: black;
     transform: translateY(-10px);
+}
 
-}
-.btndel{
-    background: red;
-}
-.btnedit{
-    background: rgb(15, 140, 243);
+.dimg {
+    width: 40%;
+    height: 40%;
+    min-width: 200px;
+    min-height: 130px;
 }
