@@ -1,14 +1,19 @@
 require("dotenv").config();
 const db = require("../../dbconn");
 
-async function getRoom(id, rent) {
+async function getRoom(id, rent, floors) {
   try {
+    let params = [id];
+    query =`SELECT room_id, room_number, rent, room_img, size, floor FROM Room WHERE dorm_id = ?`
     if (!rent) {
-      query = `SELECT room_id, room_number, rent, room_img, size, floor FROM Room WHERE dorm_id = ? and loger_id is null;`;
-    } else {
-      query = `SELECT room_id, room_number, rent, room_img, size, floor FROM Room WHERE dorm_id = ?`;
+      query += ` AND loger_id is null`;
     }
-    const result = (await db.query(query, id))[0];
+    if (floors.length) {
+      let placeholders = floors.map(() => "?").join(", ");
+      query += ` AND floor IN (${placeholders})`;
+      params.push(...floors);
+    }
+    const result = (await db.query(query, params))[0];
     db.releaseConnection();
     return {
       status: 200,
