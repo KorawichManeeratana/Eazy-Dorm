@@ -14,7 +14,7 @@ async function rentTheRoom(id) {
         const cookiedata = await cookieresponse.json();
         decodedata = cookiedata.decoded;
 
-        const response = await fetch('/api/rentRoom', {
+        await fetch('/api/rentRoom', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
