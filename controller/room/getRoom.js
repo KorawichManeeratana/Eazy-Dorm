@@ -23,9 +23,9 @@ async function getRoom(id, rent, floors, amens) {
       else {query += ` AND floor IN (${placeholders})`;}
       params.push(...floors);
     }
-    if (amens.length) {query += ' AND r.dorm_id = ?;'}
-    else {query += ' AND dorm_id = ?;'}
     params.push(id);
+    if (amens.length) {query += ' AND r.dorm_id = ? GROUP BY r.room_id HAVING COUNT(DISTINCT a.amen_id) = ?;'; params.push(amens.length)}
+    else {query += ' AND dorm_id = ?;';}
     console.log(query)
     const result = (await db.query(query, params));
     db.releaseConnection();

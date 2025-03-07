@@ -9,6 +9,7 @@ main {
     margin-top: 100px;
     padding: 1%;
     height: fit-content;
+    width: 200px;
 }
 .filter > input {
     border: none;
