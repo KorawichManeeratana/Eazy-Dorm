@@ -3,6 +3,19 @@ const router = express.Router();
 const conn = require("../dbconn");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const multer = require('multer');
+const path = require('path');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/images/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
+
+const upload = multer({ storage: storage });
 
 router.get("/:rid/:uid", async (req, res) => {
   const roomid = req.params.rid;
@@ -29,13 +42,12 @@ router.get("/:rid/:uid", async (req, res) => {
   let sql = `SELECT * FROM Room WHERE room_id = ${roomid};`;
   try {
     const [rows] = await conn.query(sql, [roomid]);
-    console.log(rows[0]);
     res.render("editroom", { data: rows[0], userid });
   } catch (err) {
     console.log(err);
   }
 });
-router.post("/process_editroom/:id/:uid", async (req, res) => {
+router.post("/process_editroom/:id/:uid", upload.single('image'), async (req, res) => {
   let roomId = req.params.id;
   let userid = req.params.uid;
 
@@ -62,14 +74,27 @@ router.post("/process_editroom/:id/:uid", async (req, res) => {
     floor: req.body.floor,
     size: req.body.size,
     rent: req.body.rent,
+    image: req.file ? req.file.filename : null
   };
-
-  let sql = `UPDATE Room 
-               SET room_number = '${formdata.room_number}', 
-                   floor = ${formdata.floor}, 
-                   size = ${formdata.size}, 
-                   rent = ${formdata.rent}
-               WHERE room_id = ${roomId};`;
+  let sql;
+  console.log(formdata.image);
+  if (formdata.image == null) {
+    sql = `UPDATE Room 
+        SET room_number = '${formdata.room_number}', 
+        floor = ${formdata.floor}, 
+        size = ${formdata.size}, 
+        rent = ${formdata.rent}
+        WHERE room_id = ${roomId};`;
+  } else {
+    sql = `UPDATE Room 
+        SET room_number = '${formdata.room_number}', 
+        floor = ${formdata.floor}, 
+        size = ${formdata.size}, 
+        rent = ${formdata.rent},
+        room_img = '${formdata.image}'
+        WHERE room_id = ${roomId};`;
+  }
+  
   let sqldorm = `SELECT dorm_id FROM Room WHERE room_id = ${roomId};`;
   try {
     dorm = await conn.query(sqldorm);

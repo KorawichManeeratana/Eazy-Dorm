@@ -8,7 +8,6 @@ const session = require('express-session');
 const app = express();
 const PORT = 3000
 
-const connection= require('./dbconn.js');
 const cookieParser = require("cookie-parser");
 app.use(cookieParser())
 
