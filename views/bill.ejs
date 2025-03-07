@@ -6,10 +6,33 @@
     <title>ชำระค่าหอพัก</title>
     <link rel="stylesheet" href="/stylesheets/bill.css">
     <script src=""></script>
+    <style>
+      .completed-payment {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .completed-payment h2 {
+        margin-bottom: 10px;
+      }
+
+      .completed-payment img {
+        width: 50px; /* Adjust size as needed */
+        height: 50px; /* Adjust size as needed */
+      }
+    </style>
   </head>
   <body>
     <div class="main">
       <div class="container">
+
+        <% if  (typeof data === 'undefined' || data === null) { %>
+          <div class="completed-payment">
+            <h2>คุณได้ทำการชำระบิลนี้เป็นที่เรียบร้อยแล้ว</h2>
+            <img src="https://img.icons8.com/color/96/000000/checked--v1.png"/>
+          </div>
+        <% } else { %>
+
         <form
           action="/bill/pay/<%= data.pay_id%>"
           method="post"
@@ -27,7 +50,7 @@
               class="icon"
               src="https://img.icons8.com/?size=100&id=uOoIUTYvxnso&format=png&color=000000"
             />
-            <p>ชื่อผู้เช่า: <%= data.first_name%>&nbsp<%= data.last_name%></p>
+            <p>ชื่อผู้เช่า: <%= data.first_name%> <%= data.last_name%></p>
           </div>
           <strong>รายการค่าใช้จ่าย</strong>
           <div class="amount">
@@ -61,6 +84,7 @@
           >
           <button class="button">ยืนยันการโอน</button>
         </form>
+        <% } %>
       </div>
     </div>
     <script>

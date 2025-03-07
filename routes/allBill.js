@@ -38,8 +38,7 @@ ORDER BY
         const [rows] = await conn.query(sql, dormid);
         const dormname = await conn.query(sqlv2, dormid);
         conn.releaseConnection();
-        
-        if (dormname[0].owner_id != userIdFromCookie){
+        if (dormname[0][0].owner_id != userIdFromCookie){
             return res.redirect('/');
         }
         res.render('allBill', { data: rows, dname: dormname[0]});

@@ -59,7 +59,8 @@ LEFT JOIN
 LEFT JOIN
     FirstPayment fp ON r.room_id = fp.room_id
 WHERE
-    n.toWho = ${id};`;
+    n.toWho = ${id}
+GROUP BY n.NotiID;`;
     }
     
     const [result, fill] = await (await db.getConnection()).query(query);
