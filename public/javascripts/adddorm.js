@@ -30,7 +30,7 @@ function validate(event) {
     event.preventDefault();
 
     let form = event.target;
-    let room = document.getElementById("room").value.trim();
+    let pay = document.getElementById("pay").value.trim();
     let rent1 = document.getElementById("rent1").value.trim();
     let rent2 = document.getElementById("rent2").value.trim();
     let phone = document.getElementById("contact").value.trim();
@@ -39,8 +39,8 @@ function validate(event) {
 
     let isValid = true; 
 
-    if (isNaN(room) || room === "") {
-        alert("จำนวนห้องต้องเป็นตัวเลขเท่านั้น");
+    if (isNaN(pay) || pay === "") {
+        alert("จำนวนหมายเลขบัญชีต้องเป็นตัวเลขเท่านั้น");
         isValid = false;
         return false;
     }

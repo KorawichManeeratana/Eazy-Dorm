@@ -68,7 +68,7 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
         name: req.body.name,
         detail: req.body.detail,
         address: req.body.address,
-        room: req.body.room,
+        pay: req.body.pay,
         rent1: req.body.rent1,
         rent2: req.body.rent2,
         contact: req.body.phone_contact,
@@ -76,7 +76,8 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
         electric_pay: req.body.electric_pay,
         water_pay: req.body.water_pay,
         image: req.files['image'] ? req.files['image'][0].filename : null,
-        qrimage: req.files['qrimage'] ? req.files['qrimage'][0].filename : null
+        qrimage: req.files['qrimage'] ? req.files['qrimage'][0].filename : null,
+        payChannel: req.body.payChannel
     };
     let sql;
     let rent = formdata.rent1 + '-' + formdata.rent2;
@@ -85,52 +86,56 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
     address = '${formdata.address}',
-    room = ${formdata.room},
+    pay = ${formdata.pay},
     rent = '${rent}',
     phone_contact = '${formdata.contact}',
     other_contact = '${formdata.other_contact}',
     electric_pay = ${formdata.electric_pay},
-    water_pay = ${formdata.water_pay}
+    water_pay = ${formdata.water_pay},
+    payChannel = ${formdata.payChannel}
     WHERE dorm_id = ${req.params.id};`;
     } else if(formdata.image == null){
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
     address = '${formdata.address}',
-    room = ${formdata.room},
+    pay = ${formdata.pay},
     rent = '${rent}',
     phone_contact = '${formdata.contact}',
     other_contact = '${formdata.other_contact}',
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay},
-    qrcode = '${formdata.qrimage}'
+    qrcode = '${formdata.qrimage}',
+    payChannel = ${formdata.payChannel}
     WHERE dorm_id = ${req.params.id};`;
     } else if(formdata.qrimage == null){
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
     address = '${formdata.address}',
-    room = ${formdata.room},
-    rent = '${rent}',
-    phone_contact = '${formdata.contact}',
-    other_contact = '${formdata.other_contact}',
-    electric_pay = ${formdata.electric_pay},
-    water_pay = ${formdata.water_pay},
-    dorm_pic = '${formdata.image}'
-    WHERE dorm_id = ${req.params.id};`;
-    } else {
-        sql = `UPDATE Dormitory SET 
-    name = '${formdata.name}',
-    detail = '${formdata.detail}',
-    address = '${formdata.address}',
-    room = ${formdata.room},
+    pay = ${formdata.pay},
     rent = '${rent}',
     phone_contact = '${formdata.contact}',
     other_contact = '${formdata.other_contact}',
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay},
     dorm_pic = '${formdata.image}',
-    qrcode = '${formdata.qrimage}'
+    payChannel = ${formdata.payChannel}
+    WHERE dorm_id = ${req.params.id};`;
+    } else {
+        sql = `UPDATE Dormitory SET 
+    name = '${formdata.name}',
+    detail = '${formdata.detail}',
+    address = '${formdata.address}',
+    pay = ${formdata.pay},
+    rent = '${rent}',
+    phone_contact = '${formdata.contact}',
+    other_contact = '${formdata.other_contact}',
+    electric_pay = ${formdata.electric_pay},
+    water_pay = ${formdata.water_pay},
+    dorm_pic = '${formdata.image}',
+    qrcode = '${formdata.qrimage}',
+    payChannel = ${formdata.payChannel}
     WHERE dorm_id = ${req.params.id};`;
     }   
     

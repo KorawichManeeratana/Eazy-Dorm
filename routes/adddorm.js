@@ -48,7 +48,7 @@ router.post('/process_addorm', upload.fields([{ name: 'image' }, { name: 'qrimag
         name: req.body.name,
         detail: req.body.detail,
         address: req.body.address,
-        room: req.body.room,
+        pay: req.body.pay,
         rent1: req.body.rent1,
         rent2: req.body.rent2,
         contact: req.body.contact,
@@ -56,11 +56,12 @@ router.post('/process_addorm', upload.fields([{ name: 'image' }, { name: 'qrimag
         electric_pay: req.body.electric_pay,
         water_pay: req.body.water_pay,
         image: req.files['image'] ? req.files['image'][0].filename : null,
-        qrimage: req.files['qrimage'] ? req.files['qrimage'][0].filename : null
+        qrimage: req.files['qrimage'] ? req.files['qrimage'][0].filename : null,
+        payChannel: req.body.payChannel
     };
     let rent = formdata.rent1 + '-' + formdata.rent2;
-    let sql = `INSERT INTO Dormitory(owner_id, name, detail, address, room, status, rent, rating, phone_contact, other_contact, electric_pay, water_pay, dorm_pic, qrcode) 
-               VALUES (?, ?, ?, ?, ?, 'Available', ?, 0.0, ?, ?, ?, ?, ?, ?);`;
+    let sql = `INSERT INTO Dormitory(owner_id, name, detail, address, pay, status, rent, rating, phone_contact, other_contact, electric_pay, water_pay, dorm_pic, qrcode, payChannel) 
+               VALUES (?, ?, ?, ?, ?, 'Available', ?, 0.0, ?, ?, ?, ?, ?, ?, ?);`;
     try {
         const response = await fetch("http://localhost:3000/api/cookieInfo", {
             method: 'POST',
@@ -85,14 +86,15 @@ router.post('/process_addorm', upload.fields([{ name: 'image' }, { name: 'qrimag
             formdata.name,
             formdata.detail,
             formdata.address,
-            formdata.room,
+            formdata.pay,
             rent,
             formdata.contact,
             formdata.other_contact,
             formdata.electric_pay,
             formdata.water_pay,
             formdata.image,
-            formdata.qrimage
+            formdata.qrimage,
+            formdata.payChannel
         ]);
         res.redirect('/owneddorm/'+decodedata.userID);
         conn.releaseConnection();

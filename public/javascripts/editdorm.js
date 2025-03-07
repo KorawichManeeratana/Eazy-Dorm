@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function validate(event) {
     event.preventDefault();
     let form = event.target;
-    let room = document.getElementById("room").value.trim();
+    let pay = document.getElementById("pay").value.trim();
     let rent1 = document.getElementById("rent1").value.trim();
     let rent2 = document.getElementById("rent2").value.trim();
     let phone = document.getElementById("phone_contact").value.trim();
@@ -37,7 +37,7 @@ function validate(event) {
 
     let isValid = true; 
 
-    if (isNaN(room) || room === "") {
+    if (isNaN(pay) || pay === "") {
         alert("จำนวนห้องต้องเป็นตัวเลขเท่านั้น");
         isValid = false;
         return false;

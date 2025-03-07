@@ -3,13 +3,14 @@ const router = express.Router();
 const conn = require('../dbconn');
 
 //Routes
-router.get('/:did', async (req, res) => {
+router.get('/:did/:uid', async (req, res) => {
     let dormid = req.params.did;
+    let userid = req.params.uid;
     let sql = `SELECT r.room_number, rp.detail, rp.report_id ,u.phone FROM Report rp
         JOIN Room r ON rp.room_id = r.room_id JOIN Users u ON r.loger_id = u.user_id WHERE r.dorm_id = ${dormid};`;
     try {
         const [rows] = await conn.query(sql, [dormid]);
-        res.render('reportnoti', { data: rows, dormid });
+        res.render('reportnoti', { data: rows, dormid , userid});
     } catch (err) {
         console.error(err);
     }

@@ -93,6 +93,7 @@ router.post("/process_deldorm/:id/:uid", async (req, res) => {
       );
     } else {
       const [result] = await conn.query(sql, [dormId]);
+      conn.releaseConnection();
       res.redirect("/owneddorm/" + userid);
     }
     conn.releaseConnection();
@@ -114,8 +115,8 @@ router.post("/news/:did/:uid", async (req, res) => {
       let sql2 = `INSERT INTO notifications (toWho, fromWho, content) VALUE (?, ?, ?);`;
       conn.query(sql2, [i.loger_id, userid, formdata.content]);
     }
-    res.redirect("/owndorminfo/" + dormid + "/" + userid);
     conn.releaseConnection();
+    res.redirect("/owndorminfo/" + dormid + "/" + userid);
   } catch (err) {
     console.log(err);
   }
@@ -128,8 +129,8 @@ router.post('/deluser/:rid/:did/:uid', async (req, res) =>{
   let sql = `UPDATE Room SET loger_id = NULL WHERE room_id = ?;`
   try {
     await conn.query(sql, [roomid]);
-    res.redirect("/owndorminfo/" + dormid + "/" + userid);
     conn.releaseConnection();
+    res.redirect("/owndorminfo/" + dormid + "/" + userid);
   } catch (err) {
     console.log(err);
   }

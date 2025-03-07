@@ -47,8 +47,13 @@
                             id="eres"></b></p><br>
                 </div>
                 <p>ค่าเช่า : <b id="rent">
+                    <% if (data && data.length > 0) { %>
                         <%= data[0].rent %>
-                    </b></p>
+                    <% } else { %>
+                        ไม่มีข้อมูล
+                    <% } %>
+                </b></p>
+                
                 <button onclick="cal()">คำนวณ</button>
                 <h1>รวมค่าเช่า : <strong id="totalrent"></strong></h1>
             </div>

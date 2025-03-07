@@ -18,10 +18,11 @@
                     <label for="detail">รายละเอียด :</label>
                     <input type="text" name="detail" id="detail" required>
                     <label for="address">ที่อยู่ :</label>
-                    <input type="text" name="address" id="address" required>
-                    <label for="room">จำนวนห้อง :</label>
-                    <input type="text" name="room" id="room" required>
-
+                    <input type="text" name="address" id="address" placeholder="เช่น: บ้านเลขที่ ซอย ถนน หมู่บ้าน ตำบล/แขวง อำเภอ/เขต จังหวัด รหัสไปรษณีย์" required>
+                    <label for="pay">เลขที่บัญชี :</label>
+                    <input type="text" name="pay" id="pay" required>
+                    <label for="payChannel">ธนาคาร :</label>
+                    <input type="text" name="payChannel" id="payChannel" placeholder="เช่น: กรุงไทย" required>
                         <label for="rent1">ราคาเริ่มต้น :</label>
                         <input type="text" name="rent1"   id="rent1" required>
                         <label for="rent2">ราคาสูงสุด :</label>
@@ -40,6 +41,9 @@
                         <img src="" alt="Image Preview" id="imagePreview" style="display: none;">
                     </div>
                     <input type="file" name="image" id="fileInput" style="display: none;">
+                    <div style="display: flex;">
+                        <p style="color: red;">*</p>รองรับเฉพาะไฟล์รูปภาพเท่านั้น (jpg, png)
+                    </div>
                     <input type="button" value="อัพโหลดรูปหอพัก" class="upload" onclick="document.getElementById('fileInput').click();">
 
                     <input type="file" name="qrimage" id="qrFileInput" class="qr" style="display: none;">
@@ -51,9 +55,6 @@
             </form>
         </div>
     </div>
-    <% data.forEach((i) => { %>
-        <button class="btback" onclick="window.location.href='/owneddorm/<%= i.user_id %>';">ย้อนกลับ</button>
-      <% }); %>      
 </body>
 
 </html>
