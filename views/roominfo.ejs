@@ -12,7 +12,7 @@
                 <h1><%=room.room_number%></h1>
                 <h3>ชั้น <%=room.floor%></h3>
                 <p><%=room.status%></p>
-                <button type="button" onclick="rentTheRoom('<%=room.room_id%>')">เช่าห้อง</button>
+                <button type="button" class="notrentbutton" onclick="rentTheRoom('<%=room.room_id%>')">เช่าห้อง</button>
                 <div class="mini_info">
                     <h3>รายละเอียด</h3>
                     <p>ขนาด <%=room.size%> ตร.ม</p>

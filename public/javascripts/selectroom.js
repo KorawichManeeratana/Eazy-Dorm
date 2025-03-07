@@ -1,21 +1,66 @@
+let amenlist = [];
+
 function openPage(id) {
     loadRoom(id);
+    loadAmen();
     loadFloor(id);
 }
 
 async function loadRoom(id) {
     const checkedBoxes = document.querySelectorAll('input[name="floor"]:checked');
     const floors = Array.from(checkedBoxes).map(floor => parseInt(floor.value));
-    console.log(floors)
     const response = await fetch('/api/loadroom', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({id: id, rent: false, floors: floors}),
+        body: JSON.stringify({id: id, rent: false, floors: floors, amens: amenlist}),
     });
     const data = await response.json();
     showRoom(data.allRoom);
+}
+
+async function loadAmen() {
+    const response = await fetch('/api/loadamenities', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(),
+    });
+    const data = await response.json();
+    const item_select = document.getElementById("Amen");
+    for (a of data.allAmens) {
+        item_select.insertAdjacentHTML('afterbegin', `<option value="${a.amen_id},${a.name}">${a.name}</option>`);
+    }
+    item_select.insertAdjacentHTML('afterbegin', `<option value="0" selected>เลือกสิ่งอำนวยความสดวก</option>`);
+}
+
+function addAmen() {
+    let select = document.getElementById("Amen");
+    let selected = select.selectedIndex;
+    let [id, name] = select.value.split(",");
+    document.getElementsByClassName("itemscontainer")[0].insertAdjacentHTML('afterbegin', `<div class="item" id="amen${id}">${name}<button onclick="removeAmen(${id}, '${name}')">x</button></div>`);
+    amenlist.push(parseInt(id));
+    console.log(amenlist);
+    if (selected > 0) {select.remove(selected);}
+}
+
+function removeAmen(id, name) {
+    console.log(id);
+    document.getElementById(`amen${id}`).remove();
+    const item_select = document.getElementById("Amen");
+    item_select.innerHTML += `<option value="${id},${name}">${name}</option>`;
+    let newa = [];
+    for (a of amenlist) {
+        if (a != parseInt(id)) {newa.push(a)}
+    }
+    amenlist = newa;
+    console.log(amenlist);
+}
+
+function eq(val) {
+    return val = 0;
 }
 
 async function loadFloor(id) {

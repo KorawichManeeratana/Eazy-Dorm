@@ -21,7 +21,9 @@ async function rentTheRoom(id) {
             },
             body: JSON.stringify({room_id: id, user_id: decodedata.userID}),
         });
-        const data = await response.json();
+        let button = document.getElementsByClassName("notrentbutton")[0];
+        button.setAttribute("class", "rentedbutton");
+        button.removeAttribute("onclick");
         
     } catch (error) {
         console.error('Error fetching user info:', error);

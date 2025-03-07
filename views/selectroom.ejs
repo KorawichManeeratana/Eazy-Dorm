@@ -8,18 +8,10 @@
     <main>
         <div class="filter">
             <h3>กรอง</h3>
-            <div class="itemscontainer">
-                <div class="item">แอร์ <button>x</button></div>
-                <div class="item">เตียงคู่ <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-                <div class="item">eiei <button>x</button></div>
-            </div>
+            <select name="Amenities" id="Amen" onchange="addAmen()"></select>
+            <div class="itemscontainer"></div>
             <h3>ชั้น</h3>
-            <div class="floorselect">
-            </div>
+            <div class="floorselect"></div>
             <h3>ราคา</h3>
             <div class="pricerange">
                 <input type="number" placeholder="ขั้นต่ำ"> - <input type="number" placeholder="สูงสุด"> บาท
@@ -27,8 +19,7 @@
             <button type="button" onclick="loadRoom('<%=id%>')">ยืนยัน</button>
         </div>
 
-        <div class="roomcontainer">
-        </div>
+        <div class="roomcontainer"></div>
     </main>
 </body>
 </html>

@@ -32,7 +32,7 @@ main {
     right: 5%;
     top: 1%;
 }
-.info > button {
+.notrentbutton {
     border: none;
     border-radius: 5px;
     width: 100%;
@@ -43,7 +43,17 @@ main {
     cursor: pointer;
     transition: all 200ms;
 }
-.info > button:hover {
+.rentedbutton {
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    color: white;
+    font-size: xx-large;
+    background-color: grey;
+    padding-block: 1%;
+}
+
+.notrentbutton:hover {
     transform: scale(1.01);
 }
 .mini_info {
