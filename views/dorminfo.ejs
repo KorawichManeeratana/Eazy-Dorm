@@ -27,11 +27,11 @@
         <div class="do_comment">
             <h1>แสดงความคิดเห็น</h1>
             <div class="stars" id="starRating">
-                <span class="star" onclick="changeStar(1)" onmouseover="changeStarColor(1)" onmouseout="changeStarColor(0)">★</span>
-                <span class="star" onclick="changeStar(2)" onmouseover="changeStarColor(2)" onmouseout="changeStarColor(0)">★</span>
-                <span class="star" onclick="changeStar(3)" onmouseover="changeStarColor(3)" onmouseout="changeStarColor(0)">★</span>
-                <span class="star" onclick="changeStar(4)" onmouseover="changeStarColor(4)" onmouseout="changeStarColor(0)">★</span>
-                <span class="star" onclick="changeStar(5)" onmouseover="changeStarColor(5)" onmouseout="changeStarColor(0)">★</span>
+                <span class="star" onclick="changeStar(1)" onmouseover="changeStarColor(1)" onmouseout="changeStarColor(0)">&#9733;</span>
+                <span class="star" onclick="changeStar(2)" onmouseover="changeStarColor(2)" onmouseout="changeStarColor(0)">&#9733;</span>
+                <span class="star" onclick="changeStar(3)" onmouseover="changeStarColor(3)" onmouseout="changeStarColor(0)">&#9733;</span>
+                <span class="star" onclick="changeStar(4)" onmouseover="changeStarColor(4)" onmouseout="changeStarColor(0)">&#9733;</span>
+                <span class="star" onclick="changeStar(5)" onmouseover="changeStarColor(5)" onmouseout="changeStarColor(0)">&#9733;</span>
             </div>
             <textarea id="my_comment_text" rows="10"></textarea>
             <button type="button" onclick="do_comment('<%=dorm.dorm_id%>')">ยืนยัน</button>
@@ -44,8 +44,11 @@
                         <div class="top">
                             <img src="<%=com.user_pic%>" alt="user_img">
                             <h3><%=com.username%></h3>
-                            <%%>
-                            <h5><%=com.rating%> ดาว</h5>
+                            <div class="comstars">
+                                <%for (i=0; i<com.rating; i++) {%>
+                                    <span class="comstar">&#9733;</span>
+                                <%};%>
+                            </div>
                         </div>
                         <p><%=com.comment%></p>
                     </div>

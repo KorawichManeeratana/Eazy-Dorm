@@ -91,6 +91,14 @@ main {
 .star.active {
     color: gold;
 }
+.comstars{
+    display: flex;
+    gap: 1px;
+    font-size: 20px;
+}
+.comstar{
+    color: gold;
+}
 .do_comment > textarea {
     width: 100%;
 }
