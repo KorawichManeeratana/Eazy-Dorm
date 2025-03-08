@@ -11,6 +11,10 @@ main {
     height: fit-content;
     width: 200px;
 }
+.filter > select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 .filter > input {
     border: none;
     border-radius: 5px;
@@ -18,10 +22,34 @@ main {
 .filter > h3 {
     margin-bottom: 1px;
 }
+input[type=checkbox] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+}
+input[type=checkbox]:checked {
+    border: 1px solid #33b249;
+    background-color: #33b249;
+}
+input[type=checkbox]:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .itemscontainer {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .item {
     background-color: whitesmoke;
@@ -89,6 +117,10 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px;
     height: 350px;
     width: 350px;
+    transition: all 200ms;
+}
+.room:hover {
+    transform: scale(1.01);
 }
 .room > img {
     border-radius: 5px;

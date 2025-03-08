@@ -26,12 +26,12 @@ main {
     position: relative;
 }
 .info > h1 {
-    margin-block: 0px;
+    margin-block: 25px;
 }
 .info > h3 {
     position: absolute;
-    right: 5%;
-    top: 1%;
+    right: 50px;
+    top: 30px;
 }
 .notrentbutton {
     border: none;
@@ -43,6 +43,7 @@ main {
     padding-block: 1%;
     cursor: pointer;
     transition: all 200ms;
+    margin-bottom: 25px;
 }
 .rentedbutton {
     border: none;
@@ -52,6 +53,7 @@ main {
     font-size: xx-large;
     background-color: grey;
     padding-block: 1%;
+    margin-bottom: 25px;
 }
 
 .notrentbutton:hover {
