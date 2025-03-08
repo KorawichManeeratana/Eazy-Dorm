@@ -15,13 +15,14 @@ router.get('/:did/:uid', async (req, res) => {
         console.error(err);
     }
 });
-router.post('/success/:rid/:did', async (req, res) => {
+router.post('/success/:rid/:did/:uid', async (req, res) => {
     let dormid = req.params.did;
     let report_id = req.params.rid;
+    let userid = req.params.uid;
     let sql = `DELETE FROM Report WHERE report_id = ${report_id};`;
     try {
         await conn.query(sql, [report_id]);
-        res.redirect('/reportnoti/'+dormid);
+        res.redirect('/reportnoti/'+dormid+'/'+userid);
         conn.releaseConnection();
     } catch (err) {
         console.error(err);

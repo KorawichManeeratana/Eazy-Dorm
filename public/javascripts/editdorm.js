@@ -37,8 +37,8 @@ function validate(event) {
 
     let isValid = true; 
 
-    if (isNaN(pay) || pay === "") {
-        alert("จำนวนห้องต้องเป็นตัวเลขเท่านั้น");
+    if (pay === "") {
+        alert("กรุณากรอกเลขบัญชี");
         isValid = false;
         return false;
     }

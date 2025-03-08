@@ -86,41 +86,41 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
     address = '${formdata.address}',
-    pay = ${formdata.pay},
+    pay = '${formdata.pay}',
     rent = '${rent}',
     phone_contact = '${formdata.contact}',
     other_contact = '${formdata.other_contact}',
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay},
-    payChannel = ${formdata.payChannel}
+    payChannel = '${formdata.payChannel}'
     WHERE dorm_id = ${req.params.id};`;
     } else if(formdata.image == null){
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
     address = '${formdata.address}',
-    pay = ${formdata.pay},
+    pay = '${formdata.pay}',
     rent = '${rent}',
     phone_contact = '${formdata.contact}',
     other_contact = '${formdata.other_contact}',
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay},
     qrcode = '${formdata.qrimage}',
-    payChannel = ${formdata.payChannel}
+    payChannel = '${formdata.payChannel}'
     WHERE dorm_id = ${req.params.id};`;
     } else if(formdata.qrimage == null){
         sql = `UPDATE Dormitory SET 
     name = '${formdata.name}',
     detail = '${formdata.detail}',
     address = '${formdata.address}',
-    pay = ${formdata.pay},
+    pay = '${formdata.pay}',
     rent = '${rent}',
     phone_contact = '${formdata.contact}',
     other_contact = '${formdata.other_contact}',
     electric_pay = ${formdata.electric_pay},
     water_pay = ${formdata.water_pay},
     dorm_pic = '${formdata.image}',
-    payChannel = ${formdata.payChannel}
+    payChannel = '${formdata.payChannel}'
     WHERE dorm_id = ${req.params.id};`;
     } else {
         sql = `UPDATE Dormitory SET 
@@ -135,7 +135,7 @@ router.post('/process_edit/:id/:uid', upload.fields([{ name: 'image' }, { name: 
     water_pay = ${formdata.water_pay},
     dorm_pic = '${formdata.image}',
     qrcode = '${formdata.qrimage}',
-    payChannel = ${formdata.payChannel}
+    payChannel = '${formdata.payChannel}'
     WHERE dorm_id = ${req.params.id};`;
     }   
     

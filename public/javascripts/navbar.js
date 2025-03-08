@@ -140,19 +140,32 @@ async function getNotification(user_id) {
     // ตรวจสอบว่า unread_count เปลี่ยนไปหรือไม่
     if (finalData.unread_count !== lastUnreadCount) {
       lastUnreadCount = finalData.unread_count; // อัพเดทค่าใหม่
-      notiList.innerHTML = ""; // เคลียร์การแจ้งเตือนเก่า
       data.allNoti[0].forEach(noti => {
-        notiList.insertAdjacentHTML('afterbegin', `
-          <a href="/bill/${noti.pay_id}" class="noti-link">
-            <div class="noti-menu" data-notification-id="${noti.NotiID}">
-              <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
-              <div class="date-content">
-                <span class="noti-content">${noti.content}</span>
-                <span class="noti-date">${timeSince(noti.createAt)}</span>
+        if (noti.type == "bill"){
+          notiList.insertAdjacentHTML('beforeend', `
+            <a href="/viewBill/${noti.toWho}" class="noti-link">
+              <div class="noti-menu" data-notification-id="${noti.NotiID}">
+                <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+                <div class="date-content">
+                  <span class="noti-content">${noti.content}</span>
+                  <span class="noti-date">${timeSince(noti.createAt)}</span>
+                </div>
               </div>
-            </div>
-          </a>
-        `);
+            </a>
+          `);
+        }else{
+          notiList.insertAdjacentHTML('beforeend', `
+            <a href="" class="noti-link">
+              <div class="noti-menu" data-notification-id="${noti.NotiID}">
+                <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+                <div class="date-content">
+                  <span class="noti-content">${noti.content}</span>
+                  <span class="noti-date">${timeSince(noti.createAt)}</span>
+                </div>
+              </div>
+            </a>
+          `);
+        }
       });
 
       // อัพเดท badge

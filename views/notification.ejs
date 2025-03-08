@@ -80,18 +80,32 @@
           const data = await response.json();
           const allNotiData = data.allNoti[0];
           allNotiData.forEach((noti) => {
-            Menu.insertAdjacentHTML(
-              "afterbegin",
-              `<a href="/bill/${noti.pay_id}" class="noti-link">
-  <div class="noti-menu" data-notification-id="${noti.NotiID}">
-    <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
-    <div class="date-content">
-      <span class="noti-content">${noti.content}</span>
-      <span class="noti-date">${timeSince(noti.createAt)}</span>
+            if (noti.type == "bill"){
+              Menu.insertAdjacentHTML(
+                "afterbegin",
+                `<a href="/viewBill/${noti.toWho}" class="noti-link">
+    <div class="noti-menu" data-notification-id="${noti.NotiID}">
+      <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+      <div class="date-content">
+        <span class="noti-content">${noti.content}</span>
+        <span class="noti-date">${timeSince(noti.createAt)}</span>
+      </div>
     </div>
-  </div>
-</a>`
-            );
+  </a>`
+              );
+            }else{
+              Menu.insertAdjacentHTML(
+                "afterbegin",
+                `<a href="#" class="noti-link">
+    <div class="noti-menu" data-notification-id="${noti.NotiID}">
+      <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+      <div class="date-content">
+        <span class="noti-content">${noti.content}</span>
+        <span class="noti-date">${timeSince(noti.createAt)}</span>
+      </div>
+    </div>
+  </a>`);
+            }
           });
         } catch (error) {
           console.error(error);

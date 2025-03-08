@@ -3,11 +3,12 @@ const db = require("../../dbconn");
 
 async function addNewPayment(roomid, dormname, totalrent, waterBill, elecBill){
     try {
-        const query = `INSERT INTO notifications (toWho, fromWho, content)
+        const query = `INSERT INTO notifications (toWho, fromWho, content, type)
 SELECT
     r.loger_id,
     d.owner_id,
-    CONCAT('จ่ายเงินค่าเช่าหอพัก ', '${dormname}', ' โดยเป็นเงินรวมทั้งสิ้น ', ${totalrent}, ' บาท') AS content
+    CONCAT('จ่ายเงินค่าเช่าหอพัก ', '${dormname}', ' โดยเป็นเงินรวมทั้งสิ้น ', ${totalrent}, ' บาท') AS content,
+    'bill'
 FROM Room r
 JOIN Dormitory d ON r.dorm_id = d.dorm_id
 WHERE r.room_id = ${roomid};`;
