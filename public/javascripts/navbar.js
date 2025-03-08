@@ -94,7 +94,10 @@ async function fetchCookieInfo() {
     const data = await response.json();
     decodedata = data.decoded;
 
-    getNotification(decodedata.userID);
+    setInterval(() => {
+      getNotification(decodedata.userID);
+    }, 30000);
+
     owneddorm.href = `/owneddorm/${decodedata.userID}`;
     
     userpfp.src = decodedata.userpfp;
@@ -102,6 +105,7 @@ async function fetchCookieInfo() {
     usernamedisplay.innerHTML = decodedata.username;
     profilea.href = `/profile/${decodedata.userID}`;
     bill.href = `/viewBill/${decodedata.userID}`;
+    viewallNotifi.href = `/notification/${decodedata.userID}`
 
     if (decodedata.role == "owner") {
       owneddorm.classList.remove("hidden");
@@ -112,6 +116,8 @@ async function fetchCookieInfo() {
   }
 }
 
+let lastUnreadCount = 0;
+
 async function getNotification(user_id) {
   const notiList = document.getElementById("bignoti");
 
@@ -121,42 +127,51 @@ async function getNotification(user_id) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({user_id: user_id, limit: true}),
+      body: JSON.stringify({ user_id: user_id, limit: true }),
     });
+
     if (!response.ok) {
-      throw new Error('Failed to fetch user info');
+      throw new Error('Failed to fetch notifications');
     }
 
     const data = await response.json();
     const finalData = data.allNoti[0][0];
 
-    data.allNoti[0].forEach(noti => {
-  notiList.insertAdjacentHTML('afterbegin', `
-    <a href="/bill/${noti.pay_id}" class="noti-link">
-  <div class="noti-menu" data-notification-id="${noti.NotiID}">
-    <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
-    <div class="date-content">
-      <span class="noti-content">${noti.content}</span>
-      <span class="noti-date">${timeSince(noti.createAt)}</span>
-    </div>
-  </div>
-</a>
-  `);
-});
-    
-    if (finalData.unread_count > 9){
-      notiBadge.classList.remove("hidden");
-      notiBadge.innerHTML = "9+";
-    }else if (finalData.unread_count > 0){
-      notiBadge.classList.remove("hidden");
-      notiBadge.innerHTML = finalData.unread_count;
+    // ตรวจสอบว่า unread_count เปลี่ยนไปหรือไม่
+    if (finalData.unread_count !== lastUnreadCount) {
+      lastUnreadCount = finalData.unread_count; // อัพเดทค่าใหม่
+      notiList.innerHTML = ""; // เคลียร์การแจ้งเตือนเก่า
+      data.allNoti[0].forEach(noti => {
+        notiList.insertAdjacentHTML('afterbegin', `
+          <a href="/bill/${noti.pay_id}" class="noti-link">
+            <div class="noti-menu" data-notification-id="${noti.NotiID}">
+              <img src="${noti.user_pic}" alt="noti" class="noti-img"/>
+              <div class="date-content">
+                <span class="noti-content">${noti.content}</span>
+                <span class="noti-date">${timeSince(noti.createAt)}</span>
+              </div>
+            </div>
+          </a>
+        `);
+      });
+
+      // อัพเดท badge
+      if (finalData.unread_count > 9) {
+        notiBadge.classList.remove("hidden");
+        notiBadge.innerHTML = "9+";
+      } else if (finalData.unread_count > 0) {
+        notiBadge.classList.remove("hidden");
+        notiBadge.innerHTML = finalData.unread_count;
+      } else {
+        notiBadge.classList.add("hidden");
+      }
+
+      spanofviewall.innerHTML = `ดูทั้งหมด (${data.allNoti[0].length})`;
+      viewallNotifi.href = `/notification/${finalData.toWho}`;
     }
 
-    spanofviewall.innerHTML = `ดูทั้งหมด (${data.allNoti[0].length})`;
-    viewallNotifi.href = `/notification/${finalData.toWho}`;
-
-  }catch (error) {
-    console.error('Error fetching user info:', error);
+  } catch (error) {
+    console.error('Error fetching notifications:', error);
   }
 }
 
