@@ -17,7 +17,8 @@ async function registerAccount(userData) {
         const userpic = 'https://th.bing.com/th/id/OIP.Od4m4w455EEToOQDKESqvgHaFJ?rs=1&pid=ImgDetMain';
 
         const [result, fill] = await (await db.getConnection()).query(
-            `INSERT INTO Users (username, password, first_name, last_name, dob, phone, email, user_pic, role) VALUES ('${username}', '${hashedPassword}', '${firstname}', '${lastname}', '${dob}', '${phone}', '${email}', '${userpic}', '${role}')`
+            `INSERT INTO Users (username, password, first_name, last_name, dob, phone, email, user_pic, role) VALUES 
+            ('${username}', '${hashedPassword}', '${firstname}', '${lastname}', '${dob}', '${phone}', '${email}', '${userpic}', '${role}')`
         );
 
         if (result && result.affectedRows > 0) {
