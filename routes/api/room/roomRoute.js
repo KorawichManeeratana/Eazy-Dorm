@@ -7,7 +7,7 @@ const getAmen = require("../../../controller/room/getAmen");
 const router = express.Router();
 
 router.post('/loadroom', (req, res) => {
-  getRoom(req.body.id, req.body.rent, req.body.floors, req.body.amens)
+  getRoom(req.body.id, req.body.rent, req.body.floors, req.body.amens, req.body.min, req.body.max)
   .then(result => res.status(result.status).send(result))
   .catch(error => res.status(500).send(error));
 });

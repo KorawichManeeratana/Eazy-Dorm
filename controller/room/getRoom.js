@@ -2,7 +2,7 @@ require("dotenv").config();
 const { query } = require("express");
 const db = require("../../dbconn");
 
-async function getRoom(id, rent, floors, amens) {
+async function getRoom(id, rent, floors, amens, min, max) {
   try {
     let params = [];
     let conditions = [];
@@ -31,6 +31,9 @@ async function getRoom(id, rent, floors, amens) {
       params.push(...floors);
     }
 
+    conditions.push(`r.rent BETWEEN ? AND ?`);
+    params.push(min, max);
+
     conditions.push(`r.dorm_id = ?`);
     params.push(id);
     if (amens.length) {params.push(amens.length);}
@@ -41,6 +44,9 @@ async function getRoom(id, rent, floors, amens) {
     if (having) query += ` ${having}`;
 
     query += " ORDER BY room_number desc;";
+
+    console.log(query)
+    console.log(params)
 
     const result = await db.query(query, params);
     db.releaseConnection();

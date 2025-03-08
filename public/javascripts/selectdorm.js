@@ -9,13 +9,8 @@ function showDorm(data) {
     console.log(data.length);
     data.length ? popup.style.display = "none" : popup.style.display = "block";
     for (dorm of data) {
-        if (dorm.rent.includes("-")) {
-            let [min, max] = dorm.rent.split("-").map(n => parseInt(n.trim()));
-            if (min < minprice || max > maxprice) {continue;}
-        } else {
-            let rent = parseInt(dorm.rent);
-            if (rent < minprice || rent > maxprice) {continue;}
-        }
+        let [min, max] = dorm.rent.split("-").map(n => parseInt(n.trim()));
+        if (min < minprice || max > maxprice) {continue;}
         dorm_container.insertAdjacentHTML('afterbegin', `<div class="dorm" onclick="openDormInfo(${dorm.dorm_id})">
                 <img src="/images/${dorm.dorm_pic}" alt="dorm_img">
                 <div class="describe">

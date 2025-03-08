@@ -9,13 +9,17 @@ function openPage(id) {
 async function loadRoom(id) {
     const checkedBoxes = document.querySelectorAll('input[name="floor"]:checked');
     const available = document.getElementsByClassName("avaicheck")[0];
+    let minprice = document.getElementById("minprice").value;
+    let maxprice = document.getElementById("maxprice").value;
+    minprice = minprice ? parseInt(minprice) : 0;
+    maxprice = maxprice ? parseInt(maxprice) : 9999999999;
     const floors = Array.from(checkedBoxes).map(floor => parseInt(floor.value));
     const response = await fetch('/api/loadroom', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({id: id, rent: !available.checked, floors: floors, amens: amenlist}),
+        body: JSON.stringify({id: id, rent: !available.checked, floors: floors, amens: amenlist, min: minprice, max: maxprice}),
     });
     const data = await response.json();
     showRoom(data.allRoom);
