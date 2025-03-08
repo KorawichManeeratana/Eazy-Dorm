@@ -11,7 +11,11 @@
             <div class="info">
                 <h1><%=room.room_number%></h1>
                 <h3>ชั้น <%=room.floor%></h3>
-                <button type="button" class="notrentbutton" onclick="rentTheRoom('<%=room.room_id%>')">เช่าห้อง</button>
+                <% if (room.loger_id == null) { %>
+                    <button type="button" class="notrentbutton" onclick="rentTheRoom('<%= room.room_id %>')">เช่าห้อง</button>
+                <% } else { %>
+                    <button type="button" class="rentedbutton">เช่าแล้ว</button>
+                <% } %>
                 <div class="mini_info">
                     <h3>รายละเอียด</h3>
                     <p>ขนาด <%=room.size%> ตร.ม</p>

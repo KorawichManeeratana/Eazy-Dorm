@@ -6,7 +6,6 @@
 </head>
 <body onload="openPage()">
     <main>
-
         <form class="search" onsubmit="searchDorm(event)">
             <input type="text" placeholder="ค้นหาหอพัก" id="searchtext">
             <div class="pricerange">
@@ -14,7 +13,9 @@
             </div>
             <button type="submit">ค้นหา</button>
         </form>
-
+        <div class="popup">
+            <h1>ไม่พบหอพัก</h1>
+        </div>
         <div class="dormcontainer">
         </div>
         

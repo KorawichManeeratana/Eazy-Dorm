@@ -8,13 +8,14 @@ function openPage(id) {
 
 async function loadRoom(id) {
     const checkedBoxes = document.querySelectorAll('input[name="floor"]:checked');
+    const available = document.getElementsByClassName("avaicheck")[0];
     const floors = Array.from(checkedBoxes).map(floor => parseInt(floor.value));
     const response = await fetch('/api/loadroom', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({id: id, rent: false, floors: floors, amens: amenlist}),
+        body: JSON.stringify({id: id, rent: !available.checked, floors: floors, amens: amenlist}),
     });
     const data = await response.json();
     showRoom(data.allRoom);
@@ -42,12 +43,10 @@ function addAmen() {
     let [id, name] = select.value.split(",");
     document.getElementsByClassName("itemscontainer")[0].insertAdjacentHTML('afterbegin', `<div class="item" id="amen${id}">${name}<button onclick="removeAmen(${id}, '${name}')">x</button></div>`);
     amenlist.push(parseInt(id));
-    console.log(amenlist);
     if (selected > 0) {select.remove(selected);}
 }
 
 function removeAmen(id, name) {
-    console.log(id);
     document.getElementById(`amen${id}`).remove();
     const item_select = document.getElementById("Amen");
     item_select.innerHTML += `<option value="${id},${name}">${name}</option>`;
@@ -56,7 +55,6 @@ function removeAmen(id, name) {
         if (a != parseInt(id)) {newa.push(a)}
     }
     amenlist = newa;
-    console.log(amenlist);
 }
 
 function eq(val) {
@@ -81,6 +79,8 @@ async function loadFloor(id) {
 function showRoom(data) {
     document.getElementsByClassName("roomcontainer")[0].innerHTML = "";
     const room_container = document.getElementsByClassName("roomcontainer")[0];
+    const popup = document.getElementsByClassName("popup")[0];
+    data.length ? popup.style.display = "none" : popup.style.display = "block";
     for (room of data) {
         room_container.insertAdjacentHTML('afterbegin', `<div class="room" onclick="openRoomInfo(${room.room_id})">
                 <img src="/images/${room.room_img}" alt="room_img">
@@ -88,6 +88,7 @@ function showRoom(data) {
                     <h3>${room.room_number}</h3>
                     <h4>${room.rent} บาท</h4>
                     <h5>ชั้นที่${room.floor}</h5>
+                    <p class="${(room.loger_id == null) ? "available":"unavailable"}">${(room.loger_id == null) ? "ว่าง":"ไม่ว่าง"}</p>
                 </div>
             </div>`);
     }

@@ -48,6 +48,18 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.popup {
+    display: none;
+    background-color: white;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    align-content: center;
+    justify-items: center;
+    height: 150px;
+    width: 250px;
+    position: absolute;
+    left: 45%;
+    top: 45%;
+}
 .roomcontainer {
     display: flex;
     flex-wrap: wrap;
@@ -87,4 +99,15 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     bottom: 5px;
     left: 10px;
+}
+.describe > p {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+.available {
+    color: green;
+}
+.unavailable {
+    color: red;
 }

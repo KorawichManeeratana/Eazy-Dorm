@@ -5,6 +5,9 @@ function showDorm(data) {
     let maxprice = document.getElementById("maxprice").value;
     minprice = minprice ? parseInt(minprice) : 0;
     maxprice = maxprice ? parseInt(maxprice) : Infinity;
+    const popup = document.getElementsByClassName("popup")[0];
+    console.log(data.length);
+    data.length ? popup.style.display = "none" : popup.style.display = "block";
     for (dorm of data) {
         if (dorm.rent.includes("-")) {
             let [min, max] = dorm.rent.split("-").map(n => parseInt(n.trim()));

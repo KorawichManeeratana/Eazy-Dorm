@@ -3,7 +3,7 @@ const db = require("../../dbconn");
 
 async function getAmen() {
   try {
-    query =`SELECT DISTINCT a.amen_id, a.name FROM Amenroom r JOIN Amenities a ON (r.amen_id = a.amen_id) ORDER BY a.name desc;`
+    query =`SELECT DISTINCT a.amen_id, a.name FROM Amenroom r LEFT JOIN Amenities a ON (r.amen_id = a.amen_id) ORDER BY a.name desc;`
     const result = (await db.query(query))[0];
     db.releaseConnection();
     return {

@@ -10,6 +10,7 @@
             <h3>กรอง</h3>
             <select name="Amenities" id="Amen" onchange="addAmen()"></select>
             <div class="itemscontainer"></div>
+            <input type="checkbox" class="avaicheck">ว่าง
             <h3>ชั้น</h3>
             <div class="floorselect"></div>
             <h3>ราคา</h3>
@@ -18,7 +19,9 @@
             </div>
             <button type="button" onclick="loadRoom('<%=id%>')">ยืนยัน</button>
         </div>
-
+        <div class="popup">
+            <h1>ไม่พบห้องพัก</h1>
+        </div>
         <div class="roomcontainer"></div>
     </main>
 </body>
