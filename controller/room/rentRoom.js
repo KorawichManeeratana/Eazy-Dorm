@@ -2,7 +2,6 @@ require("dotenv").config();
 const db = require("../../dbconn");
 
 async function rentRoom(room_id, user_id) {
-  console.log(room_id);
   try {
     let check1 = `SELECT loger_id FROM Room where room_id = ?`;
     const result1 = (await db.query(check1, [room_id]))[0][0];
@@ -16,7 +15,6 @@ async function rentRoom(room_id, user_id) {
     let check2 = `SELECT room_id FROM Room where loger_id = ?`;
     const result2 = (await db.query(check2, [user_id]))[0];
     db.releaseConnection();
-    console.log(result2);
     if (result2.length){
       return {
         status: 200,

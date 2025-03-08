@@ -24,16 +24,16 @@ async function rentTheRoom(id) {
         if (response.ok) {
             let data = await response.json();
             if (data.message == "Room already rented") {
-                alert("ห้องนี้ถูกจองไปแล้ว");
+                alert("ห้องนี้ถูกเช่าไปแล้ว");
             }
             if (data.message == "You already rent a room") {
-                alert("คุณมีห้องที่จองอยู่แล้ว");
+                alert("คุณมีห้องที่เช่าอยู่แล้ว");
             }
             if (data.message == "Room rented") {
                 let button = document.getElementsByClassName("notrentbutton")[0];
                 button.setAttribute("class", "rentedbutton");
                 button.removeAttribute("onclick");
-                alert("จองสำเร็จ!");
+                alert("เช่าสำเร็จ! โปรดติดต่อกับผู้ดูแลหอเพื่อขั้นตอนต่อไป");
             }
         }
     } catch (error) {

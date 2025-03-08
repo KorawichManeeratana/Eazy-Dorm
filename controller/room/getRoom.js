@@ -45,9 +45,6 @@ async function getRoom(id, rent, floors, amens, min, max) {
 
     query += " ORDER BY room_number desc;";
 
-    console.log(query)
-    console.log(params)
-
     const result = await db.query(query, params);
     db.releaseConnection();
 

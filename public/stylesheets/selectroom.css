@@ -41,12 +41,27 @@ main {
     width: 60px;
     height: 20px;
     border-radius: 5px;
-    border: 1px black solid;
+    border: 1px #ccc solid;
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     margin: 0;
+}
+.filter > button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #33b249;
+    color: white;
+    padding-block: 5px;
+    padding-inline: 10px;
+    cursor: pointer;
+    transition: all 200ms;
+}
+.filter > button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.05);
 }
 .popup {
     display: none;

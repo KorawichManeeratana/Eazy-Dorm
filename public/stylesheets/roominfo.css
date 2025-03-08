@@ -38,7 +38,7 @@ main {
     width: 100%;
     color: white;
     font-size: xx-large;
-    background-color: #bb8454;
+    background-color: #33b249;
     padding-block: 1%;
     cursor: pointer;
     transition: all 200ms;
@@ -55,6 +55,7 @@ main {
 
 .notrentbutton:hover {
     transform: scale(1.01);
+    filter: brightness(1.05);
 }
 .mini_info {
     margin-top: 10px;

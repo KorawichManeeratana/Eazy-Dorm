@@ -12,7 +12,7 @@
                 <h1><%=dorm.name%></h1>
                 <h3><%=dorm.rating%> ดาว</h3>
                 <p><%=dorm.address%></p>
-                <button type="button" onclick="openSelectRoom('<%=dorm.dorm_id%>')">เลือกดูห้องที่ว่าง</button>
+                <button type="button" onclick="openSelectRoom('<%=dorm.dorm_id%>')">เลือกดูห้อง</button>
                 <div class="mini_info">
                     <h3>รายละเอียด</h3>
                     <p><%=dorm.detail%></p>
@@ -26,7 +26,13 @@
         </div>
         <div class="do_comment">
             <h1>แสดงความคิดเห็น</h1>
-            <input type="number" id="my_comment_rating"> คะแนน
+            <div class="stars" id="starRating">
+                <span class="star" onclick="changeStar(1)" onmouseover="changeStarColor(1)" onmouseout="changeStarColor(0)">★</span>
+                <span class="star" onclick="changeStar(2)" onmouseover="changeStarColor(2)" onmouseout="changeStarColor(0)">★</span>
+                <span class="star" onclick="changeStar(3)" onmouseover="changeStarColor(3)" onmouseout="changeStarColor(0)">★</span>
+                <span class="star" onclick="changeStar(4)" onmouseover="changeStarColor(4)" onmouseout="changeStarColor(0)">★</span>
+                <span class="star" onclick="changeStar(5)" onmouseover="changeStarColor(5)" onmouseout="changeStarColor(0)">★</span>
+            </div>
             <textarea id="my_comment_text" rows="10"></textarea>
             <button type="button" onclick="do_comment('<%=dorm.dorm_id%>')">ยืนยัน</button>
         </div>
@@ -36,7 +42,7 @@
                 <%comment.forEach(com => {%>
                     <div class="comment">
                         <div class="top">
-                            <img src="/images/<%=com.username%>" alt="user_img">
+                            <img src="<%=com.user_pic%>" alt="user_img">
                             <h3><%=com.username%></h3>
                             <h5><%=com.rating%> ดาว</h5>
                         </div>

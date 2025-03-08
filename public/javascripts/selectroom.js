@@ -91,7 +91,7 @@ function showRoom(data) {
                 <div class="describe">
                     <h3>${room.room_number}</h3>
                     <h4>${room.rent} บาท</h4>
-                    <h5>ชั้นที่${room.floor}</h5>
+                    <h5>ชั้นที่ ${room.floor}</h5>
                     <p class="${(room.loger_id == null) ? "available":"unavailable"}">${(room.loger_id == null) ? "ว่าง":"ไม่ว่าง"}</p>
                 </div>
             </div>`);
