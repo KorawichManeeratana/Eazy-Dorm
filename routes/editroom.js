@@ -77,7 +77,6 @@ router.post("/process_editroom/:id/:uid", upload.single('image'), async (req, re
     image: req.file ? req.file.filename : null
   };
   let sql;
-  console.log(formdata.image);
   if (formdata.image == null) {
     sql = `UPDATE Room 
         SET room_number = '${formdata.room_number}', 
@@ -98,7 +97,6 @@ router.post("/process_editroom/:id/:uid", upload.single('image'), async (req, re
   let sqldorm = `SELECT dorm_id FROM Room WHERE room_id = ${roomId};`;
   try {
     dorm = await conn.query(sqldorm);
-    console.log("here is :", dorm[0][0].dorm_id);
     let sqlDel = `DELETE FROM Amenroom WHERE room_id = ${roomId};`;
     await conn.query(sqlDel);
 

@@ -25,8 +25,6 @@ async function registerUser() {
   } else if (clientRadio.checked) {
     role = "lodger";
   }
-  console.log(firstName, lastName, dob, username, password, confirmPassword, role, tel, emailInput);
-
   if (
     !firstName ||
     !lastName ||

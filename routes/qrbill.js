@@ -51,7 +51,6 @@ WHERE
     ph.pay_id = ${payid};`
     try {
         const [rows] = await conn.query(sql);
-        console.log(rows[0]);
         conn.releaseConnection();
         res.render('qrbill', { data: rows[0], payid: payid});
     } catch (err) {
