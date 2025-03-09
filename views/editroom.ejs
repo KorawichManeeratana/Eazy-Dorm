@@ -18,7 +18,7 @@
                     enctype="multipart/form-data">
                     <label for="room_number">เลขที่ห้อง :</label>
                     <input type="text" placeholder="กรอกเลขที่ห้อง" name="room_number" value="<%= data.room_number %>"
-                        required>
+                       maxlength="4" required>
 
                     <label for="floor">ชั้น :</label>
                     <input type="number" placeholder="กรอกชั้น" name="floor" value="<%= data.floor %>" required>

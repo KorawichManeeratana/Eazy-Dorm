@@ -16,7 +16,7 @@
                 <h1>เพิ่มห้องพัก</h1>
                 <form action="/addroom/process_addroom/<%= dormid %>/<%= userid %>" method="post" onsubmit="return validate(event);">
                     <label for="room_number">เลขที่ห้อง :</label>
-                    <input type="text" placeholder="กรอกเลขที่ห้อง" name="room_number" id="room_number" required>
+                    <input type="text" placeholder="กรอกเลขที่ห้อง" name="room_number" id="room_number" maxlength="4" required>
 
                     <label for="floor">ชั้น :</label>
                     <input type="number" placeholder="กรอกชั้น" name="floor" id="floor" required>
