@@ -2,7 +2,7 @@ let amenlist = [];
 
 function openPage(id) {
     loadRoom(id);
-    loadAmen();
+    loadAmen(id);
     loadFloor(id);
 }
 
@@ -25,13 +25,13 @@ async function loadRoom(id) {
     showRoom(data.allRoom);
 }
 
-async function loadAmen() {
+async function loadAmen(id) {
     const response = await fetch('/api/loadamenities', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(),
+        body: JSON.stringify({ id: id}),
     });
     const data = await response.json();
     const item_select = document.getElementById("Amen");

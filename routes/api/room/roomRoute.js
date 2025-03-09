@@ -25,7 +25,7 @@ router.post('/loadroomfloors', (req, res) => {
 });
 
 router.post('/loadamenities' , (req, res) => {
-  getAmen()
+  getAmen(req.body.id)
   .then(result => res.status(result.status).send(result))
   .catch(error => res.status(500).send(error));
 })
