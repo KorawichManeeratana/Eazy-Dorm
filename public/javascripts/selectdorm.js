@@ -6,10 +6,11 @@ function showDorm(data) {
     minprice = minprice ? parseInt(minprice) : 0;
     maxprice = maxprice ? parseInt(maxprice) : Infinity;
     const popup = document.getElementsByClassName("popup")[0];
-    data.length ? popup.style.display = "none" : popup.style.display = "block";
+    let d = 0;
     for (dorm of data) {
         let [min, max] = dorm.rent.split("-").map(n => parseInt(n.trim()));
         if (min < minprice || max > maxprice) {continue;}
+        d++;
         dorm_container.insertAdjacentHTML('afterbegin', `<div class="dorm" onclick="openDormInfo(${dorm.dorm_id})">
                 <img src="/images/${dorm.dorm_pic}" alt="dorm_img">
                 <div class="describe">
@@ -19,6 +20,7 @@ function showDorm(data) {
                 </div>
             </div>`);
     }
+    d ? popup.style.display = "none" : popup.style.display = "block";
 }
 
 function openDormInfo(id) {
@@ -30,6 +32,16 @@ function openPage(){
     if (maintext) {
         document.getElementById("searchtext").value = maintext;
         sessionStorage.removeItem("search");
+    }
+    const minprice = sessionStorage.getItem("minprice");
+    if (minprice) {
+        document.getElementById("minprice").value = minprice;
+        sessionStorage.removeItem("minprice");
+    }
+    const maxprice = sessionStorage.getItem("maxprice");
+    if (maxprice) {
+        document.getElementById("maxprice").value = maxprice;
+        sessionStorage.removeItem("maxprice");
     }
     searchDorm();
 }
