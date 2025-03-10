@@ -34,18 +34,24 @@ document.getElementById("roomSelect").addEventListener("change", function () {
 document.getElementById("roomSelect").dispatchEvent(new Event("change"));
 
 async function sendBill() {
+  const rentElement = document.getElementById("totalrent");
+  const totalrent = rentElement.textContent.trim(); // ดึงค่าจริง
+  
+  if (!totalrent || totalrent === " " || isNaN(parseInt(totalrent))) {
+    alert("กรุณาคำนวณค่าเช่าก่อนส่งบิล!");
+    return;
+  }
+
   const roomid = document.getElementById("roomSelect").value;
-  const rent = document.getElementById("totalrent");
   const dname = document.getElementById("dname");
   const water = document.getElementById("wres");
   const elec = document.getElementById("eres");
   const lodger = document.getElementById("tenantName");
 
-  const dormname = dname.textContent || dname.innerText;
-  const totalrent = rent.textContent || rent.innerText;
-  const waterBill = water.textContent || water.innerText;
-  const elecBill = elec.textContent || elec.innerText;
-  const lodgerName = lodger.textContent || lodger.innerText;
+  const dormname = dname.textContent.trim();
+  const waterBill = water.textContent.trim();
+  const elecBill = elec.textContent.trim();
+  const lodgerName = lodger.textContent.trim();
 
   if (lodgerName === "ไม่มีข้อมูล" || lodgerName === "ไม่มีผู้เช่า") {
     showPopup('noTenantPopup');
@@ -60,10 +66,10 @@ async function sendBill() {
       },
       body: JSON.stringify({
         roomid: roomid,
-        dormname: dormname.trim(),
-        totalrent: totalrent.trim(),
-        waterBill: waterBill.trim(),
-        elecBill: elecBill.trim(),
+        dormname: dormname,
+        totalrent: totalrent,
+        waterBill: waterBill,
+        elecBill: elecBill,
       }),
     });
 
@@ -72,10 +78,13 @@ async function sendBill() {
     }
 
     showPopup('successPopup');
+
   } catch (error) {
     console.error("Error fetching user info:", error);
+    alert("เกิดข้อผิดพลาดในการส่งบิล กรุณาลองใหม่!");
   }
 }
+
 
 function showPopup(popupId) {
   document.getElementById(popupId).style.display = 'flex';
